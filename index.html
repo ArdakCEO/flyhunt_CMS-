@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flyhunt — Нанимайте с ИИ. Быстрее, чем рынок.</title>
+<meta name="description" content="Flyhunt закрывает вакансии за вас: ищет кандидатов, оценивает резюме, ведёт переписку и назначает интервью. Вы получаете готовый шортлист.">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+
+<!-- ================= ШАПКА ================= -->
+<header>
+  <div class="container nav">
+    <a class="logo" href="#top" aria-label="Flyhunt — на главную"><img src="/images/logo.png" alt="Flyhunt"></a>
+    <nav class="nav-links">
+      <div class="nav-drop">
+        <a href="#solution-1">Решения</a>
+        <div class="drop-menu">
+          <a href="#solution-1">Сложные позиции<small>Когда откликов нет, а вакансия горит</small></a>
+          <a href="#solution-2">Массовый найм<small>Когда откликов сотни, а рук не хватает</small></a>
+          <a href="#solution-3">Найм под ключ<small>Когда нужен результат, а не инструмент</small></a>
+        </div>
+      </div>
+      <a href="#blog">Блог</a>
+      <a href="#event">Ивенты</a>
+      <a href="#community">Сообщество AI для HR</a>
+    </nav>
+    <div class="nav-right">
+      <span class="lang"><button class="lng active" data-lang="ru">RU</button> · <button class="lng" data-lang="kz">KZ</button> · <button class="lng" data-lang="en">EN</button></span>
+      <a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener" data-i="login">Войти</a>
+      <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#solution-1" data-close>Решения</a>
+  <a href="#solution-1" class="mm-sub" data-close>— Сложные позиции</a>
+  <a href="#solution-2" class="mm-sub" data-close>— Массовый найм</a>
+  <a href="#solution-3" class="mm-sub" data-close>— Найм под ключ</a>
+  <a href="#blog" data-close>Блог</a>
+  <a href="#event" data-close>Ивенты</a>
+  <a href="#community" data-close>Сообщество AI для HR</a>
+  <span class="lang"><button class="lng active" data-lang="ru">RU</button> · <button class="lng" data-lang="kz">KZ</button> · <button class="lng" data-lang="en">EN</button></span>
+  <a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener" data-i="login">Войти</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<main id="top">
+<section class="hero">
+  <div class="container hero-wrap">
+    <div class="chip c1"><span class="ring"><span class="face" data-photo="hero_w"></span></span>92% <small data-i="match">соответствие</small></div>
+    <div class="chip c2"><span class="ring"><span class="face" data-photo="hero_m"></span></span>87% <small data-i="match">соответствие</small></div>
+    <div class="chip c3"><span class="ring"></span>95% <small data-i="match">соответствие</small></div>
+    <h1>Нанимайте с ИИ.<br><span class="grad-text">Быстрее, чем рынок.</span></h1>
+    <p class="sub">Flyhunt закрывает вакансии за вас: ищет кандидатов, оценивает резюме, ведёт переписку и назначает интервью. Вы получаете готовый шортлист.</p>
+    <a class="btn-grad" href="#final">Заказать демо</a>
+    <div class="anchors">
+      <a class="anchor reveal" href="#solution-1"><div class="dot"></div><b>Сложные позиции</b><p>Когда откликов нет, а вакансия горит</p></a>
+      <a class="anchor reveal" href="#solution-2"><div class="dot"></div><b>Массовый найм</b><p>Когда откликов сотни, а рук не хватает</p></a>
+      <a class="anchor reveal" href="#solution-3"><div class="dot"></div><b>Найм под ключ</b><p>Когда нужен результат, а не инструмент</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ЛОГОТИПЫ КЛИЕНТОВ (плейсхолдеры — реальные файлы из Drive на этапе разработки; данные из админки, блок скрыт при 0 логотипов) ================= -->
+<section class="logos">
+  <p>Нам доверяют найм</p>
+  <div class="container strip" id="clientLogos"></div>
+</section>
+
+<!-- ================= РЕШЕНИЕ 1 ================= -->
+<section class="solution" id="solution-1">
+  <div class="container">
+    <span class="sol-tag reveal">Решение 01 · Сложные позиции</span>
+    <h2 class="reveal">Вакансия висит месяцами? Хватит ждать откликов.</h2>
+    <p class="pain reveal">Сильные кандидаты не откликаются — они не ищут работу. Пока вы ждёте отклики, конкуренты уже делают им офферы.</p>
+    <p class="sol-text reveal">Flyhunt ищет сам. ИИ сканирует hh, LinkedIn и собственную базу из 120 000 резюме, находит подходящих специалистов, оценивает каждого по вашим критериям и открывает контакты. Вы выходите напрямую на тех, кто вам нужен, — а не на тех, кто случайно откликнулся.</p>
+    <div class="sol-body">
+      <div class="reveal">
+        <div class="step"><span class="n">1</span><p>Опишите вакансию своими словами — ИИ сам построит поисковый запрос.</p></div>
+        <div class="step"><span class="n">2</span><p>Получите ранжированный список кандидатов со скорингом соответствия.</p></div>
+        <div class="step"><span class="n">3</span><p>Откройте контакты и выходите на связь в тот же день.</p></div>
+      </div>
+      <div class="result reveal">
+        <div class="big">в 2–3 раза</div>
+        <p>короче срок найма. Дни вместо месяцев.</p>
+        <button class="btn-white" data-form="form1">Найти кандидатов</button>
+      </div>
+    </div>
+
+    <!-- Демонстрация ИИ-поиска (DemoSlot) -->
+    <div class="demo-holder reveal">
+      <div class="demo-window" id="flyhuntDemo">
+        <div class="window-bar">
+          <span class="wdot"></span><span class="wdot"></span><span class="wdot"></span>
+          <span class="window-title"><b>Flyhunt</b> · <span data-i="demoTitle">AI-сорсинг кандидатов</span></span>
+        </div>
+        <div class="demo-body">
+          <div class="search-box" id="searchBox">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <div class="search-text"><span id="typedText"><span class="placeholder">Опишите, кого ищете…</span></span><span class="cursor" id="cursor" style="display:none"></span></div>
+          </div>
+          <div class="search-status" id="searchStatus">
+            <div class="spinner"></div>
+            <span class="status-label" id="statusLabel">Ищу кандидатов…</span>
+            <span class="source-chip own pending" id="chipFH">Flyhunt база</span>
+            <span class="source-chip" id="chipHH">hh.ru</span>
+            <span class="source-chip" id="chipLI">LinkedIn</span>
+          </div>
+          <div class="results" id="results"></div>
+          <div class="demo-summary" id="summary1"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Форма заявки, источник №1 -->
+    <div class="form-wrap" id="form1">
+      <div class="lead-card">
+        <h3>Найдём кандидатов на вашу вакансию</h3>
+        <form class="lead-form" name="lead" method="POST" data-netlify="true" netlify-honeypot="website" data-source="1" novalidate>
+          <input type="hidden" name="form-name" value="lead">
+          <input type="text" name="fullName" placeholder="Иван Иванов" autocomplete="name" required>
+          <span class="field-err">Укажите ФИО</span>
+          <input type="text" name="company" placeholder="Название компании" autocomplete="organization" required>
+          <span class="field-err">Укажите компанию</span>
+          <input type="text" name="position" placeholder="HR-директор" autocomplete="organization-title" required>
+          <span class="field-err">Укажите должность</span>
+          <input type="email" name="email" placeholder="you@company.kz" autocomplete="email" required>
+          <span class="field-err">Укажите корректный email</span>
+          <input type="tel" name="phone" placeholder="+7 ___ ___ __ __" autocomplete="tel" required>
+          <span class="field-err">Укажите телефон (10–15 цифр)</span>
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="source" value="1">
+          <button class="btn-grad" type="submit">Отправить заявку</button>
+          <p class="consent">Нажимая «Отправить заявку», вы соглашаетесь с <a href="#" data-modal="modalPrivacy" data-i="consentLink">Политикой конфиденциальности</a>.</p>
+        </form>
+        <div class="form-state ok-state"><div class="ok-icon">✓</div><p>Заявка отправлена! Свяжемся с вами в течение рабочего дня.</p></div>
+        <div class="form-state err-state"><p>Что-то пошло не так. Попробуйте ещё раз или напишите нам: info@flyhunt.ai</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= РЕШЕНИЕ 2 ================= -->
+<section class="solution" id="solution-2">
+  <div class="container">
+    <span class="sol-tag reveal">Решение 02 · Массовый найм</span>
+    <h2 class="reveal">Сотни откликов. Ноль времени. Знакомо?</h2>
+    <p class="pain reveal">Рекрутеры тонут в рутине: отсмотреть, написать, дозвониться, напомнить, перенести. На реальную оценку людей времени не остаётся.</p>
+    <p class="sol-text reveal">ИИ-агент Flyhunt берёт переписку на себя. Сам пишет кандидатам, задаёт квалифицирующие вопросы, приглашает подходящих на собеседование и напоминает о встрече. Ваш рекрутер подключается там, где нужен человек, — на интервью.</p>
+    <div class="sol-body">
+      <div class="reveal">
+        <div class="step"><span class="n">1</span><p>Задайте критерии отбора и вопросы для квалификации.</p></div>
+        <div class="step"><span class="n">2</span><p>ИИ-агент общается с кандидатами в мессенджерах — параллельно с сотнями.</p></div>
+        <div class="step"><span class="n">3</span><p>В календаре появляются только квалифицированные кандидаты.</p></div>
+      </div>
+      <div class="result reveal">
+        <div class="big">−50%</div>
+        <p>ручного труда рекрутера. Люди занимаются людьми, ИИ — рутиной.</p>
+        <button class="btn-white" data-form="form2">Автоматизировать найм</button>
+      </div>
+    </div>
+
+    <!-- Демонстрация ИИ-агента по переписке (DemoSlot) -->
+    <div class="demo-holder reveal">
+      <div>
+        <div class="demo-window chatw" id="flyhuntChatDemo">
+          <div class="window-bar">
+            <div class="avatar-wrap">
+              <div class="avatar-bot">FH</div>
+              <div class="channel-badge" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.44-1.08-2.74 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33h.5c.16 0 .38-.03.58.44.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.45-.13.15-.28.34-.4.46-.13.13-.27.28-.12.55.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.13.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.25.09 1.58.75 1.85.88.27.13.45.2.52.31.07.11.07.65-.15 1.28z"/></svg></div>
+            </div>
+            <div class="window-title-wrap">
+              <div class="chat-title">Flyhunt AI-рекрутер</div>
+              <div class="window-sub"><span class="online-dot"></span><span id="chatSubtitle">переписка в WhatsApp</span></div>
+            </div>
+          </div>
+          <div class="chat-body" id="chatBody"></div>
+        </div>
+        <div class="demo-summary" id="chatSummary"></div>
+      </div>
+    </div>
+
+    <!-- Форма заявки, источник №2 -->
+    <div class="form-wrap" id="form2">
+      <div class="lead-card">
+        <h3>Автоматизируем ваш массовый найм</h3>
+        <form class="lead-form" name="lead" method="POST" data-netlify="true" netlify-honeypot="website" data-source="2" novalidate>
+          <input type="hidden" name="form-name" value="lead">
+          <input type="text" name="fullName" placeholder="Иван Иванов" autocomplete="name" required>
+          <span class="field-err">Укажите ФИО</span>
+          <input type="text" name="company" placeholder="Название компании" autocomplete="organization" required>
+          <span class="field-err">Укажите компанию</span>
+          <input type="text" name="position" placeholder="HR-директор" autocomplete="organization-title" required>
+          <span class="field-err">Укажите должность</span>
+          <input type="email" name="email" placeholder="you@company.kz" autocomplete="email" required>
+          <span class="field-err">Укажите корректный email</span>
+          <input type="tel" name="phone" placeholder="+7 ___ ___ __ __" autocomplete="tel" required>
+          <span class="field-err">Укажите телефон (10–15 цифр)</span>
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="source" value="2">
+          <button class="btn-grad" type="submit">Отправить заявку</button>
+          <p class="consent">Нажимая «Отправить заявку», вы соглашаетесь с <a href="#" data-modal="modalPrivacy" data-i="consentLink">Политикой конфиденциальности</a>.</p>
+        </form>
+        <div class="form-state ok-state"><div class="ok-icon">✓</div><p>Заявка отправлена! Свяжемся с вами в течение рабочего дня.</p></div>
+        <div class="form-state err-state"><p>Что-то пошло не так. Попробуйте ещё раз или напишите нам: info@flyhunt.ai</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= РЕШЕНИЕ 3 ================= -->
+<section class="solution" id="solution-3">
+  <div class="container">
+    <span class="sol-tag reveal">Решение 03 · Найм под ключ</span>
+    <h2 class="reveal">Нужен специалист вчера? Отдайте найм нам.</h2>
+    <p class="pain reveal">Срочная позиция, топ-роль или просто нет своего рекрутера. Агентства просят три оклада и месяцы на поиск.</p>
+    <p class="sol-text reveal">Flyhunt закрывает вакансию под ключ: ИИ находит и отбирает кандидатов, сертифицированные партнёры-рекрутеры проводят интервью и доводят до оффера. Технология делает скорость, люди — качество.</p>
+    <div class="sol-body">
+      <div class="result reveal" style="grid-column:1/-1">
+        <div class="big" data-i="s3big">в 2 раза</div>
+        <p data-i="s3res">быстрее и дешевле классических агентств</p>
+      </div>
+    </div>
+
+    <div class="pgrid-title reveal">Ваши партнёры-рекрутеры</div>
+    <div class="pgrid" id="partnersGrid"></div>
+    <div style="text-align:center;margin-top:40px" class="reveal">
+      <button class="btn-grad" data-form="form3">Передать вакансию</button>
+    </div>
+
+    <!-- Форма заявки, источник №3 -->
+    <div class="form-wrap" id="form3">
+      <div class="lead-card">
+        <h3>Закроем вакансию под ключ</h3>
+        <form class="lead-form" name="lead" method="POST" data-netlify="true" netlify-honeypot="website" data-source="3" novalidate>
+          <input type="hidden" name="form-name" value="lead">
+          <input type="text" name="fullName" placeholder="Иван Иванов" autocomplete="name" required>
+          <span class="field-err">Укажите ФИО</span>
+          <input type="text" name="company" placeholder="Название компании" autocomplete="organization" required>
+          <span class="field-err">Укажите компанию</span>
+          <input type="text" name="position" placeholder="HR-директор" autocomplete="organization-title" required>
+          <span class="field-err">Укажите должность</span>
+          <input type="email" name="email" placeholder="you@company.kz" autocomplete="email" required>
+          <span class="field-err">Укажите корректный email</span>
+          <input type="tel" name="phone" placeholder="+7 ___ ___ __ __" autocomplete="tel" required>
+          <span class="field-err">Укажите телефон (10–15 цифр)</span>
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="source" value="3">
+          <button class="btn-grad" type="submit">Отправить заявку</button>
+          <p class="consent">Нажимая «Отправить заявку», вы соглашаетесь с <a href="#" data-modal="modalPrivacy" data-i="consentLink">Политикой конфиденциальности</a>.</p>
+        </form>
+        <div class="form-state ok-state"><div class="ok-icon">✓</div><p>Заявка отправлена! Свяжемся с вами в течение рабочего дня.</p></div>
+        <div class="form-state err-state"><p>Что-то пошло не так. Попробуйте ещё раз или напишите нам: info@flyhunt.ai</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= СООБЩЕСТВО ================= -->
+<section class="community" id="community">
+  <div class="container">
+    <h2 class="reveal">Сообщество AI для HR</h2>
+    <p class="txt reveal">HR-лидеры, рекрутеры и те, кто внедряет ИИ в найм уже сейчас. Живые встречи, разборы кейсов, обмен опытом — без воды и рекламы. Присоединяйтесь: обсуждаем, что реально работает.</p>
+    <div class="avatars reveal" aria-hidden="true" id="communityAvatars"></div>
+    <a class="btn-grad reveal" href="https://chat.whatsapp.com/EUENkEORTBQGJ44jCIe3ko" target="_blank" rel="noopener">Присоединиться</a>
+  </div>
+</section>
+
+<!-- ================= БЛИЖАЙШИЙ ИВЕНТ (показывается ТОЛЬКО при ивенте с будущей датой; данные из админки — здесь пример) ================= -->
+<section class="event" id="event">
+  <div class="container">
+    <h2 class="reveal">Ближайший ивент</h2>
+    <div id="eventCard"></div>
+  </div>
+</section>
+
+<!-- ================= БЛОГ (показывается ТОЛЬКО при ≥1 статье; данные из админки) ================= -->
+<section class="blog" id="blog">
+  <div class="container">
+    <div class="blog-head reveal">
+      <h2>Блог</h2>
+      <a class="all" href="/blog/">Все статьи →</a>
+    </div>
+    <div class="blog-grid" id="blogGrid"></div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq">
+  <div class="container">
+    <h2 class="reveal">Частые вопросы</h2>
+    <div class="faq-list reveal">
+      <div class="faq-item open">
+        <button class="faq-q">Для кого подходит Flyhunt?<span class="pl">+</span></button>
+        <div class="faq-a"><div>Для компаний любого уровня зрелости HR-функции:<br>— <b>Есть отдел рекрутинга</b> — платформа ускорит поиск, скрининг и назначение собеседований в 2–3 раза.<br>— <b>Есть HR, но нет рекрутеров</b> — Flyhunt возьмёт на себя поиск и первичный отбор, HR останется только финальный этап.<br>— <b>Нет ни HR, ни рекрутеров</b> — закроем вакансию под ключ: от поиска до назначения финального собеседования.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Можно закрыть вакансию под ключ, не покупая подписку?<span class="pl">+</span></button>
+        <div class="faq-a"><div>Да. Наши сертифицированные партнёры-рекрутеры найдут кандидатов, проведут оценку и первичные интервью. Вам останется провести финальное собеседование и принять решение. Оплата — за результат (success fee за закрытую позицию).</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">У вас своя база кандидатов?<span class="pl">+</span></button>
+        <div class="faq-a"><div>Да, собственная база из 120 тыс. актуальных резюме с ИИ-поиском — кандидаты, которых нет в открытом доступе. Для максимального охвата дополнительно ищем по актуальным базам HeadHunter и LinkedIn. Три источника в одном окне.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Сколько это стоит?<span class="pl">+</span></button>
+        <div class="faq-a"><div>Два формата: подписка на платформу (безлимитный ИИ-поиск по базе) и success fee за закрытие вакансии под ключ — в среднем в 3 раза дешевле классического агентства. Для получения актуальных тарифов оставьте заявку на сайте.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Как быстро вы закрываете вакансии?<span class="pl">+</span></button>
+        <div class="faq-a"><div>Первую подборку релевантных кандидатов вы получаете в течение 1–2 дней. Полный цикл закрытия зависит от сложности позиции — в среднем в 2–3 раза быстрее классического найма за счёт ИИ-скрининга и автоматического назначения собеседований.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">ИИ сам решает, кого брать на работу?<span class="pl">+</span></button>
+        <div class="faq-a"><div>Нет. AI ищет, оценивает соответствие требованиям и ранжирует кандидатов, экономя вам десятки часов на скрининге. Финальное решение всегда принимает человек — это принцип работы платформы.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Насколько безопасны данные? Они куда-то «сливаются»?<span class="pl">+</span></button>
+        <div class="faq-a"><div>Мы не продаём и не передаём данные третьим лицам в коммерческих целях. Обработка персональных данных ведётся в соответствии с законодательством и нашей Политикой конфиденциальности, данные хранятся на защищённых серверах. Кандидаты дают согласие на обработку данных. ИИ обрабатывает только обезличенные данные.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">В платформе есть ATS/CRM?<span class="pl">+</span></button>
+        <div class="faq-a"><div>Да, встроенная воронка кандидатов: этапы отбора, статусы, ИИ-скоринг, история коммуникаций — весь процесс найма в одном окне.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Можно интегрировать Flyhunt с нашей CRM или ATS?<span class="pl">+</span></button>
+        <div class="faq-a"><div>Да, кандидаты могут автоматически передаваться в вашу систему. Напишите в поддержку — обсудим интеграцию под ваш стек.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ФИНАЛЬНЫЙ CTA ================= -->
+<section class="final" id="final">
+  <div class="container">
+    <div class="final-card reveal">
+      <h2>Ваша следующая вакансия закроется быстрее. Проверьте.</h2>
+      <p>Покажем платформу на вашей реальной вакансии. 30 минут — и вы увидите первых кандидатов.</p>
+      <div class="lead-card">
+        <h3>Заказать демо</h3>
+        <form class="lead-form" name="lead" method="POST" data-netlify="true" netlify-honeypot="website" data-source="final" novalidate>
+          <input type="hidden" name="form-name" value="lead">
+          <input type="text" name="fullName" placeholder="Иван Иванов" autocomplete="name" required>
+          <span class="field-err">Укажите ФИО</span>
+          <input type="text" name="company" placeholder="Название компании" autocomplete="organization" required>
+          <span class="field-err">Укажите компанию</span>
+          <input type="text" name="position" placeholder="HR-директор" autocomplete="organization-title" required>
+          <span class="field-err">Укажите должность</span>
+          <input type="email" name="email" placeholder="you@company.kz" autocomplete="email" required>
+          <span class="field-err">Укажите корректный email</span>
+          <input type="tel" name="phone" placeholder="+7 ___ ___ __ __" autocomplete="tel" required>
+          <span class="field-err">Укажите телефон (10–15 цифр)</span>
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="source" value="final">
+          <button class="btn-grad" type="submit">Отправить заявку</button>
+          <p class="consent">Нажимая «Отправить заявку», вы соглашаетесь с <a href="#" data-modal="modalPrivacy" data-i="consentLink">Политикой конфиденциальности</a>.</p>
+        </form>
+        <div class="form-state ok-state"><div class="ok-icon">✓</div><p>Заявка отправлена! Свяжемся с вами в течение рабочего дня.</p></div>
+        <div class="form-state err-state"><p>Что-то пошло не так. Попробуйте ещё раз или напишите нам: info@flyhunt.ai</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= ФУТЕР ================= -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <p class="slogan">Flyhunt — ИИ-найм для тех, кто не ждёт откликов.</p>
+        <div class="socials">
+          <a href="https://www.youtube.com/@Flyhunt_ai" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12z"/></svg></a>
+          <a href="https://www.instagram.com/flyhunt.ai/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.9.2 2.3.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.3.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.9-.4 2.3-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.3.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.9-.2-2.3-.4a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.2-.4-.4-1.1-.4-2.3C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.9.4-2.3.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.3-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.2.8-.4.4-.6.7-.8 1.2-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.2.4.4.7.6 1.2.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.2-.8.4-.4.6-.7.8-1.2.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1a3.2 3.2 0 0 0-.8-1.2 3.2 3.2 0 0 0-1.2-.8c-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 8.1a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.2-8.3a1.1 1.1 0 1 1-2.3 0 1.1 1.1 0 0 1 2.3 0z"/></svg></a>
+          <a href="https://www.linkedin.com/company/flyhunt" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6a3.7 3.7 0 0 1 3.4-1.9c3.6 0 4.2 2.4 4.2 5.4zM5.3 7.4a2 2 0 1 1 0-4.1 2 2 0 0 1 0 4.1zM7.1 20.4H3.6V9h3.5z"/></svg></a>
+          <a href="https://chat.whatsapp.com/EUENkEORTBQGJ44jCIe3ko" target="_blank" rel="noopener" aria-label="WhatsApp-сообщество"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.44-1.08-2.74 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33h.5c.16 0 .38-.03.58.44.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.45-.13.15-.28.34-.4.46-.13.13-.27.28-.12.55.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.13.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.25.09 1.58.75 1.85.88.27.13.45.2.52.31.07.11.07.65-.15 1.28z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Компания</h4>
+        <a href="#blog">Блог</a>
+        <a href="#event">Ивенты</a>
+        <a href="#community">Сообщество AI для HR</a>
+        <!-- + редактируемые разделы из админки -->
+      </div>
+      <div>
+        <h4>Правовое</h4>
+        <a href="#" data-modal="modalPrivacy" data-i="fPrivacy">Политика конфиденциальности</a>
+        <a href="#" data-modal="modalTerms" data-i="fTerms">Публичная оферта</a>
+      </div>
+    </div>
+    <div class="trust">
+      <!-- Реальные логотипы из Drive на этапе разработки; управление из админки -->
+      <img src="/images/astana-hub.png" alt="Astana Hub"><img src="/images/aifc.png" alt="МФЦА / AIFC"><img src="/images/most-ventures.png" alt="MOST Ventures"><img src="/images/nvidia-inception.png" alt="NVIDIA Inception Program">
+    </div>
+    <p class="requisites">Частная компания Flyhunt Ltd. · БИН 240940900236 · Республика Казахстан, г. Астана, район Есиль, Проспект Мангилик Ел, здание 55/8 · info@flyhunt.ai · +7 776 981 95 89</p>
+    <p class="copy">© <span id="year"></span> Flyhunt Ltd. Все права защищены.</p>
+  </div>
+</footer>
+
+<!-- ================= МОДАЛКИ ================= -->
+<div class="modal" id="modalPrivacy" role="dialog" aria-modal="true">
+  <div class="modal-box"><button class="modal-close" aria-label="Закрыть">✕</button>
+    <div class="modal-inner">
+      <div class="legal-note" id="noteP"></div>
+      <p><b>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ FLYHUNT.AI</b></p>
+<p><i>Редакция № 2. Дата вступления в силу: «<b>01</b>» <b>июля </b>2026 года</i></p>
+<h4><b>1. ОБЩИЕ ПОЛОЖЕНИЯ</b></h4>
+<p>1.1. Настоящая Политика конфиденциальности (далее — «Политика») определяет порядок сбора, обработки, хранения и защиты персональных данных, осуществляемых Частной компанией Flyhunt Ltd., БИН 240940900236, юридический адрес: Республика Казахстан, г. Астана, район Есиль, Проспект Мангилик Ел, здание 55/8 (далее — «Компания», «Оператор»).</p>
+<p>1.2. Политика применяется к сайту flyhunt.ai, платформе Flyhunt.ai (далее — «Платформа»), сопутствующим сервисам Компании, а также к коммуникациям Компании с пользователями и кандидатами, включая коммуникации через мессенджеры.</p>
+<p>1.3. Обработка персональных данных осуществляется в соответствии с Законом Республики Казахстан от 21 мая 2013 года № 94-V «О персональных данных и их защите» и иным применимым законодательством Республики Казахстан.</p>
+<p>1.4. В Компании приказом руководителя назначено лицо, ответственное за организацию обработки персональных данных. Запросы субъектов персональных данных направляются по контактам, указанным в разделе 14 Политики.</p>
+<p>1.5. Используя сайт, Платформу или продолжая коммуникацию с Компанией после ознакомления с Политикой, вы подтверждаете согласие с её условиями.</p>
+<h4><b>2. КАТЕГОРИИ СУБЪЕКТОВ И ОБРАБАТЫВАЕМЫХ ДАННЫХ</b></h4>
+<p>2.1. Пользователи (представители компаний-клиентов):</p>
+<p>- фамилия, имя, отчество; должность; наименование компании;</p>
+<p>- контактные данные: телефон, адрес электронной почты;</p>
+<p>- данные учётной записи и сведения об использовании Платформы;</p>
+<p>- платёжные реквизиты (обрабатываются платёжным провайдером; Компания не хранит полные данные банковских карт).</p>
+<p>2.2. Кандидаты (специалисты, сведения о которых содержатся в базе Платформы):</p>
+<p>- сведения из резюме: опыт работы, образование, навыки, желаемая должность и уровень дохода;</p>
+<p>- контактные данные: телефон, адрес электронной почты, ссылки на публичные профессиональные профили;</p>
+<p>- история взаимодействия с Платформой (отклики, переписка с ассистентом Компании, статусы рассмотрения);</p>
+<p>- результаты автоматизированного анализа соответствия требованиям вакансий (раздел 5 Политики).</p>
+<p>2.3. Технические данные всех посетителей сайта и Платформы: IP-адрес, тип устройства и браузера, язык, сведения о посещённых страницах и времени доступа, файлы cookie (раздел 11 Политики).</p>
+<p>2.4. Компания не осуществляет целенаправленный сбор специальных категорий персональных данных (сведения о здоровье, религиозных и политических убеждениях и т.п.) и просит субъектов не включать такие сведения в резюме и сообщения.</p>
+<h4><b>3. ИСТОЧНИКИ ПОЛУЧЕНИЯ ДАННЫХ КАНДИДАТОВ</b></h4>
+<p>3.1. Данные кандидатов поступают в базу Платформы из следующих источников:</p>
+<p>- официальные программные интерфейсы (API) рекрутинговых платформ и job-сайтов — в соответствии с условиями таких платформ;</p>
+<p>- лицензированные сторонние поставщики профессиональных данных;</p>
+<p>- публично доступные профессиональные источники, в которых кандидат самостоятельно разместил сведения о себе в профессиональных целях;</p>
+<p>- прямые обращения и отклики кандидатов на вакансии, а также данные, предоставленные кандидатом при взаимодействии с сервисами Компании;</p>
+<p>- данные, загруженные компаниями-клиентами. Клиент, загружающий данные кандидатов, гарантирует наличие законных оснований для их передачи Компании.</p>
+<p>3.2. При первом исходящем обращении к кандидату Компания сообщает источник получения его данных и предоставляет возможность отказаться от дальнейших коммуникаций и потребовать удаления данных (разделы 9–10 Политики).</p>
+<h4><b>4. ЦЕЛИ И ПРАВОВЫЕ ОСНОВАНИЯ ОБРАБОТКИ</b></h4>
+<p>4.1. Компания обрабатывает персональные данные в следующих целях:</p>
+<p>- предоставление доступа к Платформе и исполнение договоров с клиентами;</p>
+<p>- подбор и предложение кандидатам релевантных вакансий; организация коммуникации между кандидатами и работодателями;</p>
+<p>- техническая поддержка, информирование и коммуникация с пользователями;</p>
+<p>- улучшение работы Платформы, разработка новых функций, аналитика;</p>
+<p>- маркетинговые коммуникации — при наличии согласия;</p>
+<p>- исполнение требований законодательства Республики Казахстан.</p>
+<p>4.2. Правовыми основаниями обработки являются: согласие субъекта персональных данных; заключение и исполнение договора; случаи, когда обработка допускается законодательством Республики Казахстан без согласия субъекта.</p>
+<p>4.3. Согласие на обработку может быть отозвано субъектом в любой момент путём направления запроса по контактам раздела 14. Отзыв согласия не влияет на законность обработки, осуществлённой до его отзыва.</p>
+<h4><b>5. АВТОМАТИЗИРОВАННАЯ ОБРАБОТКА И ИСПОЛЬЗОВАНИЕ ТЕХНОЛОГИЙ ИСКУССТВЕННОГО ИНТЕЛЛЕКТА</b></h4>
+<p>5.1. Платформа использует технологии машинного обучения и искусственного интеллекта для анализа соответствия кандидатов требованиям вакансий (далее — «AI-анализ»).</p>
+<p>5.2. Результаты AI-анализа носят исключительно рекомендательный характер. Решения, связанные с приглашением на собеседование и наймом, принимаются людьми — представителями работодателя и/или рекрутерами. Компания не принимает автоматизированных решений, порождающих юридические последствия для кандидата, без участия человека.</p>
+<p>5.3. При выполнении AI-анализа с использованием внешних облачных сервисов машинного обучения Компания не передаёт таким сервисам прямые идентификаторы кандидатов (фамилию, имя, отчество, номер телефона, адрес электронной почты). Обработке подлежит содержание резюме в объёме, необходимом для оценки профессионального соответствия.</p>
+<p>5.4. Кандидат вправе запросить у Компании пояснение порядка проведения AI-анализа применительно к его данным, а также выразить несогласие с его результатами по контактам раздела 14.</p>
+<h4><b>6. КОММУНИКАЦИИ ЧЕРЕЗ МЕССЕНДЖЕРЫ</b></h4>
+<p>6.1. Компания может связываться с кандидатами и пользователями через мессенджеры (в том числе WhatsApp), включая использование виртуального ассистента (чат-бота).</p>
+<p>6.2. При обращении виртуального ассистента Компания раскрывает, что коммуникация ведётся с использованием автоматизированного ассистента, сообщает источник получения контактных данных и цель обращения.</p>
+<p>6.3. Получатель сообщения вправе в любой момент отказаться от дальнейших коммуникаций, направив в ответ сообщение «СТОП» либо обратившись по контактам раздела 14. После получения отказа Компания прекращает исходящие коммуникации с данным лицом.</p>
+<p>6.4. Передача сообщений через мессенджеры осуществляется средствами соответствующего сервиса связи и регулируется также условиями такого сервиса.</p>
+<h4><b>7. ПЕРЕДАЧА ДАННЫХ ТРЕТЬИМ ЛИЦАМ</b></h4>
+<p>7.1. Компания может передавать персональные данные следующим категориям получателей в объёме, необходимом для соответствующей цели:</p>
+<p>- компаниям-клиентам (работодателям) — данные кандидатов в целях подбора персонала;</p>
+<p>- сертифицированным партнёрам-рекрутерам Компании, действующим на основании договоров, содержащих обязательства по конфиденциальности и защите данных;</p>
+<p>- поставщику услуг хостинга, размещающему инфраструктуру Платформы на территории Республики Казахстан;</p>
+<p>- поставщикам сервисов веб-аналитики и мониторинга работоспособности инфраструктуры;</p>
+<p>- платёжному провайдеру — в целях приёма платежей;</p>
+<p>- поставщикам облачных сервисов машинного обучения — с ограничениями, установленными пунктом 5.3 Политики;</p>
+<p>- подрядчикам и консультантам, принявшим обязательства о неразглашении;</p>
+<p>- государственным органам — при наличии законных оснований;</p>
+<p>- правопреемникам — в случае реорганизации или продажи Компании, с сохранением условий настоящей Политики.</p>
+<p>7.2. Компания не продаёт персональные данные третьим лицам.</p>
+<h4><b>8. ХРАНЕНИЕ ДАННЫХ И ТРАНСГРАНИЧНАЯ ПЕРЕДАЧА</b></h4>
+<p>8.1. Основное хранение персональных данных осуществляется на серверах, расположенных на территории Республики Казахстан.</p>
+<p>8.2. Отдельные данные могут обрабатываться зарубежными поставщиками облачных сервисов (пункты 5.3 и 7.1 Политики). Такая передача осуществляется при условии обеспечения получателем защиты персональных данных в соответствии с требованиями законодательства Республики Казахстан.</p>
+<h4><b>9. СРОКИ ХРАНЕНИЯ</b></h4>
+<p>9.1. Персональные данные хранятся не дольше, чем это необходимо для целей обработки, если больший срок не установлен законодательством:</p>
+<p>- данные кандидатов — до 3 (трёх) лет с момента последней актуализации данных или последнего взаимодействия кандидата с сервисами Компании, после чего удаляются либо обезличиваются;</p>
+<p>- данные пользователей и клиентов — в течение срока действия договора и 3 (трёх) лет после его прекращения;</p>
+<p>- документы бухгалтерского учёта и платёжные документы — в течение сроков, установленных законодательством Республики Казахстан;</p>
+<p>- технические журналы (логи) — до 12 (двенадцати) месяцев.</p>
+<p>9.2. По запросу субъекта данные удаляются ранее указанных сроков, за исключением данных, хранение которых обязательно в силу закона или необходимо для защиты прав Компании в рамках существующего спора.</p>
+<h4><b>10. ПРАВА СУБЪЕКТОВ ПЕРСОНАЛЬНЫХ ДАННЫХ</b></h4>
+<p>10.1. Каждый субъект персональных данных, включая кандидатов, вправе:</p>
+<p>- получить подтверждение факта обработки его данных, сведения об их составе, целях и источниках получения;</p>
+<p>- требовать исправления неточных или неполных данных;</p>
+<p>- требовать удаления данных или ограничения их обработки;</p>
+<p>- отозвать ранее данное согласие на обработку;</p>
+<p>- отказаться от маркетинговых и иных исходящих коммуникаций;</p>
+<p>- обжаловать действия Компании в уполномоченный орган в сфере защиты персональных данных или в суд.</p>
+<p>10.2. Запросы направляются по контактам раздела 14. Компания рассматривает запросы в сроки, установленные законодательством Республики Казахстан.</p>
+<h4><b>11. ФАЙЛЫ COOKIE И АНАЛИТИКА</b></h4>
+<p>11.1. Сайт и Платформа используют файлы cookie и аналогичные технологии: технически необходимые (авторизация, безопасность, работоспособность) и аналитические (статистика использования, улучшение сервиса).</p>
+<p>11.2. Аналитические cookie используются с согласия пользователя. Пользователь может управлять cookie в настройках браузера; отключение технически необходимых cookie может повлиять на работоспособность сервиса.</p>
+<h4><b>12. БЕЗОПАСНОСТЬ</b></h4>
+<p>12.1. Компания применяет правовые, организационные и технические меры защиты персональных данных, включая: шифрование данных при передаче, разграничение прав доступа по ролям, многофакторную аутентификацию для административного доступа, журналирование доступа к данным, регулярное резервное копирование.</p>
+<p>12.2. Доступ партнёров и сотрудников к данным кандидатов предоставляется в объёме, необходимом для выполнения их функций, и на основании обязательств о конфиденциальности.</p>
+<p>12.3. В случае инцидента, повлёкшего нарушение защиты персональных данных, Компания принимает меры по его локализации и уведомляет заинтересованных лиц в случаях и порядке, предусмотренных законодательством.</p>
+<h4><b>13. ИЗМЕНЕНИЯ ПОЛИТИКИ</b></h4>
+<p>13.1. Компания вправе вносить изменения в Политику. Новая редакция вступает в силу с момента публикации на сайте flyhunt.ai, если иное не указано в новой редакции. При существенных изменениях порядка обработки данных Компания предпринимает разумные меры для дополнительного информирования пользователей.</p>
+<h4><b>14. КОНТАКТЫ</b></h4>
+<p>Частная компания Flyhunt Ltd.</p>
+<p>Юридический адрес: Республика Казахстан, г. Астана, район Есиль, Проспект Мангилик Ел, здание 55/8</p>
+<p>БИН: 240940900236</p>
+<p>Электронная почта для запросов, включая запросы субъектов персональных данных: info@flyhunt.ai</p>
+<p>Телефон: +7 776 981 95 89</p>
+    </div>
+  </div>
+</div>
+<div class="modal" id="modalTerms" role="dialog" aria-modal="true">
+  <div class="modal-box"><button class="modal-close" aria-label="Закрыть">✕</button>
+    <div class="modal-inner">
+      <div class="legal-note" id="noteT"></div>
+      <p><b>ПУБЛИЧНАЯ ОФЕРТА ОКАЗАНИЯ УСЛУГ FLYHUNT.AI ДЛЯ B2B-КЛИЕНТОВ</b></p>
+<p><i>Редакция № 2. Дата вступления в силу: «<b>01</b>» <b>июля</b> 2026 года</i></p>
+<h4><b>1. ОБЩИЕ ПОЛОЖЕНИЯ И ТЕРМИНЫ</b></h4>
+<p>1.1. Настоящая публичная оферта (далее — «Оферта») является официальным предложением Частной компании Flyhunt Ltd., БИН 240940900236 (далее — «Исполнитель»), адресованным юридическим лицам и индивидуальным предпринимателям, заключить договор на условиях, изложенных ниже. Оферта размещена на сайте flyhunt.ai.</p>
+<p>1.2. Термины:</p>
+<p>- «Платформа» — программный комплекс Flyhunt.ai, включающий инструменты автоматизированного поиска, анализа и оценки кандидатов, доступ к базе данных кандидатов и сопутствующий функционал;</p>
+<p>- «Заказчик» («Клиент») — лицо, акцептовавшее Оферту;</p>
+<p>- «Тарифы» — действующие тарифы Исполнителя, опубликованные на сайте flyhunt.ai или доведённые до Заказчика в счёте либо индивидуальном соглашении;</p>
+<p>- «Партнёр» — сертифицированный партнёр-рекрутер Исполнителя, привлекаемый к обслуживанию Заказчика;</p>
+<p>- «AI-рекомендации» — результаты автоматизированного анализа и оценки кандидатов, формируемые Платформой.</p>
+<p>1.3. Акцептом Оферты считается любое из действий: регистрация в Платформе, оплата выставленного Исполнителем счёта, подписание отдельного документа о присоединении. Акцепт означает полное и безоговорочное принятие условий Оферты.</p>
+<h4><b>2. ПРЕДМЕТ ДОГОВОРА</b></h4>
+<p>2.1. Исполнитель предоставляет Заказчику доступ к Платформе на условиях подписки (SaaS), а также оказывает сопутствующие услуги технической поддержки.</p>
+<p>2.2. Услуги по подбору персонала «под ключ» (включая услуги с оплатой за результат) не входят в предмет настоящей Оферты и оказываются на основании отдельных договоров между Исполнителем и Заказчиком.</p>
+<p>2.3. Объём доступа, срок подписки, количество пользователей и стоимость определяются выбранным Тарифом либо индивидуальным соглашением Сторон.</p>
+<h4><b>3. ИЕРАРХИЯ ДОКУМЕНТОВ</b></h4>
+<p>3.1. В случае противоречий между документами применяется следующий приоритет (от высшего к низшему): (1) индивидуальный письменный договор или соглашение Сторон; (2) счёт и Тарифы; (3) настоящая Оферта; (4) иные документы, размещённые на сайте Исполнителя.</p>
+<h4><b>4. ОПЛАТА И РАСЧЁТЫ</b></h4>
+<p>4.1. Стоимость подписки определяется Тарифами. Оплата осуществляется авансовым платежом за выбранный период подписки, если иное не согласовано Сторонами.</p>
+<p>4.2. Стоимость оплаченного периода подписки не подлежит одностороннему изменению Исполнителем в течение такого периода.</p>
+<p>4.3. Изменение Тарифов применяется к последующим периодам подписки и доводится до Заказчика не менее чем за 10 (десять) календарных дней до начала соответствующего периода.</p>
+<p>4.4. При просрочке оплаты Исполнитель вправе приостановить доступ к Платформе после письменного уведомления Заказчика.</p>
+<h4><b>5. ПОРЯДОК ИСПОЛЬЗОВАНИЯ ПЛАТФОРМЫ И ОГРАНИЧЕНИЯ</b></h4>
+<p>5.1. Заказчик обязуется использовать Платформу и полученные через неё данные исключительно в целях подбора персонала для собственных нужд Заказчика.</p>
+<p>5.2. Заказчику запрещается:</p>
+<p>- осуществлять массовую выгрузку, копирование, скрейпинг или иное извлечение существенной части базы данных кандидатов, в том числе автоматизированными средствами;</p>
+<p>- передавать, продавать, публиковать данные кандидатов третьим лицам или использовать их в целях, не связанных с наймом персонала Заказчиком;</p>
+<p>- передавать учётные данные доступа третьим лицам, не являющимся уполномоченными сотрудниками Заказчика;</p>
+<p>- осуществлять декомпиляцию, реверс-инжиниринг, создание производных продуктов на основе Платформы;</p>
+<p>- использовать Платформу для рассылки спама или иных действий, нарушающих законодательство.</p>
+<p>5.3. В течение срока действия договора и 12 (двенадцати) месяцев после его прекращения Заказчик обязуется не привлекать к трудовой или иной аналогичной деятельности Партнёров и сотрудников Исполнителя, с которыми Заказчик взаимодействовал в рамках договора, в обход Исполнителя, без предварительного письменного согласия Исполнителя.</p>
+<p>5.4. При нарушении пунктов 5.1–5.2 Исполнитель вправе приостановить или прекратить доступ Заказчика к Платформе без возврата стоимости оплаченного периода, письменно уведомив Заказчика с указанием причины.</p>
+<h4><b>6. ПРИВЛЕЧЕНИЕ ПАРТНЁРОВ</b></h4>
+<p>6.1. Исполнитель вправе привлекать к обслуживанию Заказчика Партнёров, действующих под брендом Flyhunt. Исполнитель несёт ответственность перед Заказчиком за действия привлечённых Партнёров как за собственные.</p>
+<p>6.2. На Партнёров распространяются обязательства по конфиденциальности и защите данных, предусмотренные договорами между Исполнителем и Партнёрами.</p>
+<h4><b>7. </b><b>ИИ</b><b>-РЕКОМЕНДАЦИИ И ИХ ОГРАНИЧЕНИЯ</b></h4>
+<p>7.1. AI-рекомендации Платформы (включая оценки соответствия кандидатов) носят рекомендательный характер и являются вспомогательным инструментом. Решения о приглашении, отборе и найме кандидатов принимает Заказчик самостоятельно.</p>
+<p>7.2. Исполнитель не гарантирует трудоустройство какого-либо кандидата, выход кандидата на работу либо соответствие кандидата субъективным ожиданиям Заказчика и не несёт ответственности за кадровые решения Заказчика, принятые с учётом AI-рекомендаций.</p>
+<p>7.3. Исполнитель предпринимает разумные меры для поддержания актуальности данных кандидатов, однако не гарантирует абсолютную полноту и актуальность данных, полученных из внешних источников.</p>
+<h4><b>8. УРОВЕНЬ СЕРВИСА И ПОДДЕРЖКА</b></h4>
+<p>8.1. Целевой уровень доступности Платформы — 99% в календарный месяц, за вычетом плановых технических работ, о которых Исполнитель уведомляет заблаговременно.</p>
+<p>8.2. Техническая поддержка предоставляется в рабочие дни с 09:00 до 18:00 по времени г. Алматы. Расширенные условия уровня сервиса (SLA) могут быть согласованы индивидуальным соглашением.</p>
+<h4><b>9. ИНТЕЛЛЕКТУАЛЬНАЯ СОБСТВЕННОСТЬ</b></h4>
+<p>9.1. Исключительные права на Платформу, программное обеспечение, алгоритмы, базы данных, товарные знаки и иные результаты интеллектуальной деятельности принадлежат Исполнителю.</p>
+<p>9.2. Заказчику предоставляется ограниченное, непередаваемое, неисключительное право использования Платформы в течение оплаченного периода исключительно в рамках настоящей Оферты.</p>
+<h4><b>10. КОНФИДЕНЦИАЛЬНОСТЬ</b></h4>
+<p>10.1. Стороны обязуются сохранять конфиденциальность информации, полученной в рамках исполнения договора, в течение срока его действия и 3 (трёх) лет после прекращения.</p>
+<p>10.2. Исполнитель вправе использовать обезличенные и агрегированные данные для аналитики и улучшения Платформы, а также, с предварительного согласия Заказчика, ссылаться на факт сотрудничества в маркетинговых материалах.</p>
+<h4><b>11. ПЕРСОНАЛЬНЫЕ ДАННЫЕ</b></h4>
+<p>11.1. Обработка персональных данных осуществляется в соответствии с Политикой конфиденциальности, опубликованной на сайте flyhunt.ai, и законодательством Республики Казахстан.</p>
+<p>11.2. Заказчик, загружающий в Платформу персональные данные кандидатов, гарантирует наличие законных оснований для их передачи Исполнителю и несёт ответственность за законность такой передачи.</p>
+<p>11.3. Заказчик обязуется обрабатывать персональные данные кандидатов, полученные через Платформу, в соответствии с законодательством о персональных данных и удалять их по обоснованному требованию Исполнителя либо субъекта данных.</p>
+<p>11.4. По запросу Заказчика Стороны заключают отдельное соглашение об обработке данных (DPA).</p>
+<h4><b>12. ОТВЕТСТВЕННОСТЬ СТОРОН</b></h4>
+<p>12.1. Стороны несут ответственность в соответствии с законодательством Республики Казахстан с учётом ограничений, установленных настоящим разделом.</p>
+<p>12.2. Ни одна из Сторон не отвечает за упущенную выгоду и косвенные убытки другой Стороны.</p>
+<p>12.3. Совокупная ответственность Исполнителя по договору ограничивается суммой, фактически уплаченной Заказчиком за 6 (шесть) месяцев, предшествующих событию, послужившему основанием для требования, но не более суммы, уплаченной за текущий период подписки.</p>
+<p>12.4. Исполнитель не несёт ответственности за перебои в работе Платформы, вызванные обстоятельствами вне разумного контроля Исполнителя (действия провайдеров связи и хостинга, атаки на инфраструктуру, действия третьих лиц), а также за содержание и достоверность данных, загружаемых Заказчиком.</p>
+<p>12.5. Ограничения настоящего раздела не применяются в случаях, когда ответственность не может быть ограничена в силу императивных норм законодательства Республики Казахстан.</p>
+<h4><b>13. ФОРС-МАЖОР</b></h4>
+<p>13.1. Стороны освобождаются от ответственности за частичное или полное неисполнение обязательств, если оно вызвано обстоятельствами непреодолимой силы: природные катастрофы, военные действия, акты государственных органов, массовые сбои сетей связи и энергоснабжения, DDoS-атаки и иные аналогичные обстоятельства. Сторона, для которой наступили такие обстоятельства, уведомляет другую Сторону в течение 10 (десяти) календарных дней.</p>
+<h4><b>14. СРОК ДЕЙСТВИЯ И РАСТОРЖЕНИЕ</b></h4>
+<p>14.1. Договор вступает в силу с момента акцепта и действует до окончания оплаченного периода подписки.</p>
+<p>14.2. Любая из Сторон вправе расторгнуть договор, уведомив другую Сторону не менее чем за 10 (десять) календарных дней.</p>
+<p>14.3. При расторжении по инициативе Заказчика денежные средства за неиспользованный период возврату не подлежат, если иное не предусмотрено соглашением Сторон.</p>
+<p>14.4. При расторжении договора вследствие существенного нарушения обязательств Исполнителем Заказчику возвращается стоимость оплаченного, но не использованного периода подписки пропорционально оставшемуся сроку.</p>
+<h4><b>15. ИЗМЕНЕНИЕ ОФЕРТЫ</b></h4>
+<p>15.1. Исполнитель вправе вносить изменения в Оферту, уведомив Заказчика не менее чем за 10 (десять) календарных дней до вступления изменений в силу (публикацией на сайте и/или по электронной почте).</p>
+<p>15.2. Изменения, ухудшающие положение Заказчика, не применяются к уже оплаченному периоду подписки.</p>
+<p>15.3. Продолжение использования Платформы после вступления изменений в силу означает согласие Заказчика с новой редакцией.</p>
+<h4><b>16. УРЕГУЛИРОВАНИЕ СПОРОВ</b></h4>
+<p>16.1. Стороны предпримут усилия для урегулирования споров путём переговоров. Обязателен досудебный претензионный порядок: срок ответа на претензию — 20 (двадцать) календарных дней с момента получения.</p>
+<p>16.2. При недостижении соглашения спор передаётся в суд по месту регистрации Исполнителя в соответствии с законодательством Республики Казахстан.</p>
+<h4><b>17. РЕКВИЗИТЫ ИСПОЛНИТЕЛЯ</b></h4>
+<p>Частная компания Flyhunt Ltd.</p>
+<p>Юридический адрес: Республика Казахстан, г. Астана, район Есиль, Проспект Мангилик Ел, здание 55/8, 010017</p>
+<p>БИН: 240940900236</p>
+<p>ИИК: KZ148562203141359375, АО «Банк ЦентрКредит», БИК: KCJBKZKX</p>
+<p>Email: info@flyhunt.ai  |  Телефон: +7 776 981 95 89  |  Сайт: flyhunt.ai</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script src="/js/app.js"></script>
+<script src="/js/dynamic.js"></script>
+</body>
+</html>

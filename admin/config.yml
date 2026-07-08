@@ -1,0 +1,114 @@
+backend:
+  name: git-gateway
+  branch: main
+  # Netlify Identity больше не подключить новым сайтам — используем DecapBridge.
+  # Значения ниже заменить на выданные на decapbridge.com при подключении сайта:
+  identity_url: https://auth.decapbridge.com/sites/ВАШ-SITE-ID
+  gateway_url: https://gateway.decapbridge.com
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: "ru"
+
+collections:
+
+  # 1. ИВЕНТЫ
+  - name: "events"
+    label: "Ивенты"
+    files:
+      - name: "events"
+        label: "Список ивентов"
+        file: "content/events.json"
+        format: json
+        fields:
+          - label: "Ивенты"
+            name: "items"
+            widget: list
+            summary: "{{title}} — {{date}}"
+            fields:
+              - { label: "URL-адрес (латиницей, без пробелов)", name: "slug", widget: string }
+              - { label: "Название", name: "title", widget: string }
+              - { label: "Дата", name: "date", widget: date, format: "YYYY-MM-DD" }
+              - { label: "Время", name: "time", widget: string, default: "15:00" }
+              - { label: "Формат", name: "format", widget: select, options: ["Офлайн", "Онлайн"] }
+              - { label: "Город", name: "city", widget: string, default: "Алматы" }
+              - { label: "Обложка", name: "cover", widget: image, required: false }
+              - { label: "Короткое описание (для карточки)", name: "excerpt", widget: text }
+              - { label: "Полный текст (программа, детали)", name: "body", widget: markdown }
+              - { label: "Ссылка на регистрацию (WhatsApp)", name: "registerUrl", widget: string }
+
+  # 2. БЛОГ
+  - name: "blog"
+    label: "Блог"
+    files:
+      - name: "blog"
+        label: "Статьи"
+        file: "content/blog.json"
+        format: json
+        fields:
+          - label: "Статьи"
+            name: "items"
+            widget: list
+            summary: "{{title}} — {{date}}"
+            fields:
+              - { label: "URL-адрес (латиницей, без пробелов)", name: "slug", widget: string }
+              - { label: "Заголовок", name: "title", widget: string }
+              - { label: "Дата публикации", name: "date", widget: date, format: "YYYY-MM-DD" }
+              - { label: "Обложка", name: "cover", widget: image, required: false }
+              - { label: "Короткий анонс (для карточки)", name: "excerpt", widget: text }
+              - { label: "Текст статьи", name: "body", widget: markdown }
+
+  # 3. ЛОГОТИПЫ КЛИЕНТОВ
+  - name: "client_logos"
+    label: "Логотипы клиентов"
+    files:
+      - name: "client_logos"
+        label: "Логотипы клиентов"
+        file: "content/client_logos.json"
+        format: json
+        fields:
+          - label: "Логотипы"
+            name: "items"
+            widget: list
+            summary: "{{company_name}}"
+            fields:
+              - { label: "Название компании", name: "company_name", widget: string }
+              - { label: "Логотип", name: "logo", widget: image }
+
+  # 4. АВАТАРКИ СООБЩЕСТВА
+  - name: "community_avatars"
+    label: "Сообщество — аватарки"
+    files:
+      - name: "community_avatars"
+        label: "Аватарки участников (до 10)"
+        file: "content/community_avatars.json"
+        format: json
+        fields:
+          - label: "Аватарки"
+            name: "items"
+            widget: list
+            max: 10
+            summary: "{{initials}}"
+            fields:
+              - { label: "Инициалы (пока нет фото)", name: "initials", widget: string, required: false }
+              - { label: "Фото", name: "photo", widget: image, required: false }
+
+  # 5. ПАРТНЁРЫ-РЕКРУТЕРЫ
+  - name: "partners"
+    label: "Партнёры-рекрутеры"
+    files:
+      - name: "partners"
+        label: "Партнёры"
+        file: "content/partners.json"
+        format: json
+        fields:
+          - label: "Партнёры"
+            name: "items"
+            widget: list
+            summary: "{{name}} — {{role}}"
+            fields:
+              - { label: "Имя", name: "name", widget: string }
+              - { label: "Роль / специализация", name: "role", widget: string }
+              - { label: "Фото", name: "photo", widget: image, required: false }
+              - { label: "Описание", name: "description", widget: text }

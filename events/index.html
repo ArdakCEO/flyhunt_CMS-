@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ивенты — Flyhunt</title>
+<meta name="description" content="Встречи и мастер-классы сообщества AI для HR от Flyhunt.">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css">
+<style>.page-wrap{padding:64px 0 96px}.page-head{margin-bottom:44px}.page-head h1{font-size:clamp(30px,4vw,46px)}.back{display:inline-block;margin-bottom:18px;font-size:14px;font-weight:700;color:var(--violet)}.evlist{display:grid;gap:20px}.evlist .event-card{max-width:none}.past{opacity:.6}.section-label{font-size:13px;color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin:36px 0 16px}</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+<header><div class="container nav">
+  <a class="logo" href="/"><img src="/images/logo.png" alt="Flyhunt"></a>
+  <nav class="nav-links"><a href="/#solution-1">Решения</a><a href="/blog/">Блог</a><a href="/events/">Ивенты</a><a href="/#community">Сообщество AI для HR</a></nav>
+  <div class="nav-right"><a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener">Войти</a></div>
+</div></header>
+<main class="container page-wrap">
+  <a class="back" href="/">← На главную</a>
+  <div class="page-head"><h1>Ивенты</h1></div>
+  <div id="upcoming"></div>
+  <div id="past"></div>
+</main>
+<footer><div class="container"><p class="copy">© <span id="year"></span> Flyhunt Ltd. Все права защищены.</p></div></footer>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+function fmtDateRu(iso){const d=new Date(iso+'T00:00:00');const m=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];return `${d.getDate()} ${m[d.getMonth()]} ${d.getFullYear()}`;}
+function card(e){
+  return `<div class="event-card">
+    <div class="event-poster">${e.cover?`<img src="${e.cover}" alt="" style="width:100%;height:100%;object-fit:cover">`:'AI×HR'}</div>
+    <div class="event-info">
+      <div class="event-badges"><span class="badge">${e.format}</span><span class="badge date">${fmtDateRu(e.date)} · ${e.time}</span><span class="badge">${e.city}</span></div>
+      <b>${e.title}</b><p>${e.excerpt}</p>
+      <a class="btn-sm" href="/events/event.html?slug=${e.slug}">Подробнее</a>
+    </div></div>`;
+}
+fetch('/content/events.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
+  const items=data.items||[]; const today=new Date().toISOString().slice(0,10);
+  const upcoming=items.filter(e=>e.date>=today).sort((a,b)=>a.date.localeCompare(b.date));
+  const past=items.filter(e=>e.date<today).sort((a,b)=>b.date.localeCompare(a.date));
+  document.getElementById('upcoming').innerHTML = upcoming.length
+    ? `<div class="evlist">${upcoming.map(card).join('')}</div>`
+    : '<p style="color:var(--dim)">Сейчас нет запланированных ивентов. Загляните позже.</p>';
+  if(past.length){
+    document.getElementById('past').innerHTML = `<div class="section-label">Прошедшие</div><div class="evlist past">${past.map(card).join('')}</div>`;
+  }
+}).catch(()=>{ document.getElementById('upcoming').innerHTML='<p style="color:var(--dim)">Не удалось загрузить ивенты.</p>'; });
+</script>
+</body>
+</html>

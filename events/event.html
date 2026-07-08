@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Ивент — Flyhunt</title>
+<meta name="description" id="pageDesc" content="">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css">
+<style>
+.page-wrap{padding:64px 0 96px;max-width:760px;margin:0 auto}
+.back{display:inline-block;margin-bottom:18px;font-size:14px;font-weight:700;color:var(--violet)}
+.ev-cover{height:260px;border-radius:var(--radius);background:var(--grad);color:#fff;font-weight:900;font-size:44px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;overflow:hidden}
+.ev-cover img{width:100%;height:100%;object-fit:cover}
+h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:14px 0 24px}
+.ev-body h4{font-size:16px;margin:22px 0 8px}
+.ev-body p,.ev-body li{font-size:15.5px;line-height:1.7;color:#2A2E55;margin-bottom:10px}
+.ev-body ul{margin-left:20px}
+</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+<header><div class="container nav">
+  <a class="logo" href="/"><img src="/images/logo.png" alt="Flyhunt"></a>
+  <nav class="nav-links"><a href="/#solution-1">Решения</a><a href="/blog/">Блог</a><a href="/events/">Ивенты</a><a href="/#community">Сообщество AI для HR</a></nav>
+  <div class="nav-right"><a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener">Войти</a></div>
+</div></header>
+<main class="container page-wrap">
+  <a class="back" href="/events/">← Все ивенты</a>
+  <div id="content">Загрузка…</div>
+</main>
+<footer><div class="container"><p class="copy">© <span id="year"></span> Flyhunt Ltd. Все права защищены.</p></div></footer>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+function fmtDateRu(iso){const d=new Date(iso+'T00:00:00');const m=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];return `${d.getDate()} ${m[d.getMonth()]} ${d.getFullYear()}`;}
+const slug = new URLSearchParams(location.search).get('slug');
+fetch('/content/events.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
+  const e = (data.items||[]).find(x=>x.slug===slug);
+  const el = document.getElementById('content');
+  if(!e){ el.innerHTML='<p style="color:var(--dim)">Ивент не найден. <a href="/events/">Вернуться к списку</a></p>'; return; }
+  document.getElementById('pageTitle').textContent = e.title + ' — Flyhunt';
+  document.getElementById('pageDesc').setAttribute('content', e.excerpt||'');
+  el.innerHTML = `
+    <div class="ev-cover">${e.cover?`<img src="${e.cover}" alt="">`:'AI×HR'}</div>
+    <div class="event-badges"><span class="badge">${e.format}</span><span class="badge date">${fmtDateRu(e.date)} · ${e.time}</span><span class="badge">${e.city}</span></div>
+    <h1>${e.title}</h1>
+    <div class="ev-body">${e.body}</div>
+    <a class="btn-grad" href="${e.registerUrl}" target="_blank" rel="noopener">Зарегистрироваться в WhatsApp</a>`;
+}).catch(()=>{ document.getElementById('content').innerHTML='<p style="color:var(--dim)">Не удалось загрузить ивент.</p>'; });
+</script>
+</body>
+</html>

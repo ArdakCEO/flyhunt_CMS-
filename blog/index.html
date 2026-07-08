@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Блог — Flyhunt</title>
+<meta name="description" content="Блог Flyhunt: кейсы, ивенты и мысли о найме с ИИ.">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css">
+<style>.page-wrap{padding:64px 0 96px}.page-head{margin-bottom:44px}.page-head h1{font-size:clamp(30px,4vw,46px)}.back{display:inline-block;margin-bottom:18px;font-size:14px;font-weight:700;color:var(--violet)}</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+<header><div class="container nav">
+  <a class="logo" href="/"><img src="/images/logo.png" alt="Flyhunt"></a>
+  <nav class="nav-links"><a href="/#solution-1">Решения</a><a href="/blog/">Блог</a><a href="/events/">Ивенты</a><a href="/#community">Сообщество AI для HR</a></nav>
+  <div class="nav-right"><a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener">Войти</a></div>
+</div></header>
+<main class="container page-wrap">
+  <a class="back" href="/">← На главную</a>
+  <div class="page-head"><h1>Блог</h1></div>
+  <div class="blog-grid" id="blogGrid" style="grid-template-columns:repeat(3,1fr)"></div>
+</main>
+<footer><div class="container"><p class="copy">© <span id="year"></span> Flyhunt Ltd. Все права защищены.</p></div></footer>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+function fmtDateRu(iso){const d=new Date(iso+'T00:00:00');const m=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];return `${d.getDate()} ${m[d.getMonth()]} ${d.getFullYear()}`;}
+fetch('/content/blog.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
+  const items=(data.items||[]).sort((a,b)=>b.date.localeCompare(a.date));
+  const el=document.getElementById('blogGrid');
+  if(items.length===0){ el.innerHTML='<p style="color:var(--dim)">Статей пока нет.</p>'; return; }
+  el.innerHTML=items.map(p=>`
+    <a class="bcard" href="/blog/post.html?slug=${p.slug}">
+      <div class="bcover">${p.cover?`<img src="${p.cover}" alt="" style="width:100%;height:100%;object-fit:cover">`:'💜'}</div>
+      <div class="binfo"><time>${fmtDateRu(p.date)}</time><b>${p.title}</b><p>${p.excerpt}</p></div>
+    </a>`).join('');
+}).catch(()=>{ document.getElementById('blogGrid').innerHTML='<p style="color:var(--dim)">Не удалось загрузить статьи.</p>'; });
+</script>
+</body>
+</html>
