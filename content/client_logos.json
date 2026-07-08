@@ -1,10 +1,8 @@
 {
   "items": [
-    { "company_name": "Kaspi", "logo": "" },
-    { "company_name": "Air Astana", "logo": "" },
-    { "company_name": "Halyk", "logo": "" },
-    { "company_name": "Chocofamily", "logo": "" },
-    { "company_name": "Kolesa", "logo": "" },
-    { "company_name": "BI Group", "logo": "" }
+    {
+      "company_name": "Kaspi",
+      "logo": "https://storage.igraphic.kz/projects/-OXS4FeLtzu2vImAdMIE/modules/d4dd7ce1-c1b8-4729-a489-5891ca3b91b6.svg"
+    }
   ]
 }
