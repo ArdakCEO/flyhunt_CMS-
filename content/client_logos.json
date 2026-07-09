@@ -15,6 +15,22 @@
     {
       "company_name": "Смакополис",
       "logo": "/images/uploads/смакополис.jpg"
+    },
+    {
+      "logo": "/images/uploads/arpa-logo.png",
+      "company_name": "АРПА"
+    },
+    {
+      "logo": "/images/uploads/infolesson-logo.svg",
+      "company_name": "Infolesson"
+    },
+    {
+      "logo": "/images/uploads/айби-групп.svg",
+      "company_name": "Айби Групп"
+    },
+    {
+      "logo": "/images/uploads/dossym.jpeg",
+      "company_name": "Dossym"
     }
   ]
 }
