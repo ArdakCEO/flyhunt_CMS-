@@ -13,10 +13,6 @@
       "company_name": "Relog"
     },
     {
-      "logo": "/images/uploads/arpa-logo.png",
-      "company_name": "АРПА"
-    },
-    {
       "company_name": "JOO HIGH SCHOOL",
       "logo": "/images/uploads/new_logo_jhs2.png.webp"
     },
@@ -25,8 +21,16 @@
       "company_name": "Infolesson"
     },
     {
+      "logo": "/images/uploads/clockster-new.png",
+      "company_name": "Clockster"
+    },
+    {
       "company_name": "Смакополис",
       "logo": "/images/uploads/смакополис.jpg"
+    },
+    {
+      "logo": "/images/uploads/arpa-logo.png",
+      "company_name": "АРПА"
     },
     {
       "logo": "/images/uploads/айби-групп.svg",
@@ -39,10 +43,6 @@
     {
       "company_name": "JUZ40",
       "logo": "/images/uploads/juz40-2.webp"
-    },
-    {
-      "logo": "/images/uploads/clockster-new.png",
-      "company_name": "Clockster"
     }
   ]
 }
