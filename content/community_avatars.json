@@ -1,12 +1,44 @@
 {
   "items": [
-    { "initials": "ГК", "photo": "" },
-    { "initials": "АС", "photo": "" },
-    { "initials": "ДМ", "photo": "" },
-    { "initials": "ЖТ", "photo": "" },
-    { "initials": "МБ", "photo": "" },
-    { "initials": "СН", "photo": "" },
-    { "initials": "АЖ", "photo": "" },
-    { "initials": "ЕО", "photo": "" }
+    {
+      "initials": "АБ",
+      "photo": "/images/uploads/ardak-ava.png"
+    },
+    {
+      "initials": "АС",
+      "photo": "/images/uploads/aika-ava.png"
+    },
+    {
+      "initials": "АЖ",
+      "photo": "/images/uploads/aliya-ava.png"
+    },
+    {
+      "initials": "АЛ",
+      "photo": "/images/uploads/aliya-2-ava.png"
+    },
+    {
+      "initials": "АЖ",
+      "photo": "/images/uploads/ako-ava.png"
+    },
+    {
+      "initials": "АЛ",
+      "photo": "/images/uploads/nastya-ava.png"
+    },
+    {
+      "initials": "ОБ",
+      "photo": "/images/uploads/oxana-ava.png"
+    },
+    {
+      "initials": "ЛН",
+      "photo": "/images/uploads/лейла-нургалеева.jpg"
+    },
+    {
+      "photo": "/images/uploads/anel-ava.png",
+      "initials": "АК"
+    },
+    {
+      "photo": "/images/uploads/aikorkem-ava.png",
+      "initials": "АЗ"
+    }
   ]
 }
