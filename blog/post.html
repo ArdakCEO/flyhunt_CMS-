@@ -17,6 +17,84 @@
 .art-date{font-size:13px;color:var(--dim);font-weight:600;display:block;margin-bottom:8px}
 h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin-bottom:24px}
 .art-body p{font-size:16.5px;line-height:1.75;color:#2A2E55;margin-bottom:16px}
+.art-body h2{font-size:clamp(22px,2.6vw,28px);line-height:1.25;margin:36px 0 14px}
+.art-body h3{font-size:clamp(18px,2.2vw,21px);line-height:1.3;margin:28px 0 12px}
+.art-body ul,.art-body ol{margin:0 0 18px 22px}
+.art-body li{font-size:16.5px;line-height:1.75;color:#2A2E55;margin-bottom:8px}
+.art-body a{color:var(--violet);font-weight:600}
+.art-body strong{font-weight:700;color:#1A1E3F}
+.art-body img{max-width:100%;height:auto;border-radius:var(--radius);margin:8px 0 20px}
+.art-body blockquote{margin:0 0 18px;padding:2px 0 2px 18px;border-left:3px solid var(--violet);color:#40456F}
+.art-body code{background:rgba(120,90,255,.08);border-radius:6px;padding:2px 6px;font-size:14.5px}
+.art-body pre{background:rgba(20,20,50,.05);border-radius:var(--radius);padding:16px;overflow:auto;margin-bottom:18px}
+.art-body pre code{background:none;padding:0}
+.art-body hr{border:0;border-top:1px solid rgba(20,20,50,.12);margin:32px 0}
+</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+<header><div class="container nav">
+  <a class="logo" href="/"><img src="/images/logo.png" alt="Flyhunt"></a>
+  <nav class="nav-links"><a href="/#solution-1">Решения</a><a href="/mcp/">Flyhunt MCP Connector</a><a href="/blog/">Блог</a><a href="/events/">Ивенты</a><a href="/#community">Сообщество AI для HR</a></nav>
+  <div class="nav-right"><a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener">Войти</a></div>
+</div></header>
+<main class="container page-wrap">
+  <a class="back" href="/blog/">← Все статьи</a>
+  <div id="content">Загрузка…</div>
+</main>
+<footer><div class="container"><p class="copy">© <span id="year"></span> Flyhunt Ltd. Все права защищены.</p></div></footer>
+<script src="/js/marked.min.js"></script>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+// Дата: пустое или битое значение больше не даёт "NaN undefined NaN" — просто ничего не выводим
+function fmtDateRu(iso){
+  if(!iso) return '';
+  const d = new Date(String(iso).slice(0,10)+'T00:00:00');
+  if(isNaN(d.getTime())) return '';
+  const m=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  return `${d.getDate()} ${m[d.getMonth()]} ${d.getFullYear()}`;
+}
+// Тело статьи: Markdown из CMS превращаем в HTML. Старые статьи, написанные готовым HTML, проходят насквозь без изменений.
+function renderBody(src){
+  src = src || '';
+  try { return (window.marked && marked.parse) ? marked.parse(src) : src; }
+  catch(e){ return src; }
+}
+const slug = new URLSearchParams(location.search).get('slug');
+fetch('/content/blog.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
+  const p = (data.items||[]).find(x=>x.slug===slug);
+  const el = document.getElementById('content');
+  if(!p){ el.innerHTML='<p style="color:var(--dim)">Статья не найдена. <a href="/blog/">Вернуться в блог</a></p>'; return; }
+  document.getElementById('pageTitle').textContent = p.title + ' — Flyhunt';
+  document.getElementById('pageDesc').setAttribute('content', p.excerpt||'');
+  el.innerHTML = `
+    <div class="art-cover">${p.cover?`<img src="${p.cover}" alt="">`:'💜'}</div>
+    <span class="art-date">${fmtDateRu(p.date)}</span>
+    <h1>${p.title}</h1>
+    <div class="art-body">${renderBody(p.body)}</div>`;
+}).catch(()=>{ document.getElementById('content').innerHTML='<p style="color:var(--dim)">Не удалось загрузить статью.</p>'; });
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Статья — Flyhunt</title>
+<meta name="description" id="pageDesc" content="">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css">
+<style>
+.page-wrap{padding:64px 24px 96px;max-width:760px;margin:0 auto}
+.back{display:inline-block;margin-bottom:18px;font-size:14px;font-weight:700;color:var(--violet)}
+.art-cover{height:260px;border-radius:var(--radius);background:linear-gradient(120deg,#C9B8FC,#BDE7FC);display:flex;align-items:center;justify-content:center;font-size:56px;margin-bottom:28px;overflow:hidden}
+.art-cover img{width:100%;height:100%;object-fit:cover}
+.art-date{font-size:13px;color:var(--dim);font-weight:600;display:block;margin-bottom:8px}
+h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin-bottom:24px}
+.art-body p{font-size:16.5px;line-height:1.75;color:#2A2E55;margin-bottom:16px}
 </style>
 </head>
 <body>
