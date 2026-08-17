@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flyhunt MCP Connector — рекрутинг прямо в Claude</title>
+<meta name="description" content="Подключите Flyhunt к Claude за две минуты: ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист прямо в чате.">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css">
+<style>
+  /* ——— фирменные цвета Claude (для блоков, где мы говорим про Claude) ——— */
+  :root{--cl:#D97757;--cl-dark:#BE5F41;--cl-cream:#FAF7F2}
+  .cs{width:1em;height:1em;flex:none}
+  .cword{color:var(--cl);white-space:nowrap}
+  .cword .cs{width:.76em;height:.76em;vertical-align:-.04em;margin-right:.05em}
+
+  .page-wrap{padding:56px 24px 0}
+  .back{display:inline-block;margin-bottom:26px;font-size:14px;font-weight:700;color:var(--violet)}
+
+  /* ——— ХЕРО ——— */
+  .mcp-hero{text-align:center;padding:0 0 8px}
+  .mcp-hero h1{font-size:clamp(32px,4.8vw,58px);max-width:840px}
+  .mcp-hero .sub{margin:26px auto 0;max-width:660px}
+  .mcp-chips{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:30px}
+  .mcp-chips span{background:var(--glass);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.9);box-shadow:0 8px 24px rgba(139,92,248,.08);border-radius:99px;padding:8px 16px;font-size:13.5px;font-weight:600;color:var(--dim)}
+
+  /* ——— ТРИ ШАГА ——— */
+  .mcp-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:56px}
+  .mcp-card{background:var(--glass);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);border-radius:22px;padding:28px 26px;box-shadow:0 10px 30px rgba(139,92,248,.1);transition:.3s;display:flex;flex-direction:column}
+  .mcp-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(139,92,248,.2)}
+  .mcp-card .n{width:34px;height:34px;border-radius:50%;background:var(--grad);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .mcp-card b{display:block;font-size:19px;font-weight:800;line-height:1.25;margin-bottom:9px;letter-spacing:-0.015em}
+  .mcp-card p{font-size:15px;color:var(--dim);line-height:1.55;flex:1 1 auto}
+  .mcp-card .act{margin-top:22px}
+
+  .mcp-url{display:flex;flex-direction:column;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:13px 14px}
+  .mcp-url code{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;color:var(--ink);white-space:nowrap;overflow-x:auto;padding:3px 2px}
+  .mcp-copy{width:100%;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:700;color:#fff;background:var(--grad);padding:11px 15px;border-radius:11px;transition:.25s;box-shadow:0 8px 20px rgba(139,92,248,.3)}
+  .mcp-copy:hover{transform:translateY(-1px)}
+  .mcp-copy.done{background:var(--green);box-shadow:0 8px 20px rgba(52,199,123,.3)}
+
+  .btn-outline{display:flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--ink);background:rgba(255,255,255,.6);color:var(--ink);font-weight:700;font-size:15px;padding:14px 20px;border-radius:99px;transition:.25s;text-align:center}
+  .btn-outline:hover{background:var(--ink);color:#fff}
+  .btn-outline svg{width:14px;height:14px;flex:none}
+  .btn-claude{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--cl);color:#fff;font-weight:700;font-size:15px;padding:14px 20px;border-radius:99px;transition:.25s;box-shadow:0 14px 34px rgba(217,119,87,.36)}
+  .btn-claude:hover{background:var(--cl-dark);transform:translateY(-2px);box-shadow:0 20px 44px rgba(217,119,87,.42)}
+  .btn-claude .cs{width:17px;height:17px}
+
+  .mcp-note{display:flex;gap:12px;align-items:flex-start;margin-top:26px;background:var(--glass);backdrop-filter:blur(8px);border:1px solid rgba(139,92,248,.2);border-radius:18px;padding:16px 20px;font-size:14.5px;color:var(--dim);line-height:1.55}
+  .mcp-note .ic{flex:none;width:22px;height:22px;border-radius:50%;background:rgba(139,92,248,.12);color:var(--violet);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;margin-top:1px}
+
+  /* ——— ЗАГОЛОВКИ СЕКЦИЙ ——— */
+  .mcp-sec,.faq-mcp,.final-mcp{scroll-margin-top:88px}
+  .mcp-sec{padding:88px 0 0}
+  .sec-h{text-align:center;max-width:620px;margin:0 auto 36px}
+  .sec-h h2{font-size:clamp(26px,3.4vw,40px)}
+  .sec-h p{color:var(--dim);font-size:17px;line-height:1.6;margin-top:14px}
+
+  /* ——— ДЕМО ——— */
+  .demo-holder-mcp{display:flex;justify-content:center}
+  .demo-window.mcpw{width:min(760px,100%);background:rgba(250,247,242,.88);border-color:rgba(217,119,87,.20);box-shadow:0 20px 60px rgba(217,119,87,.20)}
+  .mcpw .window-bar{border-bottom-color:rgba(217,119,87,.16)}
+  .mcpw .wdot{background:rgba(217,119,87,.22)}
+  .mcpw .window-title b{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--cl)}
+  .mcpw .replay{border-color:rgba(217,119,87,.28)}
+  .mcpw .replay:hover{color:var(--cl);border-color:var(--cl);background:rgba(217,119,87,.07)}
+  .mcpw .search-box{border-color:rgba(217,119,87,.24)}
+  .mcpw .search-box.active{border-color:var(--cl);box-shadow:0 8px 24px rgba(217,119,87,.18)}
+  .mcpw .search-icon{color:var(--cl);width:19px;height:19px}
+  .mcpw .cursor{background:var(--cl)}
+  .mcpw .source-chip{border-color:rgba(217,119,87,.24)}
+  .mcpw .source-chip.own{background:var(--cl);border-color:transparent;color:#fff}
+  .mcpw .source-chip.own.on{box-shadow:0 6px 18px rgba(217,119,87,.35)}
+  .mcpw .source-chip.own.done{background:var(--cl);color:#fff}
+  .mcpw .tool{border-color:rgba(217,119,87,.18)}
+  .mcpw .tool .tn{color:var(--cl-dark)}
+  .mcpw .candidate{border-color:rgba(217,119,87,.16);box-shadow:0 8px 24px rgba(217,119,87,.10)}
+  .mcpw .candidate-meta{color:var(--cl-dark)}
+  .mcpw .avatar{background:var(--cl)}
+  .mcpw .ring2{background:conic-gradient(var(--cl) calc(var(--p,0) * 1%), rgba(217,119,87,.16) 0)}
+  .mcpw .avatar-bot{background:var(--cl)}
+  .mcpw .avatar-bot .cs{width:15px;height:15px}
+  .demo-window.mcpw .results{grid-template-columns:minmax(0,1fr)}
+  .demo-window.mcpw .candidate{min-width:0}
+  .replay{margin-left:auto;flex:none;border:1px solid var(--line);background:#fff;color:var(--dim);font-family:inherit;font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:99px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.25s}
+  .replay:hover{color:var(--violet);border-color:var(--violet)}
+  .replay svg{width:12px;height:12px}
+
+  .tool-list{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin-top:18px}
+  .tool{min-width:0;display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 15px;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s}
+  .tool.visible{opacity:1;transform:none}
+  .tool .st{flex:none;width:16px;height:16px;display:grid;place-items:center}
+  .tool .st svg{width:15px;height:15px}
+  .tool .st .cthink{width:16px;height:16px}
+  .tool .st .ok{color:var(--cl)}
+  .think-line{display:flex;align-items:center;gap:10px;margin-top:18px;font-size:14.5px;font-weight:600;color:var(--cl-dark);opacity:0;height:0;overflow:hidden;transition:opacity .3s}
+  .think-line.visible{opacity:1;height:auto}
+  .think-line .cthink{width:20px;height:20px}
+  .cthink{color:var(--cl);animation:cspin 1.8s linear infinite,cpulse 1s ease-in-out infinite alternate}
+  @keyframes cspin{to{transform:rotate(360deg)}}
+  @keyframes cpulse{from{opacity:.5}to{opacity:1}}
+  .tool .tn{min-width:0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;color:var(--violet);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tool .tr{margin-left:auto;padding-left:12px;font-size:12.5px;color:var(--dim);white-space:nowrap;font-weight:500}
+  .bot-line{display:flex;align-items:center;gap:11px;margin-top:20px;font-size:14.5px;font-weight:600;opacity:0;transition:opacity .4s}
+  .bot-line.visible{opacity:1}
+  .bot-line .avatar-bot{width:28px;height:28px;font-size:12px}
+  .more-line{margin-top:12px;font-size:13.5px;color:var(--dim);opacity:0;transition:opacity .4s}
+  .more-line.visible{opacity:1}
+
+  /* ——— ЧТО УМЕЕТ ——— */
+  .caps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+  .cap{background:var(--glass);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);border-radius:22px;padding:26px;box-shadow:0 8px 24px rgba(139,92,248,.08);transition:.3s}
+  .cap:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(139,92,248,.18)}
+  .cap .dot{width:10px;height:10px;border-radius:50%;background:var(--grad);margin-bottom:16px}
+  .cap b{display:block;font-size:17px;font-weight:800;margin-bottom:7px}
+  .cap p{font-size:14.5px;color:var(--dim);line-height:1.55}
+
+  .faq-mcp{padding:88px 0 0}
+  .faq-mcp .faq-list{max-width:780px;margin:0 auto}
+  .faq-mcp h2{text-align:center;font-size:clamp(26px,3.2vw,38px);margin-bottom:30px}
+
+  .final-mcp{padding:88px 0 96px}
+  .final-mcp .final-card{padding:56px 40px}
+  .final-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .final-btns .btn-white,.final-btns .btn-ghost{min-width:230px}
+  .btn-ghost{display:inline-block;border:1.5px solid rgba(255,255,255,.55);color:#fff;font-weight:700;font-size:16px;padding:16px 38px;border-radius:99px;transition:.25s}
+  .btn-ghost:hover{background:rgba(255,255,255,.14)}
+
+  @media(max-width:900px){
+    .mcp-steps{grid-template-columns:minmax(0,1fr)}
+    .caps{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .mcp-sec{padding:64px 0 0}
+  }
+  @media(max-width:560px){
+    .caps{grid-template-columns:minmax(0,1fr)}
+    .window-title .host{display:none}
+    .demo-body{padding:18px 16px}
+    .tool .tr{display:none}
+    .final-mcp .final-card{padding:38px 22px}
+    .final-btns .btn-white,.final-btns .btn-ghost{width:100%;min-width:0}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute"><symbol id="cstar" viewBox="0 0 64 64"><path d="M32.00 35.10 Q46.85 34.48 59.00 32.43 Q60.35 32.00 59.00 31.57 Q46.85 29.52 32.00 28.90 Z M30.45 34.68 Q40.76 39.92 49.97 42.88 Q51.10 43.02 50.40 42.12 Q43.24 35.63 33.55 29.32 Z M29.32 33.55 Q37.28 46.10 45.12 55.60 Q46.18 56.55 45.88 55.17 Q41.57 43.62 34.68 30.45 Z M28.90 32.00 Q29.52 43.55 31.57 53.00 Q32.00 54.05 32.43 53.00 Q34.48 43.55 35.10 32.00 Z M29.32 30.45 Q22.43 43.62 18.12 55.17 Q17.83 56.55 18.88 55.60 Q26.72 46.10 34.68 33.55 Z M30.45 29.32 Q20.76 35.63 13.60 42.12 Q12.90 43.02 14.03 42.88 Q23.24 39.92 33.55 34.68 Z M32.00 28.90 Q17.15 29.52 5.00 31.57 Q3.65 32.00 5.00 32.43 Q17.15 34.48 32.00 35.10 Z M33.55 29.32 Q23.24 24.08 14.03 21.12 Q12.90 20.97 13.60 21.88 Q20.76 28.37 30.45 34.68 Z M34.68 30.45 Q26.72 17.90 18.88 8.40 Q17.82 7.45 18.12 8.83 Q22.43 20.38 29.32 33.55 Z M35.10 32.00 Q34.48 20.45 32.43 11.00 Q32.00 9.95 31.57 11.00 Q29.52 20.45 28.90 32.00 Z M34.68 33.55 Q41.57 20.38 45.88 8.83 Q46.18 7.45 45.12 8.40 Q37.28 17.90 29.32 30.45 Z M33.55 34.68 Q43.24 28.37 50.40 21.88 Q51.10 20.97 49.97 21.12 Q40.76 24.08 30.45 29.32 Z M32 27.6 A4.4 4.4 0 1 1 31.99 27.6 Z" fill="currentColor"/></symbol></svg>
+
+<div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+
+<header><div class="container nav">
+  <a class="logo" href="/"><img src="/images/logo.png" alt="Flyhunt"></a>
+  <nav class="nav-links">
+    <a href="/#solution-1">Решения</a>
+    <a href="/mcp/" style="color:var(--violet);font-weight:700">Flyhunt MCP Connector</a>
+    <a href="/blog/">Блог</a>
+    <a href="/events/">Ивенты</a>
+    <a href="/#community">Сообщество AI для HR</a>
+  </nav>
+  <div class="nav-right">
+    <span class="lang"><button class="lng active" data-lang="ru">RU</button> · <button class="lng" data-lang="kz">KZ</button> · <button class="lng" data-lang="en">EN</button></span>
+    <a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener" data-t="login">Войти</a>
+    <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</div></header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/#solution-1" data-close>Решения</a>
+  <a href="/mcp/" data-close style="color:var(--violet)">Flyhunt MCP Connector</a>
+  <a href="/blog/" data-close>Блог</a>
+  <a href="/events/" data-close>Ивенты</a>
+  <a href="/#community" data-close>Сообщество AI для HR</a>
+  <span class="lang"><button class="lng active" data-lang="ru">RU</button> · <button class="lng" data-lang="kz">KZ</button> · <button class="lng" data-lang="en">EN</button></span>
+  <a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener" data-t="login">Войти</a>
+</div>
+
+<main class="container page-wrap">
+  <a class="back" href="/" data-t="back">← На главную</a>
+
+  <section class="mcp-hero">
+    <span class="sol-tag" data-t="badge">Claude Connector</span>
+    <h1><span data-t="h1a">Flyhunt MCP — рекрутинг прямо в</span> <span class="cword"><svg class="cs"><use href="#cstar"/></svg>Claude</span></h1>
+    <p class="sub" data-t="sub">Подключите Flyhunt к Claude и ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист — не выходя из чата.</p>
+    <div class="mcp-chips">
+      <span data-t="chip1">Настройка за 2 минуты</span>
+      <span data-t="chip2">Без API-ключей</span>
+      <span data-t="chip3">hh.kz и LinkedIn</span>
+      <span data-t="chip4">Claude Pro, Max, Team, Enterprise</span>
+    </div>
+  </section>
+
+  <section class="mcp-steps">
+    <div class="mcp-card">
+      <div class="n">1</div>
+      <b data-t="s1t">Скопируйте URL коннектора Flyhunt</b>
+      <p data-t="s1d">Этот URL вы вставите в Claude на следующем шаге.</p>
+      <div class="act">
+        <div class="mcp-url">
+          <code id="mcpUrl">https://api.flyhunt.ai/mcp</code>
+          <button class="mcp-copy" id="copyBtn" data-t="copy">Копировать</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mcp-card">
+      <div class="n">2</div>
+      <b data-t="s2t">Откройте Claude → Customize</b>
+      <p data-t="s2d">В приложении Claude или на claude.ai: Customize → Connectors → Add custom connector. Назовите коннектор Flyhunt и вставьте URL.</p>
+      <div class="act">
+        <a class="btn-outline" href="https://claude.ai/customize/connectors?modal=add-custom-connector" target="_blank" rel="noopener">
+          <span data-t="s2b">Открыть Claude Customize</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M17 7H9m8 0v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="mcp-card">
+      <div class="n">3</div>
+      <b data-t="s3t">Подключитесь и начните поиск</b>
+      <p data-t="s3d">Нажмите Connect, войдите в аккаунт Flyhunt — и попросите Claude найти кандидатов.</p>
+      <div class="act">
+        <a class="btn-claude" id="startBtn" href="#" target="_blank" rel="noopener">
+          <svg class="cs" aria-hidden="true"><use href="#cstar"/></svg>
+          <span data-t="s3b">Начать поиск</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="mcp-note">
+    <span class="ic">i</span>
+    <span data-t="note">Кастомные коннекторы доступны на платных планах Claude (Pro, Max, Team, Enterprise). На Team и Enterprise коннектор может подключить администратор — тогда он появится у всей команды.</span>
+  </div>
+
+  <!-- ================= ДЕМО ================= -->
+  <section class="mcp-sec">
+    <div class="sec-h">
+      <h2 data-t="demoH">Как это работает</h2>
+      <p data-t="demoP">Одна задача в чате — и Flyhunt проходит весь путь: ищет, отбирает, скринингует и отдаёт шортлист с обоснованием.</p>
+    </div>
+
+    <div class="demo-holder-mcp">
+      <div class="demo-window mcpw" id="demo">
+        <div class="window-bar">
+          <span class="wdot"></span><span class="wdot"></span><span class="wdot"></span>
+          <span class="window-title"><span class="host">claude.ai · </span><b>Flyhunt MCP</b></span>
+          <button class="replay" id="replayBtn">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-t="replay">Повторить</span>
+          </button>
+        </div>
+        <div class="demo-body">
+          <div class="search-box" id="promptBox">
+            <svg class="search-icon" aria-hidden="true"><use href="#cstar"/></svg>
+            <div class="search-text" id="promptText"><span class="cursor"></span></div>
+          </div>
+
+          <div class="search-status" id="srcRow">
+            <span class="status-label" data-t="srcLabel">Источники:</span>
+            <span class="source-chip own pending" id="srcChip">hh.kz</span>
+            <span class="source-chip" id="srcChip2">LinkedIn</span>
+          </div>
+
+          <div class="think-line" id="thinkLine">
+            <svg class="cthink" aria-hidden="true"><use href="#cstar"/></svg>
+            <span data-t="thinking">Claude обращается к Flyhunt…</span>
+          </div>
+
+          <div class="tool-list" id="tools"></div>
+
+          <div class="bot-line" id="botLine">
+            <span class="avatar-bot"><svg class="cs" aria-hidden="true"><use href="#cstar"/></svg></span>
+            <span data-t="botLine">Готово. Топ-3 из шортлиста:</span>
+          </div>
+
+          <div class="results" id="cands"></div>
+          <div class="more-line" id="moreLine" data-t="more">…и ещё 7 кандидатов в шортлисте — с оценкой, резюме и контактами.</div>
+          <p class="demo-summary" id="summary"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ЧТО УМЕЕТ ================= -->
+  <section class="mcp-sec">
+    <div class="sec-h"><h2 data-t="capsH">Что умеет коннектор</h2></div>
+    <div class="caps">
+      <div class="cap"><div class="dot"></div><b data-t="cap1t">Поиск кандидатов</b><p data-t="cap1d">hh.kz и LinkedIn: Claude сам подбирает фильтры по вашему описанию вакансии и уточняет их на ходу.</p></div>
+      <div class="cap"><div class="dot"></div><b data-t="cap2t">Критерии скрининга</b><p data-t="cap2d">Генерирует критерии оценки из вакансии, вы правите их словами — без форм и настроек.</p></div>
+      <div class="cap"><div class="dot"></div><b data-t="cap3t">Скоринг и шортлист</b><p data-t="cap3d">Оценка каждого резюме по вашим критериям с обоснованием — почему кандидат подходит или нет.</p></div>
+      <div class="cap"><div class="dot"></div><b data-t="cap4t">Резюме и контакты</b><p data-t="cap4d">Открывает полные профили и контакты по подходящим кандидатам — прямо в ответе Claude.</p></div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="faq-mcp">
+    <h2 data-t="faqH">Частые вопросы</h2>
+    <div class="faq-list" id="faqList"></div>
+  </section>
+
+  <!-- ================= ФИНАЛЬНЫЙ CTA ================= -->
+  <section class="final-mcp">
+    <div class="final-card">
+      <h2 data-t="ctaH">Подключите Flyhunt к Claude за две минуты</h2>
+      <p data-t="ctaP">Нужен аккаунт Flyhunt и платный план Claude. Дальше — просто просите найти людей.</p>
+      <div class="final-btns">
+        <a class="btn-white" href="https://claude.ai/customize/connectors?modal=add-custom-connector" target="_blank" rel="noopener" data-t="ctaB1">Открыть Claude Customize</a>
+        <a class="btn-ghost" href="/#final" data-t="ctaB2">Заказать демо</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p class="copy">© <span id="year"></span> Flyhunt Ltd. <span data-t="rights">Все права защищены.</span></p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* бургер (та же логика, что на главной) */
+const burger = document.getElementById('burger'), mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', ()=>mobileMenu.classList.toggle('open'));
+mobileMenu.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
+
+/* ============================================================
+   ПЕРЕВОДЫ СТРАНИЦЫ (страница автономна: свой словарь, свой свитчер)
+   ============================================================ */
+const PROMPT = {
+  ru:"Найди через Flyhunt MCP менеджеров по продажам в автосалон в Алматы: опыт в авторетейле от 2 лет, работа с CRM, казахский и русский язык. Отскринь кандидатов и собери шортлист топ-10.",
+  kz:"Flyhunt MCP арқылы Алматыдағы автосалонға сату менеджерлерін тап: автосаудада 2 жылдан астам тәжірибе, CRM-мен жұмыс, қазақ және орыс тілдері. Кандидаттарды скринингтен өткізіп, топ-10 шортлист жина.",
+  en:"Use the Flyhunt MCP to find sales managers for a car dealership in Almaty: 2+ years in auto retail, CRM experience, Kazakh and Russian. Screen the candidates and build a top-10 shortlist."
+};
+
+const T = {
+ru:{
+  title:"Flyhunt MCP Connector — рекрутинг прямо в Claude",
+  login:"Войти", back:"← На главную", badge:"Claude Connector",
+  h1a:"Flyhunt MCP — рекрутинг прямо в",
+  sub:"Подключите Flyhunt к Claude и ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист — не выходя из чата.",
+  chip1:"Настройка за 2 минуты", chip2:"Без API-ключей", chip3:"hh.kz и LinkedIn", chip4:"Claude Pro, Max, Team, Enterprise",
+  s1t:"Скопируйте URL коннектора Flyhunt", s1d:"Этот URL вы вставите в Claude на следующем шаге.", copy:"Копировать", copied:"Скопировано",
+  s2t:"Откройте Claude → Customize", s2d:"В приложении Claude или на claude.ai: Customize → Connectors → Add custom connector. Назовите коннектор Flyhunt и вставьте URL.", s2b:"Открыть Claude Customize",
+  s3t:"Подключитесь и начните поиск", s3d:"Нажмите Connect, войдите в аккаунт Flyhunt — и попросите Claude найти кандидатов.", s3b:"Начать поиск",
+  note:"Кастомные коннекторы доступны на платных планах Claude (Pro, Max, Team, Enterprise). На Team и Enterprise коннектор может подключить администратор — тогда он появится у всей команды.",
+  demoH:"Как это работает", demoP:"Одна задача в чате — и Flyhunt проходит весь путь: ищет, отбирает, скринингует и отдаёт шортлист с обоснованием.",
+  replay:"Повторить", srcLabel:"Источники:", thinking:"Claude обращается к Flyhunt…", botLine:"Готово. Топ-3 из шортлиста:",
+  more:"…и ещё 7 кандидатов в шортлисте — с оценкой, резюме и контактами.",
+  summary:"Пример сценария: <b>184 кандидата</b> просмотрено · <b>10</b> в шортлисте · <b>12 минут</b> вместо двух дней ручной работы",
+  capsH:"Что умеет коннектор",
+  cap1t:"Поиск кандидатов", cap1d:"hh.kz и LinkedIn: Claude сам подбирает фильтры по вашему описанию вакансии и уточняет их на ходу.",
+  cap2t:"Критерии скрининга", cap2d:"Генерирует критерии оценки из вакансии, вы правите их словами — без форм и настроек.",
+  cap3t:"Скоринг и шортлист", cap3d:"Оценка каждого резюме по вашим критериям с обоснованием — почему кандидат подходит или нет.",
+  cap4t:"Резюме и контакты", cap4d:"Открывает полные профили и контакты по подходящим кандидатам — прямо в ответе Claude.",
+  faqH:"Частые вопросы",
+  ctaH:"Подключите Flyhunt к Claude за две минуты", ctaP:"Нужен аккаунт Flyhunt и платный план Claude. Дальше — просто просите найти людей.",
+  ctaB1:"Открыть Claude Customize", ctaB2:"Заказать демо", rights:"Все права защищены.",
+  tools:[
+    ["choose_candidate_source","Выбран hh.kz"],
+    ["hh__search_candidates","Найдено 184 кандидата"],
+    ["hh__generate_screening_criteria","6 критериев"],
+    ["hh__start_candidate_screening","Скрининг 184 / 184"],
+    ["hh__get_screening_results","Шортлист: 10"]
+  ],
+  cands:[
+    ["АС","А. Сериковна","Менеджер по продажам · автосалон Toyota · 5 лет",["Авторетейл","CRM Bitrix24","План 118%","KZ/RU"],94],
+    ["ДК","Д. Кайратович","Старший менеджер · премиум-сегмент · 6 лет",["Авто-премиум","Средний чек 24 млн ₸","CRM","KZ/RU"],91],
+    ["ЕМ","Е. Мұратұлы","Менеджер по продажам · автоцентр · 3 года",["Авторетейл","40+ сделок в квартал","KZ/RU/EN"],88]
+  ],
+  faq:[
+    ["Что такое MCP и зачем он мне?","MCP — открытый стандарт, по которому ИИ-ассистенты подключаются к внешним сервисам. Подключив коннектор Flyhunt, вы работаете с поиском и скринингом кандидатов прямо в чате Claude: не нужно открывать отдельный интерфейс и переносить данные руками."],
+    ["Нужен ли платный план Claude?","Да. Кастомные коннекторы доступны на планах Pro, Max, Team и Enterprise. В Team и Enterprise коннектор обычно подключает администратор для всей команды."],
+    ["Нужен ли аккаунт Flyhunt?","Да. При первом подключении Claude попросит войти в Flyhunt — доступ к поиску и скринингу выдаётся по вашему тарифу Flyhunt. Если аккаунта пока нет, оставьте заявку на демо."],
+    ["Какие источники кандидатов поддерживаются?","Сейчас hh.kz и LinkedIn. Claude сам предложит источник под вашу вакансию или спросит, если подходят оба."],
+    ["Безопасно ли это для данных кандидатов?","Коннектор работает под вашей учётной записью Flyhunt и отдаёт только те данные, к которым у вас уже есть доступ в Flyhunt. Каждый вызов инструмента видно в чате — вы всегда знаете, что именно делает ассистент."]
+  ]
+},
+kz:{
+  title:"Flyhunt MCP Connector — Claude ішінде рекрутинг",
+  login:"Кіру", back:"← Басты бетке", badge:"Claude Connector",
+  h1a:"Flyhunt MCP — рекрутинг тікелей",
+  sub:"Flyhunt-ты Claude-қа қосыңыз: hh.kz және LinkedIn-де кандидат іздеңіз, түйіндемелерді скринингтен өткізіп, шортлист жинаңыз — чаттан шықпай.",
+  chip1:"2 минутта реттеледі", chip2:"API-кілт қажет емес", chip3:"hh.kz және LinkedIn", chip4:"Claude Pro, Max, Team, Enterprise",
+  s1t:"Flyhunt коннекторының URL-ін көшіріңіз", s1d:"Бұл URL-ді келесі қадамда Claude-қа қоясыз.", copy:"Көшіру", copied:"Көшірілді",
+  s2t:"Claude → Customize бөлімін ашыңыз", s2d:"Claude қолданбасында немесе claude.ai сайтында: Customize → Connectors → Add custom connector. Атын Flyhunt деп қойып, URL-ді қойыңыз.", s2b:"Claude Customize-ды ашу",
+  s3t:"Қосылып, іздеуді бастаңыз", s3d:"Connect түймесін басып, Flyhunt аккаунтыңызға кіріңіз — сосын Claude-тан кандидат іздеуді сұраңыз.", s3b:"Іздеуді бастау",
+  note:"Меншікті коннекторлар Claude-тың ақылы жоспарларында қолжетімді (Pro, Max, Team, Enterprise). Team және Enterprise-де коннекторды әкімші қосса, ол бүкіл командада көрінеді.",
+  demoH:"Бұл қалай жұмыс істейді", demoP:"Чатта бір тапсырма — Flyhunt бүкіл жолды өтеді: іздейді, сүзеді, скринингтен өткізеді және негіздемесі бар шортлист береді.",
+  replay:"Қайталау", srcLabel:"Дереккөздер:", thinking:"Claude Flyhunt-қа жүгінуде…", botLine:"Дайын. Шортлистен топ-3:",
+  more:"…және шортлисте тағы 7 кандидат — бағасы, түйіндемесі және байланысымен.",
+  summary:"Сценарий үлгісі: <b>184 кандидат</b> қаралды · <b>10</b> шортлисте · екі күндік қол еңбегінің орнына <b>12 минут</b>",
+  capsH:"Коннектор не істей алады",
+  cap1t:"Кандидат іздеу", cap1d:"hh.kz және LinkedIn: Claude вакансия сипаттамасы бойынша сүзгілерді өзі таңдап, жүріп-бара нақтылайды.",
+  cap2t:"Скрининг критерийлері", cap2d:"Вакансиядан бағалау критерийлерін жасайды, сіз оларды сөзбен түзетесіз — форма да, баптау да қажет емес.",
+  cap3t:"Скоринг және шортлист", cap3d:"Әр түйіндеме сіздің критерийлеріңіз бойынша бағаланады және неге сәйкес келетіні түсіндіріледі.",
+  cap4t:"Түйіндеме және байланыс", cap4d:"Сәйкес кандидаттардың толық профилі мен байланысын Claude жауабында ашады.",
+  faqH:"Жиі қойылатын сұрақтар",
+  ctaH:"Flyhunt-ты Claude-қа екі минутта қосыңыз", ctaP:"Flyhunt аккаунты мен Claude-тың ақылы жоспары қажет. Ары қарай — тек адам табуды сұрайсыз.",
+  ctaB1:"Claude Customize-ды ашу", ctaB2:"Демо тапсырыс беру", rights:"Барлық құқықтар қорғалған.",
+  tools:[
+    ["choose_candidate_source","hh.kz таңдалды"],
+    ["hh__search_candidates","184 кандидат табылды"],
+    ["hh__generate_screening_criteria","6 критерий"],
+    ["hh__start_candidate_screening","Скрининг 184 / 184"],
+    ["hh__get_screening_results","Шортлист: 10"]
+  ],
+  cands:[
+    ["АС","А. Серікқызы","Сату менеджері · Toyota автосалоны · 5 жыл",["Автосауда","CRM Bitrix24","Жоспар 118%","KZ/RU"],94],
+    ["ДҚ","Д. Қайратұлы","Аға менеджер · премиум-сегмент · 6 жыл",["Авто-премиум","Орташа чек 24 млн ₸","CRM","KZ/RU"],91],
+    ["ЕМ","Е. Мұратұлы","Сату менеджері · автоорталық · 3 жыл",["Автосауда","Тоқсанда 40+ мәміле","KZ/RU/EN"],88]
+  ],
+  faq:[
+    ["MCP деген не және ол маған не үшін керек?","MCP — ИИ-ассистенттердің сыртқы сервистерге қосылуының ашық стандарты. Flyhunt коннекторын қосқанда кандидат іздеу мен скрининг тікелей Claude чатында жүреді: бөлек интерфейс ашып, деректерді қолмен көшіру қажет емес."],
+    ["Claude-тың ақылы жоспары қажет пе?","Иә. Меншікті коннекторлар Pro, Max, Team және Enterprise жоспарларында қолжетімді. Team мен Enterprise-де коннекторды әдетте әкімші бүкіл команда үшін қосады."],
+    ["Flyhunt аккаунты қажет пе?","Иә. Алғаш қосылғанда Claude Flyhunt-қа кіруді сұрайды — іздеу мен скринингке рұқсат Flyhunt тарифіңіз бойынша беріледі. Аккаунт болмаса, демоға өтінім қалдырыңыз."],
+    ["Қандай кандидат дереккөздері қолданылады?","Қазір hh.kz және LinkedIn. Claude вакансияға сай дереккөзді өзі ұсынады немесе екеуі де жарасатын болса сұрайды."],
+    ["Кандидат деректері қауіпсіз бе?","Коннектор сіздің Flyhunt тіркелгіңіз арқылы жұмыс істейді және Flyhunt-та сізде бұрыннан рұқсаты бар деректерді ғана береді. Әр құрал шақыруы чатта көрінеді — ассистент не істеп жатқанын әрқашан білесіз."]
+  ]
+},
+en:{
+  title:"Flyhunt MCP Connector — recruiting inside Claude",
+  login:"Log in", back:"← Back to home", badge:"Claude Connector",
+  h1a:"Flyhunt MCP — recruiting right inside",
+  sub:"Connect Flyhunt to Claude and source candidates on hh.kz and LinkedIn, screen their CVs and build a shortlist — without leaving the chat.",
+  chip1:"2-minute setup", chip2:"No API keys", chip3:"hh.kz and LinkedIn", chip4:"Claude Pro, Max, Team, Enterprise",
+  s1t:"Copy the Flyhunt connector URL", s1d:"You'll paste this URL into Claude in the next step.", copy:"Copy", copied:"Copied",
+  s2t:"Go to Claude → Customize", s2d:"In the Claude app or on claude.ai: Customize → Connectors → Add custom connector. Name it Flyhunt and paste the URL.", s2b:"Open Claude Customize",
+  s3t:"Connect and start sourcing", s3d:"Hit Connect, sign in to Flyhunt — then ask Claude to find candidates.", s3b:"Start sourcing",
+  note:"Custom connectors are available on paid Claude plans (Pro, Max, Team, Enterprise). On Team and Enterprise an admin can add the connector once and it shows up for the whole team.",
+  demoH:"How it works", demoP:"One request in the chat, and Flyhunt runs the whole loop: searches, filters, screens and returns a shortlist with reasoning.",
+  replay:"Replay", srcLabel:"Sources:", thinking:"Claude is calling Flyhunt…", botLine:"Done. Top 3 from the shortlist:",
+  more:"…and 7 more shortlisted candidates — with scores, CVs and contacts.",
+  summary:"Example run: <b>184 candidates</b> reviewed · <b>10</b> shortlisted · <b>12 minutes</b> instead of two days of manual work",
+  capsH:"What the connector does",
+  cap1t:"Candidate search", cap1d:"hh.kz and LinkedIn: Claude picks the filters from your role description and refines them as you go.",
+  cap2t:"Screening criteria", cap2d:"Generates scoring criteria from the role; you adjust them in plain words — no forms, no settings.",
+  cap3t:"Scoring and shortlist", cap3d:"Every CV scored against your criteria, with reasoning for why a candidate fits or doesn't.",
+  cap4t:"CVs and contacts", cap4d:"Opens full profiles and contact details for the candidates worth reaching — right in Claude's reply.",
+  faqH:"FAQ",
+  ctaH:"Connect Flyhunt to Claude in two minutes", ctaP:"You'll need a Flyhunt account and a paid Claude plan. After that, just ask for people.",
+  ctaB1:"Open Claude Customize", ctaB2:"Book a demo", rights:"All rights reserved.",
+  tools:[
+    ["choose_candidate_source","hh.kz selected"],
+    ["hh__search_candidates","184 candidates found"],
+    ["hh__generate_screening_criteria","6 criteria"],
+    ["hh__start_candidate_screening","Screening 184 / 184"],
+    ["hh__get_screening_results","Shortlist: 10"]
+  ],
+  cands:[
+    ["AS","A. Serikovna","Sales manager · Toyota dealership · 5 yrs",["Auto retail","Bitrix24 CRM","118% of quota","KZ/RU"],94],
+    ["DK","D. Kairatovich","Senior manager · premium segment · 6 yrs",["Premium auto","Avg. deal ₸24M","CRM","KZ/RU"],91],
+    ["YM","Y. Muratuly","Sales manager · auto centre · 3 yrs",["Auto retail","40+ deals per quarter","KZ/RU/EN"],88]
+  ],
+  faq:[
+    ["What is MCP and why do I need it?","MCP is an open standard for connecting AI assistants to external services. With the Flyhunt connector, sourcing and screening happen inside the Claude chat — no separate interface, no copying data by hand."],
+    ["Do I need a paid Claude plan?","Yes. Custom connectors are available on Pro, Max, Team and Enterprise. On Team and Enterprise an admin usually adds the connector for everyone."],
+    ["Do I need a Flyhunt account?","Yes. On first connect Claude asks you to sign in to Flyhunt — access to search and screening follows your Flyhunt plan. No account yet? Request a demo."],
+    ["Which candidate sources are supported?","hh.kz and LinkedIn today. Claude suggests the right source for your role, or asks when both make sense."],
+    ["Is candidate data safe?","The connector runs under your Flyhunt account and returns only data you already have access to in Flyhunt. Every tool call is visible in the chat, so you always see what the assistant is doing."]
+  ]
+}
+};
+
+let curLang = 'ru';
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function buildFaq(t){
+  $('#faqList').innerHTML = t.faq.map(([q,a])=>`
+    <div class="faq-item">
+      <button class="faq-q">${q}<span class="pl">+</span></button>
+      <div class="faq-a"><div>${a}</div></div>
+    </div>`).join('');
+  $$('#faqList .faq-q').forEach(btn=>btn.addEventListener('click',()=>{
+    const item = btn.parentElement, ans = item.querySelector('.faq-a');
+    const open = item.classList.contains('open');
+    $$('#faqList .faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=0});
+    if(!open){ item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight+'px'; }
+  }));
+}
+
+function setLang(lang, run){
+  curLang = lang;
+  const t = T[lang];
+  document.documentElement.lang = lang==='kz' ? 'kk' : lang;
+  document.title = t.title;
+  $$('[data-t]').forEach(el=>{ const k=el.dataset.t; if(typeof t[k]==='string') el.textContent=t[k]; });
+  $$('.lng').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+  $('#copyBtn').textContent = t.copy;
+  $('#copyBtn').classList.remove('done');
+  $('#startBtn').href = 'https://claude.ai/new?q=' + encodeURIComponent(PROMPT[lang]);
+  buildFaq(t);
+  if(run === false) resetDemo(); else runDemo();
+}
+$$('.lng').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang, true)));
+
+/* ============ КОПИРОВАНИЕ URL ============ */
+$('#copyBtn').addEventListener('click', async ()=>{
+  const url = $('#mcpUrl').textContent.trim();
+  try { await navigator.clipboard.writeText(url); }
+  catch { const ta=document.createElement('textarea'); ta.value=url; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); }
+  const b = $('#copyBtn');
+  b.textContent = T[curLang].copied; b.classList.add('done');
+  setTimeout(()=>{ b.textContent = T[curLang].copy; b.classList.remove('done'); }, 1900);
+});
+
+/* ============ ДЕМО: ЧАТ CLAUDE + ВЫЗОВЫ MCP ============ */
+let token = 0;
+const sleep = ms => new Promise(r=>setTimeout(r,ms));
+const OK = '<svg class="ok" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const THINK = '<svg class="cthink" aria-hidden="true"><use href="#cstar"/></svg>';
+
+function resetDemo(){
+  $('#promptText').innerHTML = '<span class="cursor"></span>';
+  $('#promptBox').classList.remove('active');
+  $('#srcRow').classList.remove('visible','finished');
+  $('#srcChip').className = 'source-chip own pending';
+  $('#srcChip2').className = 'source-chip';
+  $('#thinkLine').classList.remove('visible');
+  $('#tools').innerHTML = '';
+  $('#botLine').classList.remove('visible');
+  $('#cands').innerHTML = '';
+  $('#moreLine').classList.remove('visible');
+  $('#summary').classList.remove('visible');
+  $('#summary').innerHTML = T[curLang].summary;
+}
+
+function toolNode(name, res, done){
+  const el = document.createElement('div');
+  el.className = 'tool';
+  el.innerHTML = `<span class="st">${done?OK:THINK}</span>
+    <span class="tn">flyhunt: ${name}</span><span class="tr">${done?res:''}</span>`;
+  return el;
+}
+function candNode(ini,name,meta,skills,score,filled){
+  const el = document.createElement('div');
+  el.className = 'candidate';
+  el.innerHTML = `<span class="avatar">${ini}</span>
+    <div class="candidate-info">
+      <div class="candidate-name">${name}</div>
+      <div class="candidate-meta">${meta}</div>
+      <div class="skills">${skills.map(s=>`<span class="skill">${s}</span>`).join('')}</div>
+    </div>
+    <div class="match">
+      <div class="ring2" style="--p:${filled?score:0}"><div class="ring-inner">${score}%</div></div>
+      <div class="match-label">match</div>
+    </div>`;
+  return el;
+}
+
+function finalState(t){
+  resetDemo();
+  $('#promptText').textContent = PROMPT[curLang];
+  $('#promptBox').classList.add('active');
+  $('#srcRow').classList.add('visible','finished');
+  $('#srcChip').className = 'source-chip own done';
+  $('#srcChip2').className = 'source-chip';
+  $('#thinkLine').classList.remove('visible');
+  t.tools.forEach(([n,r])=>{ const el=toolNode(n,r,true); $('#tools').appendChild(el); el.classList.add('visible'); });
+  $('#botLine').classList.add('visible');
+  t.cands.forEach(c=>{ const el=candNode(c[0],c[1],c[2],c[3],c[4],true); $('#cands').appendChild(el); el.classList.add('visible'); });
+  $('#moreLine').classList.add('visible');
+  $('#summary').classList.add('visible');
+}
+
+async function runDemo(){
+  const my = ++token;
+  const t = T[curLang];
+  if (reduced){ finalState(t); return; }
+
+  resetDemo();
+  await sleep(400); if(my!==token) return;
+  $('#promptBox').classList.add('active');
+
+  const text = PROMPT[curLang];
+  const pt = $('#promptText');
+  for (let i=0; i<=text.length; i+=3){
+    if(my!==token) return;
+    pt.innerHTML = text.slice(0,i) + '<span class="cursor"></span>';
+    await sleep(11);
+  }
+  pt.textContent = text;
+
+  await sleep(300); if(my!==token) return;
+  $('#thinkLine').classList.add('visible');
+  await sleep(900); if(my!==token) return;
+  $('#srcRow').classList.add('visible');
+  $('#srcChip').className = 'source-chip own on';
+  await sleep(700); if(my!==token) return;
+  $('#srcChip').className = 'source-chip own done';
+  $('#srcRow').classList.add('finished');
+
+  $('#thinkLine').classList.remove('visible');
+  await sleep(200);
+  for (const [name,res] of t.tools){
+    if(my!==token) return;
+    const el = toolNode(name,res,false);
+    $('#tools').appendChild(el);
+    requestAnimationFrame(()=>el.classList.add('visible'));
+    await sleep(780); if(my!==token) return;
+    el.querySelector('.st').innerHTML = OK;
+    el.querySelector('.tr').textContent = res;
+    await sleep(160);
+  }
+
+  await sleep(350); if(my!==token) return;
+  $('#botLine').classList.add('visible');
+  await sleep(250);
+
+  for (const c of t.cands){
+    if(my!==token) return;
+    const el = candNode(c[0],c[1],c[2],c[3],c[4],false);
+    $('#cands').appendChild(el);
+    requestAnimationFrame(()=>{
+      el.classList.add('visible');
+      setTimeout(()=>{ const r=el.querySelector('.ring2'); if(r) r.style.setProperty('--p', c[4]); }, 220);
+    });
+    await sleep(420);
+  }
+  if(my!==token) return;
+  $('#moreLine').classList.add('visible');
+  await sleep(350);
+  $('#summary').classList.add('visible');
+}
+
+/* ============ СТАРТ ============ */
+$('#replayBtn').addEventListener('click', runDemo);
+setLang('ru', false);
+let started = false;
+new IntersectionObserver((es,obs)=>{
+  es.forEach(e=>{ if(e.isIntersecting && !started){ started = true; runDemo(); } });
+},{threshold:.2}).observe($('#demo'));
+</script>
+</body>
+</html>
