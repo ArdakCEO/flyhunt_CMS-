@@ -43,7 +43,6 @@ h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin-bottom:24px}
   <div id="content">Загрузка…</div>
 </main>
 <footer><div class="container"><p class="copy">© <span id="year"></span> Flyhunt Ltd. Все права защищены.</p></div></footer>
-<script src="/js/marked.min.js"></script>
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 // Дата: пустое или битое значение больше не даёт "NaN undefined NaN" — просто ничего не выводим
@@ -54,11 +53,78 @@ function fmtDateRu(iso){
   const m=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
   return `${d.getDate()} ${m[d.getMonth()]} ${d.getFullYear()}`;
 }
-// Тело статьи: Markdown из CMS превращаем в HTML. Старые статьи, написанные готовым HTML, проходят насквозь без изменений.
+// Тело статьи: Markdown из CMS превращаем в HTML.
 function renderBody(src){
-  src = src || '';
-  try { return (window.marked && marked.parse) ? marked.parse(src) : src; }
-  catch(e){ return src; }
+  try { return mdToHtml(src); } catch(e){ return src || ''; }
+}
+
+// Компактный Markdown -> HTML для блога. Без внешних зависимостей.
+// Поддерживает: ## заголовки, абзацы, **жирный**, *курсив*, [ссылки](url),
+// ![картинки](src), списки * и 1., > цитаты, ``` код ```, ---, `код`.
+// Готовый HTML в тексте пропускается насквозь — старые статьи не ломаются.
+function mdToHtml(src){
+  if(!src) return '';
+  var text = String(src).replace(/\r\n?/g, '\n').replace(/\t/g, '    ');
+  var stash = [];
+  var OPEN = '\uE000', CLOSE = '\uE001';
+  function keep(html){ stash.push(html); return OPEN + (stash.length - 1) + CLOSE; }
+  function esc(s){ return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+  text = text.replace(/^```[^\n]*\n([\s\S]*?)^```[ \t]*$/gm, function(_, code){
+    return keep('<pre><code>' + esc(code.replace(/\n$/, '')) + '</code></pre>');
+  });
+
+  function inline(s){
+    s = s.replace(/`([^`]+)`/g, function(_, c){ return keep('<code>' + esc(c) + '</code>'); });
+    s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g, function(_, alt, src){ return keep('<img src="' + src + '" alt="' + alt + '">'); });
+    s = s.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g, function(_, txt, href){ return keep('<a href="' + href + '">' + txt + '</a>'); });
+    s = s.replace(/(^|[\s(])(https?:\/\/[^\s<>"')]+)/g, function(_, pre, url){ return pre + keep('<a href="' + url + '">' + url + '</a>'); });
+    s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    s = s.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+    s = s.replace(/(^|[\s(>])\*([^*\n]+)\*(?=$|[\s.,!?):;])/g, '$1<em>$2</em>');
+    s = s.replace(/(^|[\s(>])_([^_\n]+)_(?=$|[\s.,!?):;])/g, '$1<em>$2</em>');
+    return s;
+  }
+
+  function items(lines, re){
+    var li = [], cur = null;
+    lines.forEach(function(l){
+      if (re.test(l)){ if (cur !== null) li.push(cur); cur = l.replace(re, ''); }
+      else if (cur !== null){ cur += ' ' + l.trim(); }
+    });
+    if (cur !== null) li.push(cur);
+    return li.map(function(t){ return '<li>' + inline(t.trim()) + '</li>'; }).join('');
+  }
+
+  var out = [], blocks = text.split(/\n{2,}/);
+  for (var i = 0; i < blocks.length; i++){
+    var b = blocks[i].replace(/^\n+|\n+$/g, '');
+    if (!b) continue;
+    var lines = b.split('\n'), m;
+    if (new RegExp('^' + OPEN + '\\d+' + CLOSE + '$').test(b)){
+      out.push(b);
+    } else if (lines.length === 1 && (m = b.match(/^(#{1,6})\s+(.*)$/))){
+      out.push('<h' + m[1].length + '>' + inline(m[2].trim()) + '</h' + m[1].length + '>');
+    } else if (/^(-{3,}|\*{3,}|_{3,})$/.test(b)){
+      out.push('<hr>');
+    } else if (lines.every(function(l){ return /^>\s?/.test(l); })){
+      out.push('<blockquote><p>' + inline(lines.map(function(l){ return l.replace(/^>\s?/, ''); }).join(' ')) + '</p></blockquote>');
+    } else if (/^[*+-]\s+/.test(lines[0])){
+      out.push('<ul>' + items(lines, /^[*+-]\s+/) + '</ul>');
+    } else if (/^\d+[.)]\s+/.test(lines[0])){
+      out.push('<ol>' + items(lines, /^\d+[.)]\s+/) + '</ol>');
+    } else if (/^</.test(b)){
+      out.push(b);
+    } else {
+      out.push('<p>' + inline(lines.join(' ')) + '</p>');
+    }
+  }
+
+  var html = out.join('\n');
+  for (var k = 0; k < 3; k++){
+    html = html.replace(new RegExp(OPEN + '(\\d+)' + CLOSE, 'g'), function(_, n){ return stash[+n]; });
+  }
+  return html;
 }
 const slug = new URLSearchParams(location.search).get('slug');
 fetch('/content/blog.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
@@ -72,58 +138,6 @@ fetch('/content/blog.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
     <span class="art-date">${fmtDateRu(p.date)}</span>
     <h1>${p.title}</h1>
     <div class="art-body">${renderBody(p.body)}</div>`;
-}).catch(()=>{ document.getElementById('content').innerHTML='<p style="color:var(--dim)">Не удалось загрузить статью.</p>'; });
-</script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="pageTitle">Статья — Flyhunt</title>
-<meta name="description" id="pageDesc" content="">
-<link rel="icon" type="image/png" href="/images/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/main.css">
-<style>
-.page-wrap{padding:64px 24px 96px;max-width:760px;margin:0 auto}
-.back{display:inline-block;margin-bottom:18px;font-size:14px;font-weight:700;color:var(--violet)}
-.art-cover{height:260px;border-radius:var(--radius);background:linear-gradient(120deg,#C9B8FC,#BDE7FC);display:flex;align-items:center;justify-content:center;font-size:56px;margin-bottom:28px;overflow:hidden}
-.art-cover img{width:100%;height:100%;object-fit:cover}
-.art-date{font-size:13px;color:var(--dim);font-weight:600;display:block;margin-bottom:8px}
-h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin-bottom:24px}
-.art-body p{font-size:16.5px;line-height:1.75;color:#2A2E55;margin-bottom:16px}
-</style>
-</head>
-<body>
-<div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
-<header><div class="container nav">
-  <a class="logo" href="/"><img src="/images/logo.png" alt="Flyhunt"></a>
-  <nav class="nav-links"><a href="/#solution-1">Решения</a><a href="/mcp/">Flyhunt MCP Connector</a><a href="/blog/">Блог</a><a href="/events/">Ивенты</a><a href="/#community">Сообщество AI для HR</a></nav>
-  <div class="nav-right"><a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener">Войти</a></div>
-</div></header>
-<main class="container page-wrap">
-  <a class="back" href="/blog/">← Все статьи</a>
-  <div id="content">Загрузка…</div>
-</main>
-<footer><div class="container"><p class="copy">© <span id="year"></span> Flyhunt Ltd. Все права защищены.</p></div></footer>
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-function fmtDateRu(iso){const d=new Date(iso+'T00:00:00');const m=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];return `${d.getDate()} ${m[d.getMonth()]} ${d.getFullYear()}`;}
-const slug = new URLSearchParams(location.search).get('slug');
-fetch('/content/blog.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
-  const p = (data.items||[]).find(x=>x.slug===slug);
-  const el = document.getElementById('content');
-  if(!p){ el.innerHTML='<p style="color:var(--dim)">Статья не найдена. <a href="/blog/">Вернуться в блог</a></p>'; return; }
-  document.getElementById('pageTitle').textContent = p.title + ' — Flyhunt';
-  document.getElementById('pageDesc').setAttribute('content', p.excerpt||'');
-  el.innerHTML = `
-    <div class="art-cover">${p.cover?`<img src="${p.cover}" alt="">`:'💜'}</div>
-    <span class="art-date">${fmtDateRu(p.date)}</span>
-    <h1>${p.title}</h1>
-    <div class="art-body">${p.body}</div>`;
 }).catch(()=>{ document.getElementById('content').innerHTML='<p style="color:var(--dim)">Не удалось загрузить статью.</p>'; });
 </script>
 </body>
