@@ -26,9 +26,16 @@
 <footer><div class="container"><p class="copy">© <span id="year"></span> Flyhunt Ltd. Все права защищены.</p></div></footer>
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
-function fmtDateRu(iso){const d=new Date(iso+'T00:00:00');const m=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];return `${d.getDate()} ${m[d.getMonth()]} ${d.getFullYear()}`;}
+function fmtDateRu(iso){
+  if(!iso) return '';
+  const d = new Date(String(iso).slice(0,10)+'T00:00:00');
+  if(isNaN(d.getTime())) return '';
+  const m=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  return `${d.getDate()} ${m[d.getMonth()]} ${d.getFullYear()}`;
+}
 fetch('/content/blog.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
-  const items=(data.items||[]).sort((a,b)=>b.date.localeCompare(a.date));
+  // Статья без даты больше не роняет сортировку и весь список статей
+  const items=(data.items||[]).slice().sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
   const el=document.getElementById('blogGrid');
   if(items.length===0){ el.innerHTML='<p style="color:var(--dim)">Статей пока нет.</p>'; return; }
   el.innerHTML=items.map(p=>`
