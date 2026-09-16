@@ -9,6 +9,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css">
+<style>
+/* ============ ПРОМО КОРПОРАТИВНОГО ОБУЧЕНИЯ ============ */
+.train-promo{padding:0 0 88px}
+.tp-card{display:grid;grid-template-columns:1.55fr 1fr;gap:34px;align-items:center;background:var(--glass);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.9);border-radius:var(--radius);padding:44px 46px;box-shadow:0 20px 56px rgba(139,92,248,.16)}
+.tp-tag{display:inline-block;background:rgba(139,92,248,.1);border:1px solid rgba(139,92,248,.28);color:var(--violet);font-size:13px;font-weight:700;padding:7px 16px;border-radius:99px;margin-bottom:18px}
+.tp-text h2{font-size:clamp(24px,3vw,36px);line-height:1.14;max-width:560px}
+.tp-text p{font-size:16.5px;color:var(--dim);line-height:1.65;margin:16px 0 28px;max-width:560px}
+.tp-num{background:var(--grad);color:#fff;border-radius:22px;padding:30px 28px;box-shadow:0 20px 46px rgba(139,92,248,.3)}
+.tp-num b{display:block;font-size:clamp(30px,3.6vw,40px);font-weight:900;letter-spacing:-0.03em;line-height:1.05}
+.tp-num span{display:block;font-size:14px;line-height:1.55;opacity:.92;margin-top:10px}
+@media(max-width:900px){.tp-card{grid-template-columns:1fr;padding:32px 26px;gap:26px}}
+</style>
 </head>
 <body>
 
@@ -27,6 +39,7 @@
           <a href="#solution-3">Найм под ключ<small>Когда нужен результат, а не инструмент</small></a>
         </div>
       </div>
+      <a href="/training/">Обучение ИИ</a>
       <a href="/mcp/">Flyhunt MCP Connector</a>
       <a href="#blog">Блог</a>
       <a href="#event">Ивенты</a>
@@ -44,6 +57,7 @@
   <a href="#solution-1" class="mm-sub" data-close>— Сложные позиции</a>
   <a href="#solution-2" class="mm-sub" data-close>— Массовый найм</a>
   <a href="#solution-3" class="mm-sub" data-close>— Найм под ключ</a>
+  <a href="/training/" data-close>Обучение ИИ</a>
   <a href="/mcp/" data-close>Flyhunt MCP Connector</a>
   <a href="#blog" data-close>Блог</a>
   <a href="#event" data-close>Ивенты</a>
@@ -339,6 +353,24 @@
   </div>
 </section>
 
+<!-- ================= КОРПОРАТИВНОЕ ОБУЧЕНИЕ ИИ ================= -->
+<section class="train-promo" id="training-promo">
+  <div class="container">
+    <div class="tp-card reveal">
+      <div class="tp-text">
+        <span class="tp-tag">Корпоративное обучение</span>
+        <h2>Вам интересны корпоративные тренинги по ИИ?</h2>
+        <p>Сотрудники пользуются ИИ как чатом: спрашивают совет, а работу всё равно делают сами. За 1–2 дня учим команду собирать ИИ-агентов, которые делают рутину за них, — и компания получает обратно часы, за которые уже платит.</p>
+        <a class="btn-grad" href="/training/">Посчитать выгоду для компании</a>
+      </div>
+      <div class="tp-num">
+        <b>49,5 млн ₸</b>
+        <span>столько стоит время, которое за год освободит команда из 40 человек. Посчитайте свою цифру на калькуляторе.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= ФИНАЛЬНЫЙ CTA ================= -->
 <section class="final" id="final">
   <div class="container">
@@ -387,6 +419,7 @@
       </div>
       <div>
         <h4>Компания</h4>
+        <a href="/training/">Корпоративное обучение ИИ</a>
         <a href="/mcp/">Flyhunt MCP Connector</a>
         <a href="#blog">Блог</a>
         <a href="#event">Ивенты</a>
@@ -603,5 +636,22 @@
 
 <script src="/js/app.js"></script>
 <script src="/js/dynamic.js"></script>
+<script>
+/* Открытие правовых модалок по якорю — чтобы на них можно было ссылаться
+   с других страниц сайта: /#privacy и /#terms */
+(function(){
+  var BY_HASH = {'#privacy':'modalPrivacy', '#terms':'modalTerms'};
+  function openByHash(){
+    var id = BY_HASH[location.hash];
+    if(!id) return;
+    var m = document.getElementById(id);
+    if(!m) return;
+    m.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  openByHash();
+  window.addEventListener('hashchange', openByHash);
+})();
+</script>
 </body>
 </html>
