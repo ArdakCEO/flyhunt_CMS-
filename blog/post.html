@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css">
 <style>
-.page-wrap{padding:64px 24px 96px;max-width:760px;margin:0 auto}
-.back{display:inline-block;margin-bottom:18px;font-size:14px;font-weight:700;color:var(--violet)}
+.page-wrap{padding:56px 24px 96px;max-width:760px;margin:0 auto}
+
 .art-cover{height:260px;border-radius:var(--radius);background:linear-gradient(120deg,#C9B8FC,#BDE7FC);display:flex;align-items:center;justify-content:center;font-size:56px;margin-bottom:28px;overflow:hidden}
 .art-cover img{width:100%;height:100%;object-fit:cover}
 .art-date{font-size:13px;color:var(--dim);font-weight:600;display:block;margin-bottom:8px}
@@ -34,15 +34,77 @@ h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin-bottom:24px}
 <body>
 <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
 <header><div class="container nav">
-  <a class="logo" href="/"><img src="/images/logo.png" alt="Flyhunt"></a>
-  <nav class="nav-links"><a href="/#solution-1">Решения</a><a href="/training/">Обучение ИИ</a><a href="/mcp/">Flyhunt MCP Connector</a><a href="/blog/">Блог</a><a href="/events/">Ивенты</a><a href="/#community">Сообщество AI для HR</a></nav>
-  <div class="nav-right"><a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener">Войти</a></div>
+  <a class="logo" href="/" aria-label="Flyhunt — на главную"><img src="/images/logo.png" alt="Flyhunt"></a>
+  <nav class="nav-links" aria-label="Основное меню">
+    <div class="nav-drop">
+      <a href="/#solution-1">Решения</a>
+      <div class="drop-menu">
+        <a href="/#solution-1">Сложные позиции<small>Когда откликов нет, а вакансия горит</small></a>
+        <a href="/#solution-2">Массовый найм<small>Когда откликов сотни, а рук не хватает</small></a>
+        <a href="/#solution-3">Найм под ключ<small>Когда нужен результат, а не инструмент</small></a>
+      </div>
+    </div>
+    <a href="/training/">Обучение ИИ</a>
+    <a href="/mcp/">Flyhunt MCP Connector</a>
+    <a href="/blog/" class="active" aria-current="page">Блог</a>
+    <a href="/events/">Ивенты</a>
+    <a href="/#community">Сообщество AI для HR</a>
+  </nav>
+  <div class="nav-right">
+    <a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener">Войти</a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
 </div></header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/#solution-1">Решения</a>
+  <a href="/#solution-1" class="mm-sub">— Сложные позиции</a>
+  <a href="/#solution-2" class="mm-sub">— Массовый найм</a>
+  <a href="/#solution-3" class="mm-sub">— Найм под ключ</a>
+  <a href="/training/">Обучение ИИ</a>
+  <a href="/mcp/">Flyhunt MCP Connector</a>
+  <a href="/blog/" class="active" aria-current="page">Блог</a>
+  <a href="/events/">Ивенты</a>
+  <a href="/#community">Сообщество AI для HR</a>
+  <a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener">Войти</a>
+</div>
 <main class="container page-wrap">
   <a class="back" href="/blog/">← Все статьи</a>
   <div id="content">Загрузка…</div>
 </main>
-<footer><div class="container"><p class="copy">© <span id="year"></span> Flyhunt Ltd. Все права защищены.</p></div></footer>
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <p class="slogan">Flyhunt — ИИ-найм для тех, кто не ждёт откликов.</p>
+        <div class="socials">
+          <a href="https://www.youtube.com/@Flyhunt_ai" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12z"/></svg></a>
+          <a href="https://www.instagram.com/flyhunt.ai/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.9.2 2.3.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.3.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.9-.4 2.3-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.3.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.9-.2-2.3-.4a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.2-.4-.4-1.1-.4-2.3C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.9.4-2.3.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.3-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.2.8-.4.4-.6.7-.8 1.2-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.2.4.4.7.6 1.2.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.2-.8.4-.4.6-.7.8-1.2.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1a3.2 3.2 0 0 0-.8-1.2 3.2 3.2 0 0 0-1.2-.8c-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 8.1a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.2-8.3a1.1 1.1 0 1 1-2.3 0 1.1 1.1 0 0 1 2.3 0z"/></svg></a>
+          <a href="https://www.linkedin.com/company/flyhunt" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6a3.7 3.7 0 0 1 3.4-1.9c3.6 0 4.2 2.4 4.2 5.4zM5.3 7.4a2 2 0 1 1 0-4.1 2 2 0 0 1 0 4.1zM7.1 20.4H3.6V9h3.5z"/></svg></a>
+          <a href="https://chat.whatsapp.com/EUENkEORTBQGJ44jCIe3ko" target="_blank" rel="noopener" aria-label="WhatsApp-сообщество"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.44-1.08-2.74 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33h.5c.16 0 .38-.03.58.44.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.45-.13.15-.28.34-.4.46-.13.13-.27.28-.12.55.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.13.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.25.09 1.58.75 1.85.88.27.13.45.2.52.31.07.11.07.65-.15 1.28z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Компания</h4>
+        <a href="/training/">Корпоративное обучение ИИ</a>
+        <a href="/mcp/">Flyhunt MCP Connector</a>
+        <a href="/blog/">Блог</a>
+        <a href="/events/">Ивенты</a>
+        <a href="/#community">Сообщество AI для HR</a>
+      </div>
+      <div>
+        <h4>Правовое</h4>
+        <a href="/#privacy">Политика конфиденциальности</a>
+        <a href="/#terms">Публичная оферта</a>
+      </div>
+    </div>
+    <div class="trust">
+      <img src="/images/astana-hub.png" alt="Astana Hub"><img src="/images/aifc.png" alt="МФЦА / AIFC"><img src="/images/most-ventures.png" alt="MOST Ventures"><img src="/images/nvidia-inception.png" alt="NVIDIA Inception Program">
+    </div>
+    <p class="requisites">Частная компания Flyhunt Ltd. · БИН 240940900236 · Республика Казахстан, г. Астана, район Есиль, Проспект Мангилик Ел, здание 55/8 · info@flyhunt.ai · +7 776 981 95 89</p>
+    <p class="copy">© <span id="year"></span> Flyhunt Ltd. Все права защищены.</p>
+  </div>
+</footer>
+<script src="/js/nav.js"></script>
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 // Дата: пустое или битое значение больше не даёт "NaN undefined NaN" — просто ничего не выводим

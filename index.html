@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flyhunt — Нанимайте с ИИ. Быстрее, чем рынок.</title>
 <meta name="description" content="Flyhunt закрывает вакансии за вас: ищет кандидатов, оценивает резюме, ведёт переписку и назначает интервью. Вы получаете готовый шортлист.">
+<link rel="canonical" href="https://flyhunt.ai/">
+<meta property="og:title" content="Flyhunt — Нанимайте с ИИ. Быстрее, чем рынок.">
+<meta property="og:description" content="Flyhunt закрывает вакансии за вас: ищет кандидатов, оценивает резюме, ведёт переписку и назначает интервью. Вы получаете готовый шортлист.">
+<meta property="og:url" content="https://flyhunt.ai/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Flyhunt">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800;900&display=swap" rel="stylesheet">
@@ -26,42 +32,39 @@
 
 <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
 
-<!-- ================= ШАПКА ================= -->
-<header>
-  <div class="container nav">
-    <a class="logo" href="#top" aria-label="Flyhunt — на главную"><img src="/images/logo.png" alt="Flyhunt"></a>
-    <nav class="nav-links">
-      <div class="nav-drop">
-        <a href="#solution-1">Решения</a>
-        <div class="drop-menu">
-          <a href="#solution-1">Сложные позиции<small>Когда откликов нет, а вакансия горит</small></a>
-          <a href="#solution-2">Массовый найм<small>Когда откликов сотни, а рук не хватает</small></a>
-          <a href="#solution-3">Найм под ключ<small>Когда нужен результат, а не инструмент</small></a>
-        </div>
+<header><div class="container nav">
+  <a class="logo" href="/" aria-label="Flyhunt — на главную"><img src="/images/logo.png" alt="Flyhunt"></a>
+  <nav class="nav-links" aria-label="Основное меню">
+    <div class="nav-drop">
+      <a href="/#solution-1" data-i="navSol">Решения</a>
+      <div class="drop-menu">
+        <a href="/#solution-1">Сложные позиции<small>Когда откликов нет, а вакансия горит</small></a>
+        <a href="/#solution-2">Массовый найм<small>Когда откликов сотни, а рук не хватает</small></a>
+        <a href="/#solution-3">Найм под ключ<small>Когда нужен результат, а не инструмент</small></a>
       </div>
-      <a href="/training/">Обучение ИИ</a>
-      <a href="/mcp/">Flyhunt MCP Connector</a>
-      <a href="#blog">Блог</a>
-      <a href="#event">Ивенты</a>
-      <a href="#community">Сообщество AI для HR</a>
-    </nav>
-    <div class="nav-right">
-      <span class="lang"><button class="lng active" data-lang="ru">RU</button> · <button class="lng" data-lang="kz">KZ</button> · <button class="lng" data-lang="en">EN</button></span>
-      <a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener" data-i="login">Войти</a>
-      <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
     </div>
+    <a href="/training/" data-i="navTrain">Обучение ИИ</a>
+    <a href="/mcp/" data-i="navMcp">Flyhunt MCP Connector</a>
+    <a href="/blog/" data-i="navBlog">Блог</a>
+    <a href="/events/" data-i="navEvents">Ивенты</a>
+    <a href="/#community" data-i="navComm">Сообщество AI для HR</a>
+  </nav>
+  <div class="nav-right">
+    <span class="lang"><button class="lng active" data-lang="ru">RU</button> · <button class="lng" data-lang="kz">KZ</button> · <button class="lng" data-lang="en">EN</button></span>
+    <a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener" data-i="login">Войти</a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </div>
-</header>
+</div></header>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#solution-1" data-close>Решения</a>
-  <a href="#solution-1" class="mm-sub" data-close>— Сложные позиции</a>
-  <a href="#solution-2" class="mm-sub" data-close>— Массовый найм</a>
-  <a href="#solution-3" class="mm-sub" data-close>— Найм под ключ</a>
-  <a href="/training/" data-close>Обучение ИИ</a>
-  <a href="/mcp/" data-close>Flyhunt MCP Connector</a>
-  <a href="#blog" data-close>Блог</a>
-  <a href="#event" data-close>Ивенты</a>
-  <a href="#community" data-close>Сообщество AI для HR</a>
+  <a href="/#solution-1" data-i="navSol">Решения</a>
+  <a href="/#solution-1" class="mm-sub" data-i="navSol1">— Сложные позиции</a>
+  <a href="/#solution-2" class="mm-sub" data-i="navSol2">— Массовый найм</a>
+  <a href="/#solution-3" class="mm-sub" data-i="navSol3">— Найм под ключ</a>
+  <a href="/training/" data-i="navTrain">Обучение ИИ</a>
+  <a href="/mcp/" data-i="navMcp">Flyhunt MCP Connector</a>
+  <a href="/blog/" data-i="navBlog">Блог</a>
+  <a href="/events/" data-i="navEvents">Ивенты</a>
+  <a href="/#community" data-i="navComm">Сообщество AI для HR</a>
   <span class="lang"><button class="lng active" data-lang="ru">RU</button> · <button class="lng" data-lang="kz">KZ</button> · <button class="lng" data-lang="en">EN</button></span>
   <a class="btn-login" href="https://app.flyhunt.ai" target="_blank" rel="noopener" data-i="login">Войти</a>
 </div>
@@ -419,12 +422,11 @@
       </div>
       <div>
         <h4>Компания</h4>
-        <a href="/training/">Корпоративное обучение ИИ</a>
-        <a href="/mcp/">Flyhunt MCP Connector</a>
-        <a href="#blog">Блог</a>
-        <a href="#event">Ивенты</a>
-        <a href="#community">Сообщество AI для HR</a>
-        <!-- + редактируемые разделы из админки -->
+        <a href="/training/" data-i="fTrain">Корпоративное обучение ИИ</a>
+        <a href="/mcp/" data-i="fMcp">Flyhunt MCP Connector</a>
+        <a href="/blog/" data-i="fBlog">Блог</a>
+        <a href="/events/" data-i="fEvents">Ивенты</a>
+        <a href="/#community" data-i="fComm">Сообщество AI для HR</a>
       </div>
       <div>
         <h4>Правовое</h4>
@@ -433,7 +435,6 @@
       </div>
     </div>
     <div class="trust">
-      <!-- Реальные логотипы из Drive на этапе разработки; управление из админки -->
       <img src="/images/astana-hub.png" alt="Astana Hub"><img src="/images/aifc.png" alt="МФЦА / AIFC"><img src="/images/most-ventures.png" alt="MOST Ventures"><img src="/images/nvidia-inception.png" alt="NVIDIA Inception Program">
     </div>
     <p class="requisites">Частная компания Flyhunt Ltd. · БИН 240940900236 · Республика Казахстан, г. Астана, район Есиль, Проспект Мангилик Ел, здание 55/8 · info@flyhunt.ai · +7 776 981 95 89</p>
@@ -634,6 +635,7 @@
 
 
 
+<script src="/js/nav.js"></script>
 <script src="/js/app.js"></script>
 <script src="/js/dynamic.js"></script>
 <script>

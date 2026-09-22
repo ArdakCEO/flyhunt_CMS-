@@ -5,9 +5,7 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-const burger=document.getElementById('burger'), mobileMenu=document.getElementById('mobileMenu');
-burger.addEventListener('click',()=>mobileMenu.classList.toggle('open'));
-mobileMenu.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
+/* бургер и меню — общий /js/nav.js */
 
 /* ============================================================
    ГЕНЕРАТОР ЛИЦ (плоские векторные аватарки; на этапе 5 заменимы фото)
@@ -154,20 +152,9 @@ const LBL={
 
 /* [selector, kz, en, mode] ; mode: t=text, h=html, p=placeholder, q=текст вопроса FAQ */
 const APPLY=[
-['.nav-drop>a','Шешімдер','Solutions','t'],
 ['.drop-menu a:nth-child(1)','Күрделі позициялар<small>Үн қату жоқ, ал вакансия «жанып» тұрғанда</small>','Hard-to-fill roles<small>When there are no applications and the role is urgent</small>','h'],
 ['.drop-menu a:nth-child(2)','Жаппай жалдау<small>Үн қату жүздеп, ал қол жетпей жатқанда</small>','High-volume hiring<small>When applications pile up and hands are short</small>','h'],
 ['.drop-menu a:nth-child(3)','Кілт тапсыру жалдау<small>Құрал емес, нәтиже керек болғанда</small>','Turnkey hiring<small>When you need results, not a tool</small>','h'],
-['.nav-links>a[href="#blog"]','Блог','Blog','t'],
-['.nav-links>a[href="#event"]','Іс-шаралар','Events','t'],
-['.nav-links>a[href="#community"]','AI для HR қауымдастығы','AI for HR Community','t'],
-['#mobileMenu>a[href="#solution-1"]:not(.mm-sub)','Шешімдер','Solutions','t'],
-['#mobileMenu a.mm-sub[href="#solution-1"]','— Күрделі позициялар','— Hard-to-fill roles','t'],
-['#mobileMenu a.mm-sub[href="#solution-2"]','— Жаппай жалдау','— High-volume hiring','t'],
-['#mobileMenu a.mm-sub[href="#solution-3"]','— Кілт тапсыру жалдау','— Turnkey hiring','t'],
-['#mobileMenu>a[href="#blog"]','Блог','Blog','t'],
-['#mobileMenu>a[href="#event"]','Іс-шаралар','Events','t'],
-['#mobileMenu>a[href="#community"]','AI для HR қауымдастығы','AI for HR Community','t'],
 ['h1','ЖИ-мен жалдаңыз.<br><span class="grad-text">Нарықтан жылдам.</span>','Hire with AI.<br><span class="grad-text">Faster than the market.</span>','h'],
 ['.sub','Flyhunt вакансияларды сіз үшін жабады: кандидаттарды іздейді, резюмелерді бағалайды, хат алмасады және сұхбат тағайындайды. Сіз дайын шорт-лист аласыз.','Flyhunt fills vacancies for you: it finds candidates, scores resumes, handles messaging and schedules interviews. You get a ready shortlist.','t'],
 ['.hero-wrap>a.btn-grad','Демо тапсырыс беру','Book a demo','t'],
@@ -252,9 +239,6 @@ const APPLY=[
 ['footer .slogan','Flyhunt — үн қатуды күтпейтіндерге арналған AI-жалдау.','Flyhunt — AI hiring for those who don\'t wait for applications.','t'],
 ['.foot-grid div:nth-child(2) h4','Компания','Company','t'],
 ['.foot-grid div:nth-child(3) h4','Құқықтық','Legal','t'],
-['.foot-grid a[href="#blog"]','Блог','Blog','t'],
-['.foot-grid a[href="#event"]','Іс-шаралар','Events','t'],
-['.foot-grid a[href="#community"]','AI для HR қауымдастығы','AI for HR Community','t'],
 ['footer .copy','© <span id="year"></span> Flyhunt Ltd. Барлық құқықтар қорғалған.','© <span id="year"></span> Flyhunt Ltd. All rights reserved.','h'],
 ['footer .requisites','«Flyhunt Ltd.» жеке компаниясы · БСН 240940900236 · Қазақстан Республикасы, Астана қ., Есіл ауданы, Мәңгілік Ел даңғылы, 55/8 ғимараты · info@flyhunt.ai · +7 776 981 95 89','Flyhunt Ltd. Private Company · BIN 240940900236 · Republic of Kazakhstan, Astana, Yesil district, Mangilik El Avenue, building 55/8 · info@flyhunt.ai · +7 776 981 95 89','t'],
 ];
@@ -275,11 +259,14 @@ const APPLY_ALL=[ /* применяются ко ВСЕМ совпадениям
 ['.lead-form input[name="phone"]+.field-err','Телефонды көрсетіңіз (10–15 сан)','Enter a phone number (10–15 digits)','t'],
 ];
 const I_KEYS={ /* переводы для элементов с data-i */
-login:{kz:'Кіру',en:'Log in'}, match:{kz:'сәйкестік',en:'match'},
+login:{kz:'Кіру',en:'Log in'},
+navSol:{kz:'Шешімдер',en:'Solutions'}, navSol1:{kz:'— Күрделі позициялар',en:'— Hard-to-fill roles'}, navSol2:{kz:'— Жаппай жалдау',en:'— High-volume hiring'}, navSol3:{kz:'— Кілт тапсыру жалдау',en:'— Turnkey hiring'},
+navTrain:{kz:'ЖИ-ге оқыту',en:'AI training'}, navMcp:{kz:'Flyhunt MCP Connector',en:'Flyhunt MCP Connector'}, navBlog:{kz:'Блог',en:'Blog'}, navEvents:{kz:'Іс-шаралар',en:'Events'}, navComm:{kz:'AI для HR қауымдастығы',en:'AI for HR Community'},
+fTrain:{kz:'Корпоративтік ЖИ-оқыту',en:'Corporate AI training'}, fMcp:{kz:'Flyhunt MCP Connector',en:'Flyhunt MCP Connector'}, fBlog:{kz:'Блог',en:'Blog'}, fEvents:{kz:'Іс-шаралар',en:'Events'}, fComm:{kz:'AI для HR қауымдастығы',en:'AI for HR Community'}, match:{kz:'сәйкестік',en:'match'},
 s3big:{kz:'2 есе',en:'2×'}, s3res:{kz:'классикалық агенттіктерден жылдам әрі арзан',en:'faster and cheaper than traditional agencies'},
 evreg:{kz:'Тіркелу',en:'Register'}, evmore:{kz:'Толығырақ →',en:'Details →'},
 consentLink:{kz:'',en:''}, fPrivacy:{kz:'Құпиялылық саясаты',en:'Privacy Policy'}, fTerms:{kz:'Жария оферта',en:'Public Offer'},
-demoTitle:{kz:'ЖИ-сорсинг кандидатов',en:'AI candidate sourcing'},
+demoTitle:{kz:'Кандидаттарды ЖИ-сорсинг',en:'AI candidate sourcing'},
 };
 
 const RU_STORE=new Map();
@@ -296,6 +283,7 @@ function bindModal(el){
 }
 function setLang(lang){
   curLang=lang;
+  try{localStorage.setItem('fh_lang',lang)}catch(e){}
   document.documentElement.lang = lang==='kz'?'kk':lang;
   document.querySelectorAll('.lng').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
   const idx = lang==='kz'?1:(lang==='en'?2:null);
@@ -312,6 +300,8 @@ function setLang(lang){
   const y=document.getElementById('year'); if(y)y.textContent=new Date().getFullYear();
 }
 document.querySelectorAll('.lng').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+/* язык, выбранный на другой странице сайта */
+try{const saved=localStorage.getItem('fh_lang'); if(saved==='kz'||saved==='en') setLang(saved);}catch(e){}
 
 /* ============================================================
    ДЕМО 1 — ИИ-ПОИСК: сценарии на 3 языках, лица кандидатов
