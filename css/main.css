@@ -29,7 +29,8 @@ img{max-width:100%}
 /* ============ ШАПКА ============ */
 header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.65);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
-.nav .logo img{height:30px;display:block}
+.nav .logo{flex:none}
+.nav .logo img{height:30px;width:auto;max-width:none;display:block}
 .nav-links{display:flex;gap:28px;font-size:15px;color:var(--dim);font-weight:500;align-items:center}
 .nav-links a:hover{color:var(--ink)}
 .nav-drop{position:relative}
