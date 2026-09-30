@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flyhunt MCP Connector — рекрутинг прямо в Claude</title>
-<meta name="description" content="Подключите Flyhunt к Claude за две минуты: ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист прямо в чате.">
+<meta name="description" content="Подключите Flyhunt к Claude или ChatGPT за две минуты: ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист прямо в чате.">
 <link rel="canonical" href="https://flyhunt.ai/mcp/">
 <meta property="og:title" content="Flyhunt MCP Connector — рекрутинг прямо в Claude">
-<meta property="og:description" content="Подключите Flyhunt к Claude за две минуты: ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист прямо в чате.">
+<meta property="og:description" content="Подключите Flyhunt к Claude или ChatGPT за две минуты: ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист прямо в чате.">
 <meta property="og:url" content="https://flyhunt.ai/mcp/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Flyhunt">
@@ -57,6 +57,22 @@
 
   .mcp-note{display:flex;gap:12px;align-items:flex-start;margin-top:26px;background:var(--glass);backdrop-filter:blur(8px);border:1px solid rgba(139,92,248,.2);border-radius:18px;padding:16px 20px;font-size:14.5px;color:var(--dim);line-height:1.55}
   .mcp-note .ic{flex:none;width:22px;height:22px;border-radius:50%;background:rgba(139,92,248,.12);color:var(--violet);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;margin-top:1px}
+
+  /* ——— ПЕРЕКЛЮЧАТЕЛЬ CLAUDE / CHATGPT ——— */
+  :root{--gpt:#0D0D0D}
+  .mcp-tabs{display:flex;justify-content:center;margin-top:52px}
+  .mcp-tabs-in{display:inline-flex;gap:4px;padding:5px;border-radius:99px;background:var(--glass);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.9);box-shadow:0 8px 24px rgba(139,92,248,.1)}
+  .mcp-tab{display:flex;align-items:center;gap:8px;border:none;background:none;cursor:pointer;font-family:inherit;font-size:15px;font-weight:700;color:var(--dim);padding:11px 22px;border-radius:99px;transition:.25s}
+  .mcp-tab .cs{width:15px;height:15px;color:var(--cl)}
+  .mcp-tab:hover{color:var(--ink)}
+  .mcp-tab[aria-selected="true"]{color:#fff;background:var(--cl);box-shadow:0 8px 20px rgba(217,119,87,.32)}
+  .mcp-tab[aria-selected="true"] .cs{color:#fff}
+  .mcp-tab[data-client="gpt"][aria-selected="true"]{background:var(--gpt);box-shadow:0 8px 20px rgba(13,13,13,.25)}
+  .mcp-panel .mcp-steps{margin-top:26px}
+  .mcp-panel[hidden]{display:none}
+  .btn-gpt{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--gpt);color:#fff;font-weight:700;font-size:15px;padding:14px 20px;border-radius:99px;transition:.25s;box-shadow:0 14px 34px rgba(13,13,13,.22)}
+  .btn-gpt:hover{background:#333;transform:translateY(-2px)}
+  .btn-gpt svg{width:14px;height:14px;flex:none}
 
   /* ——— ЗАГОЛОВКИ СЕКЦИЙ ——— */
   .mcp-sec,.faq-mcp,.final-mcp{scroll-margin-top:88px}
@@ -141,6 +157,7 @@
     .mcp-sec{padding:64px 0 0}
   }
   @media(max-width:560px){
+    .mcp-tab{padding:10px 16px;font-size:14px}
     .caps{grid-template-columns:minmax(0,1fr)}
     .window-title .host{display:none}
     .demo-body{padding:18px 16px}
@@ -199,15 +216,24 @@
   <section class="mcp-hero">
     <span class="sol-tag" data-t="badge">Claude Connector</span>
     <h1><span data-t="h1a">Flyhunt MCP — рекрутинг прямо в</span> <span class="cword"><svg class="cs"><use href="#cstar"/></svg>Claude</span></h1>
-    <p class="sub" data-t="sub">Подключите Flyhunt к Claude и ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист — не выходя из чата.</p>
+    <p class="sub" data-t="sub">Подключите Flyhunt к Claude или ChatGPT и ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист — не выходя из чата.</p>
     <div class="mcp-chips">
       <span data-t="chip1">Настройка за 2 минуты</span>
       <span data-t="chip2">Без API-ключей</span>
       <span data-t="chip3">hh.kz и LinkedIn</span>
       <span data-t="chip4">Claude Pro, Max, Team, Enterprise</span>
+      <span data-t="chip5">ChatGPT Plus, Pro, Business</span>
     </div>
   </section>
 
+  <div class="mcp-tabs" id="connect">
+    <div class="mcp-tabs-in" role="tablist">
+      <button class="mcp-tab" role="tab" data-client="claude" aria-selected="true" aria-controls="panel-claude"><svg class="cs" aria-hidden="true"><use href="#cstar"/></svg>Claude</button>
+      <button class="mcp-tab" role="tab" data-client="gpt" aria-selected="false" aria-controls="panel-gpt">ChatGPT</button>
+    </div>
+  </div>
+
+  <div class="mcp-panel" id="panel-claude" role="tabpanel">
   <section class="mcp-steps">
     <div class="mcp-card">
       <div class="n">1</div>
@@ -216,7 +242,7 @@
       <div class="act">
         <div class="mcp-url">
           <code id="mcpUrl">https://api.flyhunt.ai/mcp</code>
-          <button class="mcp-copy" id="copyBtn" data-t="copy">Копировать</button>
+          <button class="mcp-copy" id="copyBtn" data-url="#mcpUrl">Копировать</button>
         </div>
       </div>
     </div>
@@ -249,6 +275,52 @@
   <div class="mcp-note">
     <span class="ic">i</span>
     <span data-t="note">Кастомные коннекторы доступны на платных планах Claude (Pro, Max, Team, Enterprise). На Team и Enterprise коннектор может подключить администратор — тогда он появится у всей команды.</span>
+  </div>
+  </div>
+
+  <div class="mcp-panel" id="panel-gpt" role="tabpanel" hidden>
+  <section class="mcp-steps">
+    <div class="mcp-card">
+      <div class="n">1</div>
+      <b data-t="g1t">Скопируйте URL коннектора Flyhunt</b>
+      <p data-t="g1d">Тот же адрес, что и для Claude. Вставите его в ChatGPT на следующем шаге.</p>
+      <div class="act">
+        <div class="mcp-url">
+          <code id="mcpUrl2">https://api.flyhunt.ai/mcp</code>
+          <button class="mcp-copy" id="copyBtn2" data-url="#mcpUrl2">Копировать</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mcp-card">
+      <div class="n">2</div>
+      <b data-t="g2t">Включите режим разработчика и создайте приложение</b>
+      <p data-t="g2d">На chatgpt.com: Settings → Apps → Advanced settings → включите Developer mode. Затем Settings → Apps → Create: имя Flyhunt, URL коннектора, Authentication — OAuth.</p>
+      <div class="act">
+        <a class="btn-outline" href="https://chatgpt.com/#settings" target="_blank" rel="noopener">
+          <span data-t="g2b">Открыть настройки ChatGPT</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M17 7H9m8 0v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="mcp-card">
+      <div class="n">3</div>
+      <b data-t="g3t">Войдите и начните поиск</b>
+      <p data-t="g3d">Войдите в аккаунт Flyhunt. В новом чате нажмите «+» → Developer mode, включите Flyhunt — и попросите найти кандидатов.</p>
+      <div class="act">
+        <a class="btn-gpt" id="startBtnGpt" href="https://chatgpt.com/" target="_blank" rel="noopener">
+          <span data-t="g3b">Открыть ChatGPT</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M17 7H9m8 0v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="mcp-note">
+    <span class="ic">i</span>
+    <span data-t="gnote">Режим разработчика работает в веб-версии ChatGPT на планах Plus, Pro, Business, Enterprise и Edu. В Business и Enterprise его включает администратор: создаёт приложение Flyhunt и публикует его для всей рабочей области.</span>
+  </div>
   </div>
 
   <!-- ================= ДЕМО ================= -->
@@ -385,8 +457,9 @@ ru:{
   title:"Flyhunt MCP Connector — рекрутинг прямо в Claude",
   login:"Войти", back:"← На главную", badge:"Claude Connector",
   h1a:"Flyhunt MCP — рекрутинг прямо в",
-  sub:"Подключите Flyhunt к Claude и ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист — не выходя из чата.",
+  sub:"Подключите Flyhunt к Claude или ChatGPT и ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист — не выходя из чата.",
   chip1:"Настройка за 2 минуты", chip2:"Без API-ключей", chip3:"hh.kz и LinkedIn", chip4:"Claude Pro, Max, Team, Enterprise",
+  chip5:"ChatGPT Plus, Pro, Business", g1t:"Скопируйте URL коннектора Flyhunt", g1d:"Тот же адрес, что и для Claude. Вставите его в ChatGPT на следующем шаге.", g2t:"Включите режим разработчика и создайте приложение", g2d:"На chatgpt.com: Settings → Apps → Advanced settings → включите Developer mode. Затем Settings → Apps → Create: имя Flyhunt, URL коннектора, Authentication — OAuth.", g2b:"Открыть настройки ChatGPT", g3t:"Войдите и начните поиск", g3d:"Войдите в аккаунт Flyhunt. В новом чате нажмите «+» → Developer mode, включите Flyhunt — и попросите найти кандидатов.", g3b:"Открыть ChatGPT", gnote:"Режим разработчика работает в веб-версии ChatGPT на планах Plus, Pro, Business, Enterprise и Edu. В Business и Enterprise его включает администратор: создаёт приложение Flyhunt и публикует его для всей рабочей области.",
   s1t:"Скопируйте URL коннектора Flyhunt", s1d:"Этот URL вы вставите в Claude на следующем шаге.", copy:"Копировать", copied:"Скопировано",
   s2t:"Откройте Claude → Customize", s2d:"В приложении Claude или на claude.ai: Customize → Connectors → Add custom connector. Назовите коннектор Flyhunt и вставьте URL.", s2b:"Открыть Claude Customize",
   s3t:"Подключитесь и начните поиск", s3d:"Нажмите Connect, войдите в аккаунт Flyhunt — и попросите Claude найти кандидатов.", s3b:"Начать поиск",
@@ -401,7 +474,7 @@ ru:{
   cap3t:"Скоринг и шортлист", cap3d:"Оценка каждого резюме по вашим критериям с обоснованием — почему кандидат подходит или нет.",
   cap4t:"Резюме и контакты", cap4d:"Открывает полные профили и контакты по подходящим кандидатам — прямо в ответе Claude.",
   faqH:"Частые вопросы",
-  ctaH:"Подключите Flyhunt к Claude за две минуты", ctaP:"Нужен аккаунт Flyhunt и платный план Claude. Дальше — просто просите найти людей.",
+  ctaH:"Подключите Flyhunt к Claude за две минуты", ctaP:"Нужен аккаунт Flyhunt и платный план Claude или ChatGPT. Дальше — просто просите найти людей.",
   ctaB1:"Открыть Claude Customize", ctaB2:"Заказать демо", rights:"Все права защищены.",
   tools:[
     ["choose_candidate_source","Выбран hh.kz"],
@@ -418,6 +491,7 @@ ru:{
   faq:[
     ["Что такое MCP и зачем он мне?","MCP — открытый стандарт, по которому ИИ-ассистенты подключаются к внешним сервисам. Подключив коннектор Flyhunt, вы работаете с поиском и скринингом кандидатов прямо в чате Claude: не нужно открывать отдельный интерфейс и переносить данные руками."],
     ["Нужен ли платный план Claude?","Да. Кастомные коннекторы доступны на планах Pro, Max, Team и Enterprise. В Team и Enterprise коннектор обычно подключает администратор для всей команды."],
+    ["Можно ли подключить Flyhunt к ChatGPT?","Да. На chatgpt.com включите режим разработчика (Developer mode) и добавьте приложение Flyhunt по тому же URL коннектора — пошагово во вкладке «ChatGPT» выше. Доступно на планах Plus, Pro, Business, Enterprise и Edu, в веб-версии."],
     ["Нужен ли аккаунт Flyhunt?","Да. При первом подключении Claude попросит войти в Flyhunt — доступ к поиску и скринингу выдаётся по вашему тарифу Flyhunt. Если аккаунта пока нет, оставьте заявку на демо."],
     ["Какие источники кандидатов поддерживаются?","Сейчас hh.kz и LinkedIn. Claude сам предложит источник под вашу вакансию или спросит, если подходят оба."],
     ["Безопасно ли это для данных кандидатов?","Коннектор работает под вашей учётной записью Flyhunt и отдаёт только те данные, к которым у вас уже есть доступ в Flyhunt. Каждый вызов инструмента видно в чате — вы всегда знаете, что именно делает ассистент."]
@@ -428,8 +502,9 @@ kz:{
   title:"Flyhunt MCP Connector — Claude ішінде рекрутинг",
   login:"Кіру", back:"← Басты бетке", badge:"Claude Connector",
   h1a:"Flyhunt MCP — рекрутинг тікелей",
-  sub:"Flyhunt-ты Claude-қа қосыңыз: hh.kz және LinkedIn-де кандидат іздеңіз, түйіндемелерді скринингтен өткізіп, шортлист жинаңыз — чаттан шықпай.",
+  sub:"Flyhunt-ты Claude-қа немесе ChatGPT-ге қосыңыз: hh.kz және LinkedIn-де кандидат іздеңіз, түйіндемелерді скринингтен өткізіп, шортлист жинаңыз — чаттан шықпай.",
   chip1:"2 минутта реттеледі", chip2:"API-кілт қажет емес", chip3:"hh.kz және LinkedIn", chip4:"Claude Pro, Max, Team, Enterprise",
+  chip5:"ChatGPT Plus, Pro, Business", g1t:"Flyhunt коннекторының URL-ін көшіріңіз", g1d:"Claude-қа арналған мекенжаймен бірдей. Келесі қадамда оны ChatGPT-ге қоясыз.", g2t:"Әзірлеуші режимін қосып, қолданба жасаңыз", g2d:"chatgpt.com сайтында: Settings → Apps → Advanced settings → Developer mode қосыңыз. Сосын Settings → Apps → Create: аты Flyhunt, коннектор URL-і, Authentication — OAuth.", g2b:"ChatGPT баптауларын ашу", g3t:"Кіріп, іздеуді бастаңыз", g3d:"Flyhunt аккаунтыңызға кіріңіз. Жаңа чатта «+» → Developer mode басып, Flyhunt-ты қосыңыз — сосын кандидат іздеуді сұраңыз.", g3b:"ChatGPT-ді ашу", gnote:"Әзірлеуші режимі ChatGPT-тің веб-нұсқасында Plus, Pro, Business, Enterprise және Edu жоспарларында жұмыс істейді. Business пен Enterprise-де оны әкімші қосады: Flyhunt қолданбасын жасап, бүкіл жұмыс кеңістігіне жариялайды.",
   s1t:"Flyhunt коннекторының URL-ін көшіріңіз", s1d:"Бұл URL-ді келесі қадамда Claude-қа қоясыз.", copy:"Көшіру", copied:"Көшірілді",
   s2t:"Claude → Customize бөлімін ашыңыз", s2d:"Claude қолданбасында немесе claude.ai сайтында: Customize → Connectors → Add custom connector. Атын Flyhunt деп қойып, URL-ді қойыңыз.", s2b:"Claude Customize-ды ашу",
   s3t:"Қосылып, іздеуді бастаңыз", s3d:"Connect түймесін басып, Flyhunt аккаунтыңызға кіріңіз — сосын Claude-тан кандидат іздеуді сұраңыз.", s3b:"Іздеуді бастау",
@@ -444,7 +519,7 @@ kz:{
   cap3t:"Скоринг және шортлист", cap3d:"Әр түйіндеме сіздің критерийлеріңіз бойынша бағаланады және неге сәйкес келетіні түсіндіріледі.",
   cap4t:"Түйіндеме және байланыс", cap4d:"Сәйкес кандидаттардың толық профилі мен байланысын Claude жауабында ашады.",
   faqH:"Жиі қойылатын сұрақтар",
-  ctaH:"Flyhunt-ты Claude-қа екі минутта қосыңыз", ctaP:"Flyhunt аккаунты мен Claude-тың ақылы жоспары қажет. Ары қарай — тек адам табуды сұрайсыз.",
+  ctaH:"Flyhunt-ты Claude-қа екі минутта қосыңыз", ctaP:"Flyhunt аккаунты мен Claude немесе ChatGPT-тің ақылы жоспары қажет. Ары қарай — тек адам табуды сұрайсыз.",
   ctaB1:"Claude Customize-ды ашу", ctaB2:"Демо тапсырыс беру", rights:"Барлық құқықтар қорғалған.",
   tools:[
     ["choose_candidate_source","hh.kz таңдалды"],
@@ -461,6 +536,7 @@ kz:{
   faq:[
     ["MCP деген не және ол маған не үшін керек?","MCP — ИИ-ассистенттердің сыртқы сервистерге қосылуының ашық стандарты. Flyhunt коннекторын қосқанда кандидат іздеу мен скрининг тікелей Claude чатында жүреді: бөлек интерфейс ашып, деректерді қолмен көшіру қажет емес."],
     ["Claude-тың ақылы жоспары қажет пе?","Иә. Меншікті коннекторлар Pro, Max, Team және Enterprise жоспарларында қолжетімді. Team мен Enterprise-де коннекторды әдетте әкімші бүкіл команда үшін қосады."],
+    ["Flyhunt-ты ChatGPT-ге қосуға бола ма?","Иә. chatgpt.com сайтында әзірлеуші режимін (Developer mode) қосып, Flyhunt қолданбасын сол коннектор URL-і арқылы қосыңыз — қадамдар жоғарыдағы «ChatGPT» қойындысында. Plus, Pro, Business, Enterprise және Edu жоспарларында, веб-нұсқада қолжетімді."],
     ["Flyhunt аккаунты қажет пе?","Иә. Алғаш қосылғанда Claude Flyhunt-қа кіруді сұрайды — іздеу мен скринингке рұқсат Flyhunt тарифіңіз бойынша беріледі. Аккаунт болмаса, демоға өтінім қалдырыңыз."],
     ["Қандай кандидат дереккөздері қолданылады?","Қазір hh.kz және LinkedIn. Claude вакансияға сай дереккөзді өзі ұсынады немесе екеуі де жарасатын болса сұрайды."],
     ["Кандидат деректері қауіпсіз бе?","Коннектор сіздің Flyhunt тіркелгіңіз арқылы жұмыс істейді және Flyhunt-та сізде бұрыннан рұқсаты бар деректерді ғана береді. Әр құрал шақыруы чатта көрінеді — ассистент не істеп жатқанын әрқашан білесіз."]
@@ -471,8 +547,9 @@ en:{
   title:"Flyhunt MCP Connector — recruiting inside Claude",
   login:"Log in", back:"← Back to home", badge:"Claude Connector",
   h1a:"Flyhunt MCP — recruiting right inside",
-  sub:"Connect Flyhunt to Claude and source candidates on hh.kz and LinkedIn, screen their CVs and build a shortlist — without leaving the chat.",
+  sub:"Connect Flyhunt to Claude or ChatGPT and source candidates on hh.kz and LinkedIn, screen their CVs and build a shortlist — without leaving the chat.",
   chip1:"2-minute setup", chip2:"No API keys", chip3:"hh.kz and LinkedIn", chip4:"Claude Pro, Max, Team, Enterprise",
+  chip5:"ChatGPT Plus, Pro, Business", g1t:"Copy the Flyhunt connector URL", g1d:"Same URL as for Claude. You'll paste it into ChatGPT in the next step.", g2t:"Turn on developer mode and create the app", g2d:"On chatgpt.com: Settings → Apps → Advanced settings → turn on Developer mode. Then Settings → Apps → Create: name Flyhunt, the connector URL, Authentication — OAuth.", g2b:"Open ChatGPT settings", g3t:"Sign in and start sourcing", g3d:"Sign in to Flyhunt. In a new chat click “+” → Developer mode, switch on Flyhunt — then ask for candidates.", g3b:"Open ChatGPT", gnote:"Developer mode works in ChatGPT on the web, on Plus, Pro, Business, Enterprise and Edu plans. On Business and Enterprise an admin turns it on, creates the Flyhunt app and publishes it to the whole workspace.",
   s1t:"Copy the Flyhunt connector URL", s1d:"You'll paste this URL into Claude in the next step.", copy:"Copy", copied:"Copied",
   s2t:"Go to Claude → Customize", s2d:"In the Claude app or on claude.ai: Customize → Connectors → Add custom connector. Name it Flyhunt and paste the URL.", s2b:"Open Claude Customize",
   s3t:"Connect and start sourcing", s3d:"Hit Connect, sign in to Flyhunt — then ask Claude to find candidates.", s3b:"Start sourcing",
@@ -487,7 +564,7 @@ en:{
   cap3t:"Scoring and shortlist", cap3d:"Every CV scored against your criteria, with reasoning for why a candidate fits or doesn't.",
   cap4t:"CVs and contacts", cap4d:"Opens full profiles and contact details for the candidates worth reaching — right in Claude's reply.",
   faqH:"FAQ",
-  ctaH:"Connect Flyhunt to Claude in two minutes", ctaP:"You'll need a Flyhunt account and a paid Claude plan. After that, just ask for people.",
+  ctaH:"Connect Flyhunt to Claude in two minutes", ctaP:"You'll need a Flyhunt account and a paid Claude or ChatGPT plan. After that, just ask for people.",
   ctaB1:"Open Claude Customize", ctaB2:"Book a demo", rights:"All rights reserved.",
   tools:[
     ["choose_candidate_source","hh.kz selected"],
@@ -504,6 +581,7 @@ en:{
   faq:[
     ["What is MCP and why do I need it?","MCP is an open standard for connecting AI assistants to external services. With the Flyhunt connector, sourcing and screening happen inside the Claude chat — no separate interface, no copying data by hand."],
     ["Do I need a paid Claude plan?","Yes. Custom connectors are available on Pro, Max, Team and Enterprise. On Team and Enterprise an admin usually adds the connector for everyone."],
+    ["Can I connect Flyhunt to ChatGPT?","Yes. On chatgpt.com turn on Developer mode and add a Flyhunt app using the same connector URL — step by step in the “ChatGPT” tab above. Available on Plus, Pro, Business, Enterprise and Edu, on the web."],
     ["Do I need a Flyhunt account?","Yes. On first connect Claude asks you to sign in to Flyhunt — access to search and screening follows your Flyhunt plan. No account yet? Request a demo."],
     ["Which candidate sources are supported?","hh.kz and LinkedIn today. Claude suggests the right source for your role, or asks when both make sense."],
     ["Is candidate data safe?","The connector runs under your Flyhunt account and returns only data you already have access to in Flyhunt. Every tool call is visible in the chat, so you always see what the assistant is doing."]
@@ -538,23 +616,34 @@ function setLang(lang, run){
   document.title = t.title;
   $$('[data-t]').forEach(el=>{ const k=el.dataset.t; if(typeof t[k]==='string') el.textContent=t[k]; });
   $$('.lng').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
-  $('#copyBtn').textContent = t.copy;
-  $('#copyBtn').classList.remove('done');
+  $$('.mcp-copy').forEach(b=>{ b.textContent = t.copy; b.classList.remove('done'); });
   $('#startBtn').href = 'https://claude.ai/new?q=' + encodeURIComponent(PROMPT[lang]);
+  $('#startBtnGpt').href = 'https://chatgpt.com/?q=' + encodeURIComponent(PROMPT[lang]);
   buildFaq(t);
   if(run === false) resetDemo(); else runDemo();
 }
 $$('.lng').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang, true)));
 
 /* ============ КОПИРОВАНИЕ URL ============ */
-$('#copyBtn').addEventListener('click', async ()=>{
-  const url = $('#mcpUrl').textContent.trim();
+$$('.mcp-copy').forEach(b=>b.addEventListener('click', async ()=>{
+  const url = $(b.dataset.url).textContent.trim();
   try { await navigator.clipboard.writeText(url); }
   catch { const ta=document.createElement('textarea'); ta.value=url; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); }
-  const b = $('#copyBtn');
   b.textContent = T[curLang].copied; b.classList.add('done');
   setTimeout(()=>{ b.textContent = T[curLang].copy; b.classList.remove('done'); }, 1900);
-});
+}));
+
+/* ============ ВКЛАДКИ CLAUDE / CHATGPT ============ */
+function setClient(c){
+  $$('.mcp-tab').forEach(b=>b.setAttribute('aria-selected', String(b.dataset.client===c)));
+  $('#panel-claude').hidden = c!=='claude';
+  $('#panel-gpt').hidden = c!=='gpt';
+}
+$$('.mcp-tab').forEach(b=>b.addEventListener('click',()=>{
+  setClient(b.dataset.client);
+  try{ history.replaceState(null,'', b.dataset.client==='gpt' ? '#chatgpt' : location.pathname + location.search); }catch(e){}
+}));
+if(/^#chatgpt$/i.test(location.hash)){ setClient('gpt'); }
 
 /* ============ ДЕМО: ЧАТ CLAUDE + ВЫЗОВЫ MCP ============ */
 let token = 0;
