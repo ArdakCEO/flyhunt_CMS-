@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flyhunt MCP Connector — рекрутинг прямо в Claude</title>
+<title>Flyhunt MCP Connector — рекрутинг прямо в Claude и ChatGPT</title>
 <meta name="description" content="Подключите Flyhunt к Claude или ChatGPT за две минуты: ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист прямо в чате.">
 <link rel="canonical" href="https://flyhunt.ai/mcp/">
-<meta property="og:title" content="Flyhunt MCP Connector — рекрутинг прямо в Claude">
+<meta property="og:title" content="Flyhunt MCP Connector — рекрутинг прямо в Claude и ChatGPT">
 <meta property="og:description" content="Подключите Flyhunt к Claude или ChatGPT за две минуты: ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист прямо в чате.">
 <meta property="og:url" content="https://flyhunt.ai/mcp/">
 <meta property="og:type" content="website">
@@ -21,6 +21,7 @@
   :root{--cl:#D97757;--cl-dark:#BE5F41;--cl-cream:#FAF7F2}
   .cs{width:1em;height:1em;flex:none}
   .cword{color:var(--cl);white-space:nowrap}
+  .gword{color:var(--gpt,#0D0D0D);white-space:nowrap}
   .cword .cs{width:.76em;height:.76em;vertical-align:-.04em;margin-right:.05em}
 
   .page-wrap{padding:56px 24px 0}
@@ -214,8 +215,8 @@
   <a class="back" href="/" data-t="back">← На главную</a>
 
   <section class="mcp-hero">
-    <span class="sol-tag" data-t="badge">Claude Connector</span>
-    <h1><span data-t="h1a">Flyhunt MCP — рекрутинг прямо в</span> <span class="cword"><svg class="cs"><use href="#cstar"/></svg>Claude</span></h1>
+    <span class="sol-tag" data-t="badge">MCP Connector</span>
+    <h1><span data-t="h1a">Flyhunt MCP — рекрутинг прямо в</span> <span class="cword"><svg class="cs"><use href="#cstar"/></svg>Claude</span><span data-t="h1and"> и </span><span class="gword">ChatGPT</span><span data-t="h1b"></span></h1>
     <p class="sub" data-t="sub">Подключите Flyhunt к Claude или ChatGPT и ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист — не выходя из чата.</p>
     <div class="mcp-chips">
       <span data-t="chip1">Настройка за 2 минуты</span>
@@ -391,7 +392,7 @@
   <!-- ================= ФИНАЛЬНЫЙ CTA ================= -->
   <section class="final-mcp">
     <div class="final-card">
-      <h2 data-t="ctaH">Подключите Flyhunt к Claude за две минуты</h2>
+      <h2 data-t="ctaH">Подключите Flyhunt к Claude или ChatGPT за две минуты</h2>
       <p data-t="ctaP">Нужен только аккаунт Flyhunt. Дальше — просто просите найти людей.</p>
       <div class="final-btns">
         <a class="btn-white" href="https://claude.ai/customize/connectors?modal=add-custom-connector" target="_blank" rel="noopener" data-t="ctaB1">Открыть Claude Customize</a>
@@ -453,9 +454,9 @@ const PROMPT = {
 const T = {
 ru:{
   navSol:"Решения", navSol1:"— Сложные позиции", navSol2:"— Массовый найм", navSol3:"— Найм под ключ", navTrain:"Обучение ИИ", navMcp:"Flyhunt MCP Connector", navBlog:"Блог", navEvents:"Ивенты", navComm:"Сообщество AI для HR", fSlogan:"Flyhunt — ИИ-найм для тех, кто не ждёт откликов.", fCompany:"Компания", fLegal:"Правовое", fTrain:"Корпоративное обучение ИИ", fMcp:"Flyhunt MCP Connector", fBlog:"Блог", fEvents:"Ивенты", fComm:"Сообщество AI для HR", fPrivacy:"Политика конфиденциальности", fTerms:"Публичная оферта", fReq:"Частная компания Flyhunt Ltd. · БИН 240940900236 · Республика Казахстан, г. Астана, район Есиль, Проспект Мангилик Ел, здание 55/8 · info@flyhunt.ai · +7 776 981 95 89",
-  title:"Flyhunt MCP Connector — рекрутинг прямо в Claude",
-  login:"Войти", back:"← На главную", badge:"Claude Connector",
-  h1a:"Flyhunt MCP — рекрутинг прямо в",
+  title:"Flyhunt MCP Connector — рекрутинг прямо в Claude и ChatGPT",
+  login:"Войти", back:"← На главную", badge:"MCP Connector",
+  h1a:"Flyhunt MCP — рекрутинг прямо в", h1and:" и ", h1b:"",
   sub:"Подключите Flyhunt к Claude или ChatGPT и ищите кандидатов на hh.kz и LinkedIn, скринингуйте резюме и собирайте шортлист — не выходя из чата.",
   chip1:"Настройка за 2 минуты", chip2:"Без API-ключей", chip3:"hh.kz и LinkedIn", chip4:"Claude и ChatGPT", g1t:"Скопируйте URL коннектора Flyhunt", g1d:"Тот же адрес, что и для Claude. Вставите его в ChatGPT на следующем шаге.", g2t:"Включите режим разработчика и создайте приложение", g2d:"На chatgpt.com: Settings → Apps → Advanced settings → включите Developer mode. Затем Settings → Apps → Create: имя Flyhunt, URL коннектора, Authentication — OAuth.", g2b:"Открыть настройки ChatGPT", g3t:"Войдите и начните поиск", g3d:"Войдите в аккаунт Flyhunt. В новом чате нажмите «+» → Developer mode, включите Flyhunt — и попросите найти кандидатов.", g3b:"Открыть ChatGPT", gnote:"Режим разработчика работает в веб-версии ChatGPT. В Business и Enterprise его включает администратор: создаёт приложение Flyhunt и публикует его для всей рабочей области.",
   s1t:"Скопируйте URL коннектора Flyhunt", s1d:"Этот URL вы вставите в Claude на следующем шаге.", copy:"Копировать", copied:"Скопировано",
@@ -472,7 +473,7 @@ ru:{
   cap3t:"Скоринг и шортлист", cap3d:"Оценка каждого резюме по вашим критериям с обоснованием — почему кандидат подходит или нет.",
   cap4t:"Резюме и контакты", cap4d:"Открывает полные профили и контакты по подходящим кандидатам — прямо в ответе Claude.",
   faqH:"Частые вопросы",
-  ctaH:"Подключите Flyhunt к Claude за две минуты", ctaP:"Нужен только аккаунт Flyhunt. Дальше — просто просите найти людей.",
+  ctaH:"Подключите Flyhunt к Claude или ChatGPT за две минуты", ctaP:"Нужен только аккаунт Flyhunt. Дальше — просто просите найти людей.",
   ctaB1:"Открыть Claude Customize", ctaB2:"Заказать демо", rights:"Все права защищены.",
   tools:[
     ["choose_candidate_source","Выбран hh.kz"],
@@ -497,9 +498,9 @@ ru:{
 },
 kz:{
   navSol:"Шешімдер", navSol1:"— Күрделі позициялар", navSol2:"— Жаппай жалдау", navSol3:"— Кілт тапсыру жалдау", navTrain:"ЖИ-ге оқыту", navMcp:"Flyhunt MCP Connector", navBlog:"Блог", navEvents:"Іс-шаралар", navComm:"AI для HR қауымдастығы", fSlogan:"Flyhunt — үн қатуды күтпейтіндерге арналған AI-жалдау.", fCompany:"Компания", fLegal:"Құқықтық", fTrain:"Корпоративтік ЖИ-оқыту", fMcp:"Flyhunt MCP Connector", fBlog:"Блог", fEvents:"Іс-шаралар", fComm:"AI для HR қауымдастығы", fPrivacy:"Құпиялылық саясаты", fTerms:"Жария оферта", fReq:"«Flyhunt Ltd.» жеке компаниясы · БСН 240940900236 · Қазақстан Республикасы, Астана қ., Есіл ауданы, Мәңгілік Ел даңғылы, 55/8 ғимараты · info@flyhunt.ai · +7 776 981 95 89",
-  title:"Flyhunt MCP Connector — Claude ішінде рекрутинг",
-  login:"Кіру", back:"← Басты бетке", badge:"Claude Connector",
-  h1a:"Flyhunt MCP — рекрутинг тікелей",
+  title:"Flyhunt MCP Connector — Claude және ChatGPT ішінде рекрутинг",
+  login:"Кіру", back:"← Басты бетке", badge:"MCP Connector",
+  h1a:"Flyhunt MCP — рекрутинг тікелей", h1and:" және ", h1b:" ішінде",
   sub:"Flyhunt-ты Claude-қа немесе ChatGPT-ге қосыңыз: hh.kz және LinkedIn-де кандидат іздеңіз, түйіндемелерді скринингтен өткізіп, шортлист жинаңыз — чаттан шықпай.",
   chip1:"2 минутта реттеледі", chip2:"API-кілт қажет емес", chip3:"hh.kz және LinkedIn", chip4:"Claude және ChatGPT", g1t:"Flyhunt коннекторының URL-ін көшіріңіз", g1d:"Claude-қа арналған мекенжаймен бірдей. Келесі қадамда оны ChatGPT-ге қоясыз.", g2t:"Әзірлеуші режимін қосып, қолданба жасаңыз", g2d:"chatgpt.com сайтында: Settings → Apps → Advanced settings → Developer mode қосыңыз. Сосын Settings → Apps → Create: аты Flyhunt, коннектор URL-і, Authentication — OAuth.", g2b:"ChatGPT баптауларын ашу", g3t:"Кіріп, іздеуді бастаңыз", g3d:"Flyhunt аккаунтыңызға кіріңіз. Жаңа чатта «+» → Developer mode басып, Flyhunt-ты қосыңыз — сосын кандидат іздеуді сұраңыз.", g3b:"ChatGPT-ді ашу", gnote:"Әзірлеуші режимі ChatGPT-тің веб-нұсқасында жұмыс істейді. Business пен Enterprise-де оны әкімші қосады: Flyhunt қолданбасын жасап, бүкіл жұмыс кеңістігіне жариялайды.",
   s1t:"Flyhunt коннекторының URL-ін көшіріңіз", s1d:"Бұл URL-ді келесі қадамда Claude-қа қоясыз.", copy:"Көшіру", copied:"Көшірілді",
@@ -516,7 +517,7 @@ kz:{
   cap3t:"Скоринг және шортлист", cap3d:"Әр түйіндеме сіздің критерийлеріңіз бойынша бағаланады және неге сәйкес келетіні түсіндіріледі.",
   cap4t:"Түйіндеме және байланыс", cap4d:"Сәйкес кандидаттардың толық профилі мен байланысын Claude жауабында ашады.",
   faqH:"Жиі қойылатын сұрақтар",
-  ctaH:"Flyhunt-ты Claude-қа екі минутта қосыңыз", ctaP:"Тек Flyhunt аккаунты қажет. Ары қарай — тек адам табуды сұрайсыз.",
+  ctaH:"Flyhunt-ты Claude-қа немесе ChatGPT-ге екі минутта қосыңыз", ctaP:"Тек Flyhunt аккаунты қажет. Ары қарай — тек адам табуды сұрайсыз.",
   ctaB1:"Claude Customize-ды ашу", ctaB2:"Демо тапсырыс беру", rights:"Барлық құқықтар қорғалған.",
   tools:[
     ["choose_candidate_source","hh.kz таңдалды"],
@@ -541,9 +542,9 @@ kz:{
 },
 en:{
   navSol:"Solutions", navSol1:"— Hard-to-fill roles", navSol2:"— High-volume hiring", navSol3:"— Turnkey hiring", navTrain:"AI training", navMcp:"Flyhunt MCP Connector", navBlog:"Blog", navEvents:"Events", navComm:"AI for HR Community", fSlogan:"Flyhunt — AI hiring for those who don't wait for applications.", fCompany:"Company", fLegal:"Legal", fTrain:"Corporate AI training", fMcp:"Flyhunt MCP Connector", fBlog:"Blog", fEvents:"Events", fComm:"AI for HR Community", fPrivacy:"Privacy Policy", fTerms:"Public Offer", fReq:"Flyhunt Ltd. Private Company · BIN 240940900236 · Republic of Kazakhstan, Astana, Yesil district, Mangilik El Avenue, building 55/8 · info@flyhunt.ai · +7 776 981 95 89",
-  title:"Flyhunt MCP Connector — recruiting inside Claude",
-  login:"Log in", back:"← Back to home", badge:"Claude Connector",
-  h1a:"Flyhunt MCP — recruiting right inside",
+  title:"Flyhunt MCP Connector — recruiting inside Claude and ChatGPT",
+  login:"Log in", back:"← Back to home", badge:"MCP Connector",
+  h1a:"Flyhunt MCP — recruiting right inside", h1and:" and ", h1b:"",
   sub:"Connect Flyhunt to Claude or ChatGPT and source candidates on hh.kz and LinkedIn, screen their CVs and build a shortlist — without leaving the chat.",
   chip1:"2-minute setup", chip2:"No API keys", chip3:"hh.kz and LinkedIn", chip4:"Claude and ChatGPT", g1t:"Copy the Flyhunt connector URL", g1d:"Same URL as for Claude. You'll paste it into ChatGPT in the next step.", g2t:"Turn on developer mode and create the app", g2d:"On chatgpt.com: Settings → Apps → Advanced settings → turn on Developer mode. Then Settings → Apps → Create: name Flyhunt, the connector URL, Authentication — OAuth.", g2b:"Open ChatGPT settings", g3t:"Sign in and start sourcing", g3d:"Sign in to Flyhunt. In a new chat click “+” → Developer mode, switch on Flyhunt — then ask for candidates.", g3b:"Open ChatGPT", gnote:"Developer mode works in ChatGPT on the web. On Business and Enterprise an admin turns it on, creates the Flyhunt app and publishes it to the whole workspace.",
   s1t:"Copy the Flyhunt connector URL", s1d:"You'll paste this URL into Claude in the next step.", copy:"Copy", copied:"Copied",
@@ -560,7 +561,7 @@ en:{
   cap3t:"Scoring and shortlist", cap3d:"Every CV scored against your criteria, with reasoning for why a candidate fits or doesn't.",
   cap4t:"CVs and contacts", cap4d:"Opens full profiles and contact details for the candidates worth reaching — right in Claude's reply.",
   faqH:"FAQ",
-  ctaH:"Connect Flyhunt to Claude in two minutes", ctaP:"All you need is a Flyhunt account. After that, just ask for people.",
+  ctaH:"Connect Flyhunt to Claude or ChatGPT in two minutes", ctaP:"All you need is a Flyhunt account. After that, just ask for people.",
   ctaB1:"Open Claude Customize", ctaB2:"Book a demo", rights:"All rights reserved.",
   tools:[
     ["choose_candidate_source","hh.kz selected"],
