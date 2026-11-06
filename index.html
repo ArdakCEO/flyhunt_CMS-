@@ -220,6 +220,7 @@ footer .f-links{display:flex;gap:22px;flex-wrap:wrap}
 .three-grid b{display:block;font-size:19px;margin:10px 0 6px}
 .three-grid p{color:var(--dim);font-size:15px}
 .three-grid i{font-style:normal;font-size:26px}
+.three-grid .src-logo{display:block;width:36px;height:36px;object-fit:contain;margin-bottom:14px}
 .arrow{text-align:center;font-size:17px;color:var(--dim)}
 .arrow b{color:var(--ink)}
 
@@ -244,7 +245,7 @@ footer .f-links{display:flex;gap:22px;flex-wrap:wrap}
 .ticks li{font-size:16px;padding-left:30px;position:relative}
 .ticks li b{display:block}
 .ticks li span{color:var(--dim);font-size:15px}
-.ticks li::before{content:"✓";position:absolute;left:0;top:0;color:var(--violet);font-weight:800}
+.ticks li::before{content:"";position:absolute;left:0;top:4px;width:18px;height:18px;background:var(--violet);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272.25%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27M20 6 9 17l-5-5%27/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272.25%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27M20 6 9 17l-5-5%27/%3E%3C/svg%3E") center/contain no-repeat}
 .upd{font-size:12px;color:var(--violet);font-weight:600}
 .was-s{color:var(--dim);text-decoration:line-through}
 
@@ -270,10 +271,10 @@ footer .f-links{display:flex;gap:22px;flex-wrap:wrap}
   .cmp-r div{padding:14px 16px;font-size:14px}
 }
 </style>
-<script>/* старые ссылки сайта на правовые модалки: /#privacy, /#terms → отдельные страницы */
-(function(){var m={"#privacy":"/privacy/","#terms":"/oferta/"};if(m[location.hash])location.replace(m[location.hash]);})();</script>
 <script>if(window.matchMedia&&matchMedia("(prefers-reduced-motion: no-preference)").matches&&"IntersectionObserver"in window)document.documentElement.classList.add("js-anim");</script>
 <link rel="stylesheet" href="/css/landing-motion.css">
+<script>/* старые ссылки сайта на правовые модалки: /#privacy, /#terms → отдельные страницы */
+(function(){var m={"#privacy":"/privacy/","#terms":"/oferta/"};if(m[location.hash])location.replace(m[location.hash]);})();</script>
 </head>
 <body>
 
@@ -325,9 +326,9 @@ footer .f-links{display:flex;gap:22px;flex-wrap:wrap}
 <section class="three" id="ai"><div class="wrap">
   <div class="sec-h"><h2>Вы даёте вакансию. ИИ — лучших кандидатов.</h2><p>Один запрос — и ИИ ищет сразу в трёх местах, сравнивает людей с вакансией и ставит самых сильных наверх.</p></div>
   <div class="three-grid">
-    <div><i>🗂</i><b>Ваша база</b><p>Сначала — люди, которые уже откликались к вам или были в найме. Их не нужно искать заново.</p></div>
-    <div><i>🔎</i><b>hh</b><p>Резюме из базы hh и все отклики на ваши вакансии — проверены по вашим критериям.</p></div>
-    <div><i>💼</i><b>LinkedIn</b><p>Те, кто не откликается и не ищет работу активно, — с контактами.</p></div>
+    <div><img class="src-logo" src="/images/landing/logo-flyhunt-mark.png" alt="" width="36" height="36"><b>Ваша база</b><p>Сначала — люди, которые уже откликались к вам или были в найме. Их не нужно искать заново.</p></div>
+    <div><img class="src-logo" src="/images/landing/logo-hh.svg" alt="" width="36" height="36"><b>hh</b><p>Резюме из базы hh и все отклики на ваши вакансии — проверены по вашим критериям.</p></div>
+    <div><img class="src-logo" src="/images/landing/logo-linkedin.svg" alt="" width="36" height="36"><b>LinkedIn</b><p>Те, кто не откликается и не ищет работу активно, — с контактами.</p></div>
   </div>
   <p class="arrow">→ <b>один список</b>, где у каждого кандидата оценка и объяснение, почему он подходит</p>
 </div></section>
@@ -401,7 +402,7 @@ footer .f-links{display:flex;gap:22px;flex-wrap:wrap}
   </div>
   <div class="chat">
     <div class="msg me">Как подключить hh?<small>10:02</small></div>
-    <div class="msg">Нажмите «Подключить hh» в Интеграциях — займёт минуту 🙂<small>10:02</small></div>
+    <div class="msg">Нажмите «Подключить hh» в Интеграциях — займёт минуту.<small>10:02</small></div>
     <div class="msg">Готово, вижу 3 вакансии. Запустить по ним скрининг?<small>10:04</small></div>
     <div class="msg me">Да<small>10:04</small></div>
     <div class="msg">Запустила. Утром пришлю лучших.<small>10:04</small></div>
