@@ -209,6 +209,7 @@ footer .f-links{display:flex;gap:22px;flex-wrap:wrap}
 .p-alt{line-height:1.8}
 @media (max-width:1000px){.p-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:620px){.p-grid{grid-template-columns:1fr}.p-grid .p-per{min-height:0}}
+.score{width:auto!important;min-width:64px;display:flex;flex-direction:column;align-items:flex-end;line-height:1.1}.score .pct{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}.score small{font-size:10.5px;font-weight:500;color:var(--dim)}.score.ok{color:#1F8A52}.score.mid{color:#A86B00}
 </style>
 <style>
 /* v2 additions */
@@ -324,9 +325,9 @@ addEventListener("load",function(){setTimeout(go,6000);});})();
     <div class="ui-body">
       <div class="search-in"><b>Менеджер по B2B-продажам, Алматы</b><span class="go">Найти</span></div>
       <div class="srcs"><span>Моя база <em>18</em></span><span>hh <em>15</em></span><span>LinkedIn <em>9</em></span></div>
-      <div class="row"><div class="av" style="background:#8B5CF8">АК</div><div class="n"><b>Айгерим К.</b><span>Откликалась год назад · теперь Head of Sales</span></div><span class="src mine">моя база</span><span class="score ok">94</span></div>
-      <div class="row"><div class="av" style="background:#4FC3F7">ДС</div><div class="n"><b>Данияр С.</b><span>Не ищет работу активно</span></div><span class="src">LinkedIn</span><span class="score ok">91</span></div>
-      <div class="row"><div class="av" style="background:#34C77B">МЖ</div><div class="n"><b>Мадина Ж.</b><span>B2B-продажи, 4 года</span></div><span class="src">hh</span><span class="score ok">88</span></div>
+      <div class="row"><div class="av" style="background:#8B5CF8">АК</div><div class="n"><b>Айгерим К.</b><span>Откликалась год назад · теперь Head of Sales</span></div><span class="src mine">моя база</span><span class="score ok"><span><span class="pct">94</span>%</span><small>совпадение</small></span></div>
+      <div class="row"><div class="av" style="background:#4FC3F7">ДС</div><div class="n"><b>Данияр С.</b><span>Не ищет работу активно</span></div><span class="src">LinkedIn</span><span class="score ok"><span><span class="pct">91</span>%</span><small>совпадение</small></span></div>
+      <div class="row"><div class="av" style="background:#34C77B">МЖ</div><div class="n"><b>Мадина Ж.</b><span>B2B-продажи, 4 года</span></div><span class="src">hh</span><span class="score mid"><span><span class="pct">88</span>%</span><small>совпадение</small></span></div>
       <div class="row" style="justify-content:flex-end"><span class="tag">200 откликов — за 15 минут</span></div>
     </div>
   </div>

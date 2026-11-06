@@ -32,7 +32,7 @@
   rows.forEach(function (row, i) {
     var d = 0.5 + i * 0.6;
     row.style.setProperty('--d', d + 's');
-    var sc = row.querySelector('.score');
+    var sc = row.querySelector('.score .pct') || row.querySelector('.score');
     if (!sc) return;
     row.classList.add('lm-scan');
     var target = parseInt(sc.textContent, 10) || 0;

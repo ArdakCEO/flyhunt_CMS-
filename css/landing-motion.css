@@ -10,7 +10,7 @@
     animation-delay:var(--d,0s)}
   .js-anim .hero .ui-body .row.lm-scan{background:linear-gradient(90deg,transparent,rgba(139,92,248,.08),transparent) no-repeat;
     background-size:40% 100%;animation:lm-row .5s cubic-bezier(.2,.7,.2,1) forwards,lm-scan 1s ease-in-out 1;animation-delay:var(--d,0s)}
-  .js-anim .hero .ui-body .score{display:inline-block;min-width:2ch;text-align:right;font-variant-numeric:tabular-nums}
+  .js-anim .hero .ui-body .score .pct{display:inline-block;min-width:2ch;text-align:right;font-variant-numeric:tabular-nums}
   @keyframes lm-row{to{opacity:1;transform:none}}
   @keyframes lm-scan{from{background-position:-40% 0}to{background-position:140% 0}}
 
