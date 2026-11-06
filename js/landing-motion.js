@@ -52,6 +52,8 @@
   }
 
   function countUp(el, to, ms, set) {
+    // страховка: во вкладке в фоне requestAnimationFrame не идёт — итоговое число ставим таймером
+    setTimeout(function () { if (set) set(to); else el.textContent = to; }, ms + 150);
     var t0 = performance.now();
     (function step(t) {
       var k = Math.min(1, (t - t0) / ms), v = Math.round(to * (1 - Math.pow(1 - k, 3)));
