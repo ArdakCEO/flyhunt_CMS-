@@ -1,0 +1,19 @@
+/* Шапка и подвал нового дизайна на внутренних страницах (блог, ивенты, обучение, MCP, 404) — 06.11.2026.
+   Свои классы v2-*, чтобы не пересекаться со старым main.css. */
+.v2-nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,78,.09);font-family:'Golos Text',system-ui,sans-serif}
+.v2-nav .v2-wrap{max-width:1160px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:68px;gap:32px}
+.v2-nav .v2-logo img{height:28px;width:auto;display:block}
+.v2-nav .v2-links{display:flex;gap:28px;font-size:15px;color:#5A5E8C;flex:1}
+.v2-nav .v2-links a{color:#5A5E8C;text-decoration:none}.v2-nav .v2-links a:hover,.v2-nav .v2-links a.on{color:#00004E}
+.v2-nav .v2-right{display:flex;gap:12px;align-items:center;font-size:15px}
+.v2-nav .v2-right a{color:#00004E;text-decoration:none}
+.v2-nav .v2-tariffs{display:none;font-weight:600}
+.v2-nav .v2-btn{display:inline-flex;align-items:center;height:42px;padding:0 18px;border-radius:14px;background:#00004E;color:#fff!important;font-weight:600;white-space:nowrap}
+.v2-nav .v2-btn:hover{background:#1a1a6e}
+@media (max-width:900px){.v2-nav .v2-links{display:none}.v2-nav .v2-right{margin-left:auto}.v2-nav .v2-tariffs{display:inline}}
+@media (max-width:520px){.v2-nav .v2-wrap{padding:0 16px;gap:12px}.v2-nav .v2-login{display:none}.v2-nav .v2-logo img{height:22px}.v2-nav .v2-btn{height:38px;padding:0 12px;font-size:13px}}
+@media (max-width:420px){.v2-nav .v2-right{gap:10px}.v2-nav .v2-btn{padding:0 10px;font-size:12.5px}.v2-nav .v2-tariffs{font-size:14px}}
+.v2-footer{border-top:1px solid rgba(0,0,78,.09);padding:32px 0;font-size:14px;color:#5A5E8C;font-family:'Golos Text',system-ui,sans-serif;background:#fff}
+.v2-footer .v2-wrap{max-width:1160px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.v2-footer .f-links{display:flex;gap:22px;flex-wrap:wrap}
+.v2-footer a{color:#5A5E8C;text-decoration:none}.v2-footer a:hover{color:#00004E}
