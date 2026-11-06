@@ -65,7 +65,7 @@ h1{font-size:58px;line-height:1.05;font-weight:800;letter-spacing:-.025em}
 .ui-body{padding:16px 18px}
 .row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px}
 .row:last-child{border:0}
-.av{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff}
+.av{width:34px;height:34px;border-radius:50%;flex:none;object-fit:cover;background:#E9E5FF;display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff}
 .row .n{flex:1;min-width:0}.row .n b{display:block;font-weight:600}.row .n span{color:var(--dim);font-size:12px}
 .src{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;background:var(--soft);color:var(--dim)}
 .score{font-weight:700;font-size:14px;width:44px;text-align:right}
@@ -327,9 +327,9 @@ addEventListener("load",function(){setTimeout(go,6000);});})();
     <div class="ui-body">
       <div class="search-in"><b>Менеджер по B2B-продажам, Алматы</b><span class="go">Найти</span></div>
       <div class="srcs"><span>Моя база <em>18</em></span><span>hh <em>15</em></span><span>LinkedIn <em>9</em></span></div>
-      <div class="row"><div class="av" style="background:#8B5CF8">АК</div><div class="n"><b>Айгерим К.</b><span>Откликалась год назад · теперь Head of Sales</span></div><span class="src mine">моя база</span><span class="score ok"><span><span class="pct">94</span>%</span><small>совпадение</small></span></div>
-      <div class="row"><div class="av" style="background:#4FC3F7">ДС</div><div class="n"><b>Данияр С.</b><span>Не ищет работу активно</span></div><span class="src">LinkedIn</span><span class="score ok"><span><span class="pct">91</span>%</span><small>совпадение</small></span></div>
-      <div class="row"><div class="av" style="background:#34C77B">МЖ</div><div class="n"><b>Мадина Ж.</b><span>B2B-продажи, 4 года</span></div><span class="src">hh</span><span class="score mid"><span><span class="pct">88</span>%</span><small>совпадение</small></span></div>
+      <div class="row"><img class="av" src="/images/people/aigerim.webp" alt="" width="34" height="34"><div class="n"><b>Айгерим К.</b><span>Откликалась год назад · теперь Head of Sales</span></div><span class="src mine">моя база</span><span class="score ok"><span><span class="pct">94</span>%</span><small>совпадение</small></span></div>
+      <div class="row"><img class="av" src="/images/people/daniyar.webp" alt="" width="34" height="34"><div class="n"><b>Данияр С.</b><span>Не ищет работу активно</span></div><span class="src">LinkedIn</span><span class="score ok"><span><span class="pct">91</span>%</span><small>совпадение</small></span></div>
+      <div class="row"><img class="av" src="/images/people/madina.webp" alt="" width="34" height="34"><div class="n"><b>Мадина Ж.</b><span>B2B-продажи, 4 года</span></div><span class="src">hh</span><span class="score mid"><span><span class="pct">88</span>%</span><small>совпадение</small></span></div>
       <div class="row" style="justify-content:flex-end"><span class="tag">200 откликов — за 15 минут</span></div>
     </div>
   </div>
@@ -390,7 +390,7 @@ addEventListener("load",function(){setTimeout(go,6000);});})();
     <div class="ui-top"><div class="dots"><span></span><span></span><span></span></div><b>Моя база</b>&nbsp;· 12 480 кандидатов</div>
     <div class="ui-body">
       <div class="big">За неделю обновлено 214 профилей</div>
-      <div class="row"><div class="av" style="background:#8B5CF8">АК</div><div class="n"><b>Айгерим К.</b><span><span class="was-s">Менеджер, Beeline</span> → Head of Sales, Kaspi</span></div><span class="upd">вчера</span></div>
+      <div class="row"><img class="av" src="/images/people/aigerim.webp" alt="" width="34" height="34"><div class="n"><b>Айгерим К.</b><span><span class="was-s">Менеджер, Beeline</span> → Head of Sales, Kaspi</span></div><span class="upd">вчера</span></div>
       <div class="row"><div class="av" style="background:#F59E0B">ЕТ</div><div class="n"><b>Ерлан Т.</b><span>Обновил резюме на hh · ищет работу</span></div><span class="upd">2 дня</span></div>
       <div class="row"><div class="av" style="background:#34C77B">СН</div><div class="n"><b>Сауле Н.</b><span>Новый телефон и почта</span></div><span class="upd">3 дня</span></div>
       <div class="row"><div class="av" style="background:#4FC3F7">РМ</div><div class="n"><b>Руслан М.</b><span>Откликался в 2024 · снова в поиске</span></div><span class="upd">5 дней</span></div>
