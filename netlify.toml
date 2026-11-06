@@ -11,3 +11,9 @@
   for = "/admin/*"
   [headers.values]
     X-Robots-Tag = "noindex"
+
+# правовые страницы (06.11.2026): ссылка оферты из кабинета — /oferta, старые — /terms
+[[redirects]]
+  from = "/terms"
+  to = "/oferta/"
+  status = 301
