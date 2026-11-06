@@ -303,8 +303,9 @@
     setLang(l, true);
     if (window.ym) try { window.ym(99098822, "reachGoal", "lang_switch", { lang: l }); } catch (er) {}
   });
-  var start = null;
-  try { var q = new URLSearchParams(location.search).get("lang"); if (q === "kz" || q === "en" || q === "ru") start = q; } catch (e) {}
+  var start = window.__fhPending || null, saveStart = !!start;
+  if (saveStart && window.ym) try { window.ym(99098822, "reachGoal", "lang_switch", { lang: start }); } catch (e) {}
+  if (!start) try { var q = new URLSearchParams(location.search).get("lang"); if (q === "kz" || q === "en" || q === "ru") start = q; } catch (e) {}
   if (!start) try { var s = localStorage.getItem("fh_lang"); if (s === "kz" || s === "en") start = s; } catch (e) {}
-  if (start && start !== "ru") setLang(start, false);
+  if (start && start !== "ru") setLang(start, saveStart);
 })();

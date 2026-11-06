@@ -431,6 +431,6 @@ addEventListener("load",function(){setTimeout(go,6000);});})();
 </script>
 <script src="/js/landing-motion.js" defer></script>
 <script src="/js/landing-metrika.js" defer></script>
-<script src="/js/landing-i18n.js" defer></script>
+<script>/* языки: переводы грузятся только если выбран KZ/EN */(function(){function L(){if(window.__fhI18n)return;window.__fhI18n=1;var s=document.createElement("script");s.src="/js/landing-i18n.js";document.head.appendChild(s)}var l=null;try{l=new URLSearchParams(location.search).get("lang")||localStorage.getItem("fh_lang")}catch(e){}if(l==="kz"||l==="en")L();document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".lng-sw button");if(b&&!window.__fhI18n&&b.getAttribute("data-lang")!=="ru"){window.__fhPending=b.getAttribute("data-lang");L()}})})();</script>
 </body>
 </html>
