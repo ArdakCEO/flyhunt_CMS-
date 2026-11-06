@@ -97,48 +97,7 @@ function formatPhone(input){
   });
 }
 document.querySelectorAll('input[type="tel"]').forEach(formatPhone);
-/* Реальная отправка в Netlify Forms — без n8n и без своего сервера.
-   Заявки приходят в панель Netlify (Forms) и на почту, если включено уведомление. */
-function netlifyEncode(data){
-  return Object.keys(data).map(k=>encodeURIComponent(k)+'='+encodeURIComponent(data[k])).join('&');
-}
-async function submitToNetlify(form){
-  const data = {};
-  new FormData(form).forEach((v,k)=>{ data[k]=v; });
-  const res = await fetch('/', {
-    method:'POST',
-    headers:{'Content-Type':'application/x-www-form-urlencoded'},
-    body: netlifyEncode(data)
-  });
-  if(!res.ok) throw new Error('Netlify Forms: '+res.status);
-}
-document.querySelectorAll('.lead-form').forEach(form=>{
-  form.addEventListener('submit',async e=>{
-    e.preventDefault();
-    if(form.querySelector('.hp').value)return;
-    let valid=true;
-    form.querySelectorAll('input:not(.hp):not([type="hidden"])').forEach(inp=>{
-      const err=inp.nextElementSibling;
-      let ok=inp.value.trim().length>1;
-      if(inp.type==='email')ok=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(inp.value.trim());
-      if(inp.type==='tel'){const dg=inp.value.replace(/\D/g,'');ok=dg.length>=10&&dg.length<=15;}
-      inp.classList.toggle('err',!ok);
-      if(err&&err.classList.contains('field-err'))err.classList.toggle('show',!ok);
-      if(!ok)valid=false;
-    });
-    if(!valid)return;
-    const btn=form.querySelector('button[type="submit"]'), orig=btn.innerHTML;
-    btn.disabled=true; btn.innerHTML='<span class="spin"></span>'+LBL[curLang].sending;
-    try{
-      await submitToNetlify(form);
-      form.style.display='none';
-      form.parentElement.querySelector('.ok-state').classList.add('show');
-    }catch(err){
-      form.parentElement.querySelector('.err-state').classList.add('show');
-      btn.disabled=false; btn.innerHTML=orig;
-    }
-  });
-});
+/* Формы заявок убраны 06.11.2026 (решение Ардака): вместо них — регистрация в кабинете и Қорлан в WhatsApp. */
 
 /* ============================================================
    I18N — RU в разметке, KZ/EN применяются поверх; RU восстанавливается

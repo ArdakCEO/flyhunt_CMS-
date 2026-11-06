@@ -31,7 +31,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.65);backdro
 .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
 .nav .logo{flex:none}
 .nav .logo img{height:30px;width:auto;max-width:none;display:block}
-.nav-links{display:flex;gap:20px;font-size:15px;color:var(--dim);font-weight:500;align-items:center}
+.nav-links{display:flex;gap:18px;font-size:14px;color:var(--dim);font-weight:500;align-items:center}
 .nav-links a:hover{color:var(--ink)}
 .nav-drop{position:relative}
 .nav-drop>a::after{content:'▾';font-size:10px;margin-left:5px}
@@ -68,7 +68,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.65);backdro
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 html.menu-open{overflow:hidden}
-@media(max-width:1300px){
+@media(max-width:1200px){
   .nav-links{display:none}
   .burger{display:flex}
   .nav-right{min-width:0}
@@ -507,3 +507,11 @@ footer{border-top:1px solid var(--line);background:rgba(255,255,255,.55);backdro
 .ft-foot{font-size:14px;color:var(--dim)}
 .ft-foot a{color:var(--violet);text-decoration:underline;text-underline-offset:3px}
 @media (max-width:900px){.ft-grid{grid-template-columns:1fr}.ft-pricing h2{font-size:32px}}
+/* карточка регистрации вместо формы заявки (06.11.2026) */
+.ft-signup-card{text-align:left}
+.ft-signup-card .ft-signup-text{color:var(--dim);font-size:15px;margin:6px 0 18px}
+.ft-signup-card .btn-grad{display:block;text-align:center}
+.ft-wa{display:block;text-align:center;margin-top:14px;font-weight:600;color:var(--violet);text-decoration:underline;text-underline-offset:3px}
+.ft-hero-note{margin-top:14px;font-size:15px;color:var(--dim)}
+.ft-hero-note a{color:var(--violet);text-decoration:underline;text-underline-offset:3px}
+.ft-tokens{font-size:14px;color:var(--dim);margin:-4px 0 8px}
