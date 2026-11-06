@@ -278,6 +278,8 @@ footer .f-links{display:flex;gap:22px;flex-wrap:wrap}
   .cmp-r div{padding:14px 16px;font-size:14px}
 }
 </style>
+<script>if(window.matchMedia&&matchMedia("(prefers-reduced-motion: no-preference)").matches&&"IntersectionObserver"in window)document.documentElement.classList.add("js-anim");</script>
+<link rel="stylesheet" href="/css/landing-motion.css">
 </head>
 <body>
 
@@ -401,10 +403,11 @@ footer .f-links{display:flex;gap:22px;flex-wrap:wrap}
   t.addEventListener("click",function(e){
     var b=e.target.closest("button");if(!b)return;var p=b.getAttribute("data-period");
     t.querySelectorAll("button").forEach(function(x){x.classList.toggle("on",x===b)});
-    document.querySelectorAll(".p-grid [data-"+p+"]").forEach(function(n){
-      var v=n.getAttribute("data-"+p);n.innerHTML=n.classList.contains("p-sum")?v+" <small>/ мес</small>":v;});
+    var ns=document.querySelectorAll(".p-grid [data-"+p+"]");ns.forEach(function(n){n.classList.add("lm-swap");});
+      setTimeout(function(){ns.forEach(function(n){var v=n.getAttribute("data-"+p);n.innerHTML=n.classList.contains("p-sum")?v+" <small>/ мес</small>":v;n.classList.remove("lm-swap");});},document.documentElement.classList.contains("js-anim")?160:0);
   });
 })();
 </script>
+<script src="/js/landing-motion.js" defer></script>
 </body>
 </html>

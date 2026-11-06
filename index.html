@@ -272,6 +272,8 @@ footer .f-links{display:flex;gap:22px;flex-wrap:wrap}
 </style>
 <script>/* старые ссылки сайта на правовые модалки: /#privacy, /#terms → отдельные страницы */
 (function(){var m={"#privacy":"/privacy/","#terms":"/oferta/"};if(m[location.hash])location.replace(m[location.hash]);})();</script>
+<script>if(window.matchMedia&&matchMedia("(prefers-reduced-motion: no-preference)").matches&&"IntersectionObserver"in window)document.documentElement.classList.add("js-anim");</script>
+<link rel="stylesheet" href="/css/landing-motion.css">
 </head>
 <body>
 
@@ -444,5 +446,6 @@ footer .f-links{display:flex;gap:22px;flex-wrap:wrap}
   <div class="f-links"><a href="https://chat.whatsapp.com/EUENkEORTBQGJ44jCIe3ko" target="_blank" rel="noopener">Сообщество AI для HR</a><a href="/events/">Ивенты</a><a href="/training/">Обучение ИИ</a><a href="https://wa.me/77769819589?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D2%9A%D0%BE%D1%80%D0%BB%D0%B0%D0%BD!%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20Flyhunt.%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%20%D0%BF%D0%BE%D0%B4%20%D0%BA%D0%BB%D1%8E%D1%87." target="_blank" rel="noopener">Подбор под ключ</a><a href="/oferta/">Оферта</a><a href="/privacy/">Конфиденциальность</a></div>
 </div></footer>
 
+<script src="/js/landing-motion.js" defer></script>
 </body>
 </html>
