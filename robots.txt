@@ -1,4 +1,50 @@
+# Flyhunt — открыт для поисковых и ИИ-ботов (GEO, 25.11.2026)
 User-agent: *
+Allow: /
+Disallow: /admin/
+
+# ИИ-поиск и ассистенты — явно разрешены
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /admin/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /admin/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /admin/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+
+User-agent: YandexBot
 Allow: /
 Disallow: /admin/
 
