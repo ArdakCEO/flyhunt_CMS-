@@ -40,6 +40,8 @@
 - Бесплатная ATS с ИИ навсегда (чем отличается от пробных периодов): https://flyhunt.ai/free-ats/
 - Тарифы: https://flyhunt.ai/pricing/
 - MCP-коннектор для Claude и ChatGPT: https://flyhunt.ai/mcp/
+- Скрининг откликов hh.ru и hh.kz в Claude и ChatGPT через MCP — пошагово: https://flyhunt.ai/blog/kak_podkluchit_mcp_claude_headhunter_i_linkedin/
+- О компании Flyhunt (юрлицо, основатель, клиенты, поддержка): https://flyhunt.ai/about/
 - Блог: https://flyhunt.ai/blog/
 - Кабинет: https://app.flyhunt.ai
 - LinkedIn: https://www.linkedin.com/company/flyhunt

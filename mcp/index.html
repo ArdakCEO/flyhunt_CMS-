@@ -168,6 +168,157 @@
     .final-btns .btn-white,.final-btns .btn-ghost{width:100%;min-width:0}
   }
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://flyhunt.ai/mcp/#connector",
+   "name": "Flyhunt MCP Connector",
+   "applicationCategory": "BusinessApplication",
+   "applicationSubCategory": "Recruiting / ATS",
+   "operatingSystem": "Web (Claude, ChatGPT)",
+   "url": "https://flyhunt.ai/mcp/",
+   "installUrl": "https://api.flyhunt.ai/mcp",
+   "description": "MCP-коннектор Flyhunt для Claude и ChatGPT: 17 инструментов — поиск кандидатов на hh и в LinkedIn, генерация критериев, скрининг резюме с объяснением оценки и шортлист прямо в чате. Подключение к hh — через официальный API HeadHunter.",
+   "isPartOf": {
+    "@id": "https://flyhunt.ai/#app"
+   },
+   "publisher": {
+    "@id": "https://flyhunt.ai/#org"
+   },
+   "inLanguage": [
+    "ru",
+    "kk",
+    "en"
+   ],
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KZT",
+    "description": "ATS Flyhunt бесплатна навсегда для одного рекрутера; работа ИИ — токенами по тарифу (https://flyhunt.ai/pricing/)"
+   }
+  },
+  {
+   "@type": "HowTo",
+   "@id": "https://flyhunt.ai/mcp/#howto-claude",
+   "name": "Как подключить Flyhunt к Claude",
+   "totalTime": "PT2M",
+   "tool": [
+    {
+     "@type": "HowToTool",
+     "name": "Аккаунт Flyhunt"
+    },
+    {
+     "@type": "HowToTool",
+     "name": "Claude (claude.ai или приложение)"
+    }
+   ],
+   "step": [
+    {
+     "@type": "HowToStep",
+     "position": 1,
+     "name": "Скопируйте URL коннектора",
+     "text": "Адрес коннектора Flyhunt: https://api.flyhunt.ai/mcp"
+    },
+    {
+     "@type": "HowToStep",
+     "position": 2,
+     "name": "Добавьте коннектор в Claude",
+     "text": "В приложении Claude или на claude.ai: Customize → Connectors → Add custom connector. Назовите коннектор Flyhunt и вставьте URL."
+    },
+    {
+     "@type": "HowToStep",
+     "position": 3,
+     "name": "Подключитесь и начните поиск",
+     "text": "Нажмите Connect, войдите в аккаунт Flyhunt и попросите Claude найти кандидатов."
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "@id": "https://flyhunt.ai/mcp/#howto-chatgpt",
+   "name": "Как подключить Flyhunt к ChatGPT",
+   "totalTime": "PT3M",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "position": 1,
+     "name": "Скопируйте URL коннектора",
+     "text": "Адрес коннектора Flyhunt: https://api.flyhunt.ai/mcp"
+    },
+    {
+     "@type": "HowToStep",
+     "position": 2,
+     "name": "Включите режим разработчика и создайте приложение",
+     "text": "На chatgpt.com: Settings → Apps → Advanced settings → включите Developer mode. Затем Settings → Apps → Create: имя Flyhunt, URL коннектора, Authentication — OAuth."
+    },
+    {
+     "@type": "HowToStep",
+     "position": 3,
+     "name": "Войдите и начните поиск",
+     "text": "Войдите в аккаунт Flyhunt. В новом чате нажмите «+» → Developer mode, включите Flyhunt и попросите найти кандидатов."
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://flyhunt.ai/mcp/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Что такое MCP и зачем он мне?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "MCP — открытый стандарт, по которому ИИ-ассистенты подключаются к внешним сервисам. Подключив коннектор Flyhunt, вы работаете с поиском и скринингом кандидатов прямо в чате Claude: не нужно открывать отдельный интерфейс и переносить данные руками."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Нужен ли платный план Claude или ChatGPT?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Нет, коннектор работает и на бесплатных планах. В командных планах (Claude Team и Enterprise, ChatGPT Business и Enterprise) его обычно подключает администратор сразу для всех."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Можно ли подключить Flyhunt к ChatGPT?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Да. На chatgpt.com включите режим разработчика (Developer mode) и добавьте приложение Flyhunt по тому же URL коннектора — пошагово во вкладке «ChatGPT» выше. Работает в веб-версии ChatGPT."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Нужен ли аккаунт Flyhunt?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Да. При первом подключении Claude попросит войти в Flyhunt — доступ к поиску и скринингу выдаётся по вашему тарифу Flyhunt. Если аккаунта пока нет, оставьте заявку на демо."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Какие источники кандидатов поддерживаются?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Сейчас hh.kz и LinkedIn. Claude сам предложит источник под вашу вакансию или спросит, если подходят оба."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Безопасно ли это для данных кандидатов?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Коннектор работает под вашей учётной записью Flyhunt и отдаёт только те данные, к которым у вас уже есть доступ в Flyhunt. Каждый вызов инструмента видно в чате — вы всегда знаете, что именно делает ассистент."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -356,7 +507,14 @@
   <!-- ================= FAQ ================= -->
   <section class="faq-mcp">
     <h2 data-t="faqH">Частые вопросы</h2>
-    <div class="faq-list" id="faqList"></div>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item"><button class="faq-q">Что такое MCP и зачем он мне?<span class="pl">+</span></button><div class="faq-a"><div>MCP — открытый стандарт, по которому ИИ-ассистенты подключаются к внешним сервисам. Подключив коннектор Flyhunt, вы работаете с поиском и скринингом кандидатов прямо в чате Claude: не нужно открывать отдельный интерфейс и переносить данные руками.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Нужен ли платный план Claude или ChatGPT?<span class="pl">+</span></button><div class="faq-a"><div>Нет, коннектор работает и на бесплатных планах. В командных планах (Claude Team и Enterprise, ChatGPT Business и Enterprise) его обычно подключает администратор сразу для всех.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Можно ли подключить Flyhunt к ChatGPT?<span class="pl">+</span></button><div class="faq-a"><div>Да. На chatgpt.com включите режим разработчика (Developer mode) и добавьте приложение Flyhunt по тому же URL коннектора — пошагово во вкладке «ChatGPT» выше. Работает в веб-версии ChatGPT.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Нужен ли аккаунт Flyhunt?<span class="pl">+</span></button><div class="faq-a"><div>Да. При первом подключении Claude попросит войти в Flyhunt — доступ к поиску и скринингу выдаётся по вашему тарифу Flyhunt. Если аккаунта пока нет, оставьте заявку на демо.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Какие источники кандидатов поддерживаются?<span class="pl">+</span></button><div class="faq-a"><div>Сейчас hh.kz и LinkedIn. Claude сам предложит источник под вашу вакансию или спросит, если подходят оба.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Безопасно ли это для данных кандидатов?<span class="pl">+</span></button><div class="faq-a"><div>Коннектор работает под вашей учётной записью Flyhunt и отдаёт только те данные, к которым у вас уже есть доступ в Flyhunt. Каждый вызов инструмента видно в чате — вы всегда знаете, что именно делает ассистент.</div></div></div>
+    </div>
   </section>
 
   <!-- ================= ФИНАЛЬНЫЙ CTA ================= -->
@@ -374,7 +532,7 @@
 
 <footer class="v2-footer"><div class="v2-wrap">
   <span>© <span id="year">2026</span> Flyhunt Ltd · Астана</span>
-  <div class="f-links"><a href="https://chat.whatsapp.com/EUENkEORTBQGJ44jCIe3ko" target="_blank" rel="noopener">Сообщество AI для HR</a><a href="/events/">Ивенты</a><a href="/training/">Обучение ИИ</a><a href="https://wa.me/77769819589?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D2%9A%D0%BE%D1%80%D0%BB%D0%B0%D0%BD!%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20Flyhunt.%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%20%D0%BF%D0%BE%D0%B4%20%D0%BA%D0%BB%D1%8E%D1%87." target="_blank" rel="noopener">Подбор под ключ</a><a href="/oferta/">Оферта</a><a href="/privacy/">Конфиденциальность</a></div><div class="f-soc"><a href="https://www.instagram.com/flyhunt.ai/" target="_blank" rel="noopener" aria-label="Flyhunt в Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a><a href="https://www.linkedin.com/company/flyhunt" target="_blank" rel="noopener" aria-label="Flyhunt в LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.2v.1M11.8 17v-6.5M11.8 13.5c0-1.7 1-3 2.6-3s2.2 1.1 2.2 2.8V17"/></svg></a><a href="https://www.youtube.com/@Flyhunt_ai" target="_blank" rel="noopener" aria-label="Flyhunt на YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/></svg></a></div>
+  <div class="f-links"><a href="/about/">О компании</a><a href="https://chat.whatsapp.com/EUENkEORTBQGJ44jCIe3ko" target="_blank" rel="noopener">Сообщество AI для HR</a><a href="/events/">Ивенты</a><a href="/training/">Обучение ИИ</a><a href="https://wa.me/77769819589?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D2%9A%D0%BE%D1%80%D0%BB%D0%B0%D0%BD!%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20Flyhunt.%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%20%D0%BF%D0%BE%D0%B4%20%D0%BA%D0%BB%D1%8E%D1%87." target="_blank" rel="noopener">Подбор под ключ</a><a href="/oferta/">Оферта</a><a href="/privacy/">Конфиденциальность</a></div><div class="f-soc"><a href="https://www.instagram.com/flyhunt.ai/" target="_blank" rel="noopener" aria-label="Flyhunt в Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a><a href="https://www.linkedin.com/company/flyhunt" target="_blank" rel="noopener" aria-label="Flyhunt в LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.2v.1M11.8 17v-6.5M11.8 13.5c0-1.7 1-3 2.6-3s2.2 1.1 2.2 2.8V17"/></svg></a><a href="https://www.youtube.com/@Flyhunt_ai" target="_blank" rel="noopener" aria-label="Flyhunt на YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/></svg></a></div>
 </div></footer>
 
 <script src="/js/nav.js"></script>
