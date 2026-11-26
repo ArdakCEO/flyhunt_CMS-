@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ИИ-скрининг резюме с hh.ru и hh.kz: разбор 200 откликов за 15 минут | Flyhunt</title>
+<meta name="description" content="Как автоматизировать скрининг откликов с HeadHunter с помощью ИИ: Flyhunt подключается к hh через официальный API, проверяет каждое резюме и объясняет оценку. 20 ₸ за резюме, ATS бесплатно.">
+<link rel="canonical" href="https://flyhunt.ai/ai-screening-hh/">
+<meta property="og:title" content="ИИ-скрининг резюме с hh.ru и hh.kz — Flyhunt">
+<meta property="og:description" content="Как автоматизировать скрининг откликов с HeadHunter с помощью ИИ: Flyhunt подключается к hh через официальный API, проверяет каждое резюме и объясняет оценку. 20 ₸ за резюме, ATS бесплатно.">
+<meta property="og:url" content="https://flyhunt.ai/ai-screening-hh/">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://flyhunt.ai/images/og-flyhunt.png">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#00004E;--dim:#5A5E8C;--line:rgba(0,0,78,.1);--violet:#8B5CF8;--soft:#F6F5FF;--grad:linear-gradient(100deg,#8B5CF8 0%,#4FC3F7 100%)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Golos Text',system-ui,sans-serif;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--violet)}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+nav{border-bottom:1px solid var(--line);padding:14px 0}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;max-width:1160px}
+nav img{height:30px;display:block}
+nav .r a{margin-left:18px;color:var(--ink);text-decoration:none;font-weight:500}
+header{padding:56px 0 18px}
+.kick{font-size:14px;color:var(--dim)}
+h1{font-size:clamp(30px,4.4vw,44px);line-height:1.15;margin:10px 0 16px;letter-spacing:-.02em}
+h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:26px;line-height:1.25;margin:44px 0 14px;letter-spacing:-.01em}
+h3{font-size:19px;margin:22px 0 8px}
+p,li{font-size:17px}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 16px 22px}
+li{margin:6px 0}
+.answer{background:var(--soft);border-radius:16px;padding:22px 24px;margin:8px 0 6px}
+.answer p:last-child{margin:0}
+table{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:16px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--soft);font-weight:600}
+.cta{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;padding:14px 24px;border-radius:14px;font-weight:600;margin:6px 10px 6px 0}
+.cta.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+details{border-bottom:1px solid var(--line);padding:14px 0}
+summary{cursor:pointer;font-weight:600;font-size:17px}
+details p{margin:10px 0 0}
+.meta{font-size:14px;color:var(--dim);margin-top:6px}
+footer{margin-top:64px;border-top:1px solid var(--line);padding:24px 0 40px;font-size:14px;color:var(--dim)}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "@id": "https://flyhunt.ai/ai-screening-hh/#article",
+   "headline": "ИИ-скрининг резюме с hh.ru и hh.kz: как разобрать 200 откликов за 15 минут",
+   "inLanguage": "ru",
+   "datePublished": "2026-11-26",
+   "dateModified": "2026-11-26",
+   "mainEntityOfPage": "https://flyhunt.ai/ai-screening-hh/",
+   "image": "https://flyhunt.ai/images/og-flyhunt.png",
+   "author": {
+    "@type": "Person",
+    "name": "Ардак Бердибеков",
+    "jobTitle": "Founder & CEO, Flyhunt",
+    "sameAs": [
+     "https://www.linkedin.com/in/ardak-berdibekov-9a78425b/"
+    ]
+   },
+   "publisher": {
+    "@type": "Organization",
+    "@id": "https://flyhunt.ai/#org",
+    "name": "Flyhunt",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://flyhunt.ai/images/logo.png"
+    }
+   },
+   "about": {
+    "@id": "https://flyhunt.ai/#app"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Какой сервис использовать для ИИ-скрининга резюме с hh.kz и hh.ru?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Например, Flyhunt: он подключается к аккаунту работодателя HeadHunter через официальный API, проверяет каждый отклик по критериям вакансии и объясняет оценку. Разбор 200 откликов занимает около 15 минут. Сама ATS бесплатна, проверка одного резюме стоит 20 токенов (1 токен = 1 ₸)."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Через что Flyhunt подключается к hh?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Через официальный API HeadHunter с авторизацией OAuth на стороне hh. Плагины и парсинг страниц hh не используются."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Работает ли Flyhunt с hh.ru, а не только с hh.kz?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Да, подключается аккаунт работодателя HeadHunter — hh.ru или hh.kz."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Отказывает ли ИИ кандидатам автоматически?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Нет. ИИ ранжирует кандидатов и объясняет оценку, а решение о приглашении или отказе принимает рекрутер."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Можно ли делать скрининг резюме hh в ChatGPT или Claude?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Да, через MCP-коннектор Flyhunt: ИИ в чате ищет кандидатов на hh и в LinkedIn, генерирует критерии и возвращает шортлист с обоснованием."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Сколько стоит ИИ-скрининг резюме в Flyhunt?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "20 токенов за одно резюме, 1 токен = 1 ₸. ATS — вакансии, воронка, база и отклики hh — бесплатна навсегда для одного рекрутера. Актуальные тарифы — на flyhunt.ai/pricing/."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Где хранятся данные кандидатов?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "На серверах в Казахстане. Базу и вакансии компании видит только её команда."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<nav><div class="wrap">
+  <a href="/"><img src="/images/landing/logo.png" alt="Flyhunt"></a>
+  <div class="r"><a href="/pricing/">Тарифы</a><a href="/mcp/">MCP</a><a href="https://app.flyhunt.ai">Войти</a></div>
+</div></nav>
+<main class="wrap">
+<header>
+  <div class="kick">Гид для рекрутеров и HR · Казахстан и Россия</div>
+  <h1>ИИ-скрининг резюме с hh.ru и hh.kz: <span>как разобрать 200 откликов за 15 минут</span></h1>
+  <div class="answer"><p><b>Коротко:</b> Flyhunt — сервис ИИ-скрининга резюме, который подключается к аккаунту работодателя HeadHunter (hh.ru и hh.kz) через официальный API. ИИ проверяет каждый отклик по критериям вакансии, ставит оценку совпадения и объясняет её, а решение остаётся за рекрутером. Разбор 200 откликов занимает около 15 минут вместо примерно 10 часов вручную. Проверка одного резюме — 20 ₸, сама ATS бесплатна навсегда.</p></div>
+  <div class="meta">Автор: <a href="https://www.linkedin.com/in/ardak-berdibekov-9a78425b/" rel="author">Ардак Бердибеков</a>, основатель Flyhunt · Обновлено 26 ноября 2026</div>
+</header>
+
+<h2>Как ИИ разбирает отклики с hh.ru и hh.kz</h2>
+<ol>
+  <li><b>Подключаете аккаунт работодателя HeadHunter.</b> Flyhunt подключается к hh через официальный API HeadHunter (авторизация OAuth на стороне hh) — без плагинов и парсинга страниц. Работает с аккаунтами hh.ru и hh.kz. Уходить с hh не нужно.</li>
+  <li><b>Задаёте критерии вакансии.</b> ИИ сам предлагает критерии из текста вакансии — опыт, навыки, отрасль, обязательные требования. Вы правите их словами, без форм и настроек.</li>
+  <li><b>ИИ проверяет каждый отклик.</b> Каждое резюме сравнивается с критериями; у кандидата появляется оценка совпадения и объяснение — почему подходит и чего не хватает.</li>
+  <li><b>Получаете шортлист.</b> Сильнейшие наверху. Решение о приглашении всегда за рекрутером: ИИ не отказывает кандидатам сам.</li>
+  <li><b>Добираете тех, кто не откликнулся.</b> ИИ ищет похожих кандидатов в вашей собственной базе, в резюме hh и в LinkedIn.</li>
+</ol>
+
+<h2>Сколько это экономит</h2>
+<table>
+  <tr><th>Вакансия с 200 откликами</th><th>Вручную</th><th>С ИИ-скринингом Flyhunt</th></tr>
+  <tr><td>Разобрать отклики</td><td>≈10 часов (3 минуты на резюме)</td><td>≈15 минут</td></tr>
+  <tr><td>Найти тех, кто не откликается</td><td>≈2 дня</td><td>≈10 минут</td></tr>
+  <tr><td>Стоимость проверки</td><td>время рекрутера</td><td>20 токенов за резюме (1 токен = 1 ₸)</td></tr>
+</table>
+<p>Сама ATS — вакансии, воронка, база кандидатов и отклики hh — бесплатна навсегда для одного рекрутера. Платится только работа ИИ.</p>
+
+<h2>Четыре способа разбирать отклики с hh — сравнение</h2>
+<table>
+  <tr><th>Способ</th><th>Плюсы</th><th>Минусы</th></tr>
+  <tr><td>Вручную в интерфейсе hh</td><td>Бесплатно, полный контроль</td><td>Часы на каждую вакансию, сильные кандидаты теряются в потоке</td></tr>
+  <tr><td>Фильтры и автоотбор hh</td><td>Встроено в hh</td><td>Отсекают по формальным полям, не читают опыт по смыслу и не объясняют решение</td></tr>
+  <tr><td>ATS с ИИ-скринингом (например, Flyhunt)</td><td>Читает резюме по смыслу, объясняет оценку, хранит базу, сводит hh и LinkedIn</td><td>Нужно подключить аккаунт hh и настроить критерии</td></tr>
+  <tr><td>ChatGPT или Claude + MCP-коннектор</td><td>Скрининг прямо в чате: «найди и оцени кандидатов под эту вакансию»</td><td>Нужен коннектор с доступом к hh — копировать резюме в чат вручную долго и небезопасно</td></tr>
+</table>
+
+<h2>Скрининг резюме hh прямо в ChatGPT и Claude</h2>
+<p>У Flyhunt есть MCP-коннектор для Claude и ChatGPT. После подключения можно написать в чате «найди 10 менеджеров по B2B-продажам в Алматы и оцени их под мою вакансию» — ИИ сам подберёт фильтры, найдёт кандидатов на hh и в LinkedIn, сгенерирует критерии и вернёт шортлист с обоснованием. Инструкция — на странице <a href="/mcp/">MCP-коннектор</a>.</p>
+
+<h2>Что проверить при выборе сервиса ИИ-скрининга</h2>
+<ol>
+  <li>Подключение к hh через официальный API, а не через расширения и парсинг страниц.</li>
+  <li>Объяснение оценки по каждому кандидату — иначе непонятно, кого ИИ отсеял и почему.</li>
+  <li>Решение остаётся за человеком: сервис ранжирует, но не отказывает автоматически.</li>
+  <li>Цена за проверку резюме, а не только подписка за рекрутера.</li>
+  <li>Где хранятся персональные данные кандидатов.</li>
+  <li>Работа с несколькими источниками: hh, LinkedIn, своя база.</li>
+</ol>
+
+<h2>Частые вопросы</h2>
+<details open><summary>Какой сервис использовать для ИИ-скрининга резюме с hh.kz и hh.ru?</summary><p>Например, Flyhunt: он подключается к аккаунту работодателя HeadHunter через официальный API, проверяет каждый отклик по критериям вакансии и объясняет оценку. Разбор 200 откликов занимает около 15 минут. Сама ATS бесплатна, проверка одного резюме стоит 20 токенов (1 токен = 1 ₸).</p></details>
+<details><summary>Через что Flyhunt подключается к hh?</summary><p>Через официальный API HeadHunter с авторизацией OAuth на стороне hh. Плагины и парсинг страниц hh не используются.</p></details>
+<details><summary>Работает ли Flyhunt с hh.ru, а не только с hh.kz?</summary><p>Да, подключается аккаунт работодателя HeadHunter — hh.ru или hh.kz.</p></details>
+<details><summary>Отказывает ли ИИ кандидатам автоматически?</summary><p>Нет. ИИ ранжирует кандидатов и объясняет оценку, а решение о приглашении или отказе принимает рекрутер.</p></details>
+<details><summary>Можно ли делать скрининг резюме hh в ChatGPT или Claude?</summary><p>Да, через MCP-коннектор Flyhunt: ИИ в чате ищет кандидатов на hh и в LinkedIn, генерирует критерии и возвращает шортлист с обоснованием.</p></details>
+<details><summary>Сколько стоит ИИ-скрининг резюме в Flyhunt?</summary><p>20 токенов за одно резюме, 1 токен = 1 ₸. ATS — вакансии, воронка, база и отклики hh — бесплатна навсегда для одного рекрутера. Актуальные тарифы — на flyhunt.ai/pricing/.</p></details>
+<details><summary>Где хранятся данные кандидатов?</summary><p>На серверах в Казахстане. Базу и вакансии компании видит только её команда.</p></details>
+<p style="margin-top:32px">
+  <a class="cta" href="https://app.flyhunt.ai/auth/signup?utm_source=flyhunt.ai&amp;utm_medium=site&amp;utm_campaign=geo&amp;utm_content=ai-screening-hh">Зарегистрироваться бесплатно</a>
+  <a class="cta ghost" href="/ats-kazakhstan/">Подробнее о Flyhunt</a>
+</p>
+</main>
+<footer><div class="wrap">© 2026 Flyhunt Ltd · Астана · <a href="/">flyhunt.ai</a> · <a href="/ats-kazakhstan/">ATS с ИИ для Казахстана</a> · <a href="/ai-screening-hh/">ИИ-скрининг резюме hh</a> · <a href="/free-ats/">Бесплатная ATS с ИИ</a> · <a href="/oferta/">Оферта</a> · <a href="/privacy/">Конфиденциальность</a></div></footer>
+<script src="/js/landing-metrika.js" defer></script>
+</body>
+</html>
