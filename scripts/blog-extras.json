@@ -3,7 +3,7 @@
   "seoTitle": "Скрининг резюме hh.ru и hh.kz в Claude и ChatGPT через MCP | Flyhunt",
   "h1": "Скрининг откликов hh.ru и hh.kz в Claude и ChatGPT: MCP-коннектор Flyhunt за 5 минут",
   "description": "Как скринить резюме с hh.ru и hh.kz прямо в Claude или ChatGPT: MCP-коннектор Flyhunt (https://api.flyhunt.ai/mcp) ищет кандидатов на hh и в LinkedIn, проверяет резюме с объяснением оценки и собирает шортлист в чате.",
-  "dateModified": "2026-11-26",
+  "dateModified": "2026-11-27",
   "about": "https://flyhunt.ai/#app",
   "lead": "<p><b>Коротко:</b> чтобы скринить отклики и резюме с hh.ru и hh.kz прямо в Claude или ChatGPT, подключите MCP-коннектор Flyhunt по адресу <code>https://api.flyhunt.ai/mcp</code>. Flyhunt подключается к аккаунту работодателя HeadHunter через официальный API (OAuth на стороне hh), а ИИ в чате сам подбирает фильтры, ищет кандидатов на hh и в LinkedIn, проверяет каждое резюме по критериям вакансии с объяснением оценки и собирает шортлист.</p><p>Нужны аккаунт Flyhunt (ATS бесплатна навсегда для одного рекрутера) и Claude или ChatGPT — подойдут и бесплатные планы. Коннектор даёт ИИ 17 инструментов поиска и скрининга; решение о найме остаётся за рекрутером. Пошаговая инструкция с кнопками — на странице <a href=\"/mcp/\">flyhunt.ai/mcp</a>.</p>",
   "afterHtml": "<h2>Что понадобится</h2>\n<table><thead><tr><th>Что</th><th>Зачем</th><th>Стоимость</th></tr></thead><tbody>\n<tr><td>Аккаунт Flyhunt</td><td>ATS, через которую ИИ работает с hh и LinkedIn</td><td>0 ₸ навсегда для одного рекрутера, без карты</td></tr>\n<tr><td>Аккаунт работодателя hh.ru или hh.kz</td><td>Отклики и поиск резюме через официальный API HeadHunter</td><td>По вашему договору с hh</td></tr>\n<tr><td>Claude или ChatGPT</td><td>Чат, в котором вы ставите задачу словами</td><td>Работает и на бесплатных планах</td></tr>\n<tr><td>Работа ИИ Flyhunt</td><td>Проверка резюме, контакты из LinkedIn</td><td>Токенами: 1 токен = 1 ₸, проверка резюме — 20 токенов, контакт LinkedIn — 200 токенов (<a href=\"/pricing/\">тарифы</a>)</td></tr>\n</tbody></table>\n<h2>Подключение к ChatGPT</h2>\n<p>На chatgpt.com: Settings → Apps → Advanced settings → включите Developer mode. Затем Settings → Apps → Create: имя Flyhunt, URL <code>https://api.flyhunt.ai/mcp</code>, Authentication — OAuth. Войдите в аккаунт Flyhunt, в новом чате нажмите «+» → Developer mode и включите Flyhunt. Режим разработчика работает в веб-версии ChatGPT; в Business и Enterprise его включает администратор.</p>\n<p>Подробнее о том, как ИИ разбирает отклики hh, — в гиде <a href=\"/ai-screening-hh/\">ИИ-скрининг резюме с hh.ru и hh.kz</a>. О том, что в Flyhunt бесплатно навсегда, — на странице <a href=\"/free-ats/\">бесплатная ATS с ИИ</a>.</p>",
@@ -36,6 +36,7 @@
     "ИИ сам решает, кого нанимать?",
     "Нет. ИИ оценивает резюме по вашим критериям и объясняет оценку, а решение о найме принимает рекрутер."
    ]
-  ]
+  ],
+  "author": "ardak"
  }
 }

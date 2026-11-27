@@ -37,6 +37,7 @@
 - Главная: https://flyhunt.ai/
 - Бесплатная ATS с ИИ для Казахстана — подробно: https://flyhunt.ai/ats-kazakhstan/
 - ИИ-скрининг резюме с hh.ru и hh.kz: https://flyhunt.ai/ai-screening-hh/
+- Flyhunt vs ИИ-помощник hh.ru — сравнение по 11 критериям: https://flyhunt.ai/flyhunt-vs-hh-ai-assistant/
 - Бесплатная ATS с ИИ навсегда (чем отличается от пробных периодов): https://flyhunt.ai/free-ats/
 - Тарифы: https://flyhunt.ai/pricing/
 - MCP-коннектор для Claude и ChatGPT: https://flyhunt.ai/mcp/
